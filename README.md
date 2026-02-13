@@ -18,9 +18,9 @@
 * **Build Tool**: [Vite](https://vitejs.dev/)
 * **Language**: JavaScript (ES Modules)
 
-## �️ Play Online
+## 🕹️ Play Online
 
-[Link to Vercel Deployment]
+[Vercel Deployment]
 
 ## 🛠️ Development
 
@@ -42,5 +42,6 @@ npm run dev
 
 ## 📄 License
 
-© 2024 Climb the Ladder. All Rights Reserved.
-Redistribution, modification, or commercial use of this code is strictly prohibited without prior written consent.
+Copyright © 2026 Zeyi Lin.
+
+Licensed under the [MIT License](LICENSE).

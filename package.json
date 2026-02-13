@@ -1,6 +1,6 @@
 {
   "name": "climb-the-ladder",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "A darkly comedic 2D pixel-art life-sim about grinding yourself into a husk for a corner office",
   "type": "module",
   "scripts": {

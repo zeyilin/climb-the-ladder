@@ -206,7 +206,6 @@ export default class DialogueScene extends Phaser.Scene {
         this.scene.stop('DialogueScene');
         this.scene.resume('HighSchoolScene');
 
-        const hs = this.scene.get('HighSchoolScene');
-        hs.endDay();
+        // Parent scene (HighSchoolScene) will handle the queue in its 'resume' event
     }
 }

@@ -1,4 +1,14 @@
-# 🪜 Climb the Ladder
+# 🪜 Climb the Ladder (v1.0.1)
+
+> *A darkly comedic 2D pixel-art life-sim about grinding yourself into a husk for a corner office you'll eat sad desk salads in.*
+
+## 🚀 Recent Updates (v1.0.1)
+
+* **Mobile Support**: Fixed layout issues on mobile devices. The game now scales correctly to fit the screen.
+* **Gameplay Fixes**:
+  * Fixed "Stuck" bug where daily progress would halt after one activity.
+  * Fixed "Map Flash" bug by implementing a manual "End Day" interaction (Sleep in Bed) instead of auto-advancing.
+  * Added visual feedback (toasts) for all activities.
 
 > *A darkly comedic 2D pixel-art life-sim about grinding yourself into a husk for a corner office you'll eat sad desk salads in.*
 

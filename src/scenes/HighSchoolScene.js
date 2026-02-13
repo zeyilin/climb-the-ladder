@@ -69,7 +69,20 @@ export default class HighSchoolScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(20).setAlpha(0);
 
         // --- DAY START: Launch time allocation ---
-        this.startNewDay();
+        // this.startNewDay(); // CHANGED: Don't auto-start. Wait for interaction or initial load.
+        if (this.timeManager.currentDay === 1 && this.timeManager.currentSlot === 0 && this.timeManager.totalDays === 0) {
+            this.startNewDay();
+        }
+
+        // --- RESUME HANDLER ---
+        this.events.on('resume', (scene, data) => {
+            if (this.pendingActivities && this.pendingActivities.length > 0) {
+                // Add a small delay so we don't jump instantly
+                this.time.delayedCall(500, () => {
+                    this.processNextActivity();
+                });
+            }
+        });
 
         // --- Tab for relationship panel ---
         this.tabKey.on('down', () => {
@@ -198,79 +211,114 @@ export default class HighSchoolScene extends Phaser.Scene {
     }
 
     processDayResults(activities) {
-        // Track hours for the end-of-game counter
-        let restToday = false;
-        let socialToday = false;
+        // Store activities in a queue
+        this.pendingActivities = [...activities];
 
-        // Process each activity
-        for (const activity of activities) {
-            if (!activity) continue;
+        // Start processing the first one
+        this.processNextActivity();
+    }
 
-            if (activity.id === 'study') {
-                this.hoursWorked += 3;
-                // Launch study mini-game
-                this.scene.launch('StudyMiniGame');
-                this.scene.pause('HighSchoolScene');
-                return; // will resume after mini-game
-            }
-
-            if (activity.id.startsWith('socialize_')) {
-                const charId = activity.id.replace('socialize_', '');
-                this.relationshipManager.modifyConnection(charId, 8);
-                this.hoursWithPeople += 3;
-                socialToday = true;
-
-                // Trigger dialogue if available
-                const npc = this.npcs[charId];
-                if (npc?.dialogueKey) {
-                    this.launchDialogue(npc.dialogueKey, charId);
-                    return; // will resume after dialogue
-                }
-            }
-
-            if (activity.id === 'extracurricular') {
-                this.statManager.modifyStat('network', 5);
-                this.statManager.modifyStat('prestige', 3);
-                this.hoursWorked += 3;
-            }
-
-            if (activity.id === 'rest') {
-                this.statManager.modifyStat('burnout', -10);
-                restToday = true;
-            }
-        }
-
-        // Track consecutive rest days for guilt popup
-        if (restToday && !socialToday) {
-            this.consecutiveRestDays++;
-        } else {
-            this.consecutiveRestDays = 0;
-        }
-
-        // Persist counters
-        this.registry.set('consecutiveRestDays', this.consecutiveRestDays);
-        this.registry.set('hoursWorked', this.hoursWorked);
-        this.registry.set('hoursWithPeople', this.hoursWithPeople);
-
-        // Rest guilt popup
-        if (this.consecutiveRestDays >= 3) {
-            this.showPopup(
-                '😰 Are you sure?',
-                'Derek from school just got Student of the Month.\nDerek also has an ulcer, but the game doesn\'t mention that.',
-                '#ffd93d'
-            );
-            this.consecutiveRestDays = 0;
-            return; // endDay called after popup
-        }
-
-        // Burnout event check
-        if (this.statManager.getStat('burnout') > 70) {
-            this.checkBurnoutEvent();
+    processNextActivity() {
+        if (this.pendingActivities.length === 0) {
+            // All done for the day!
+            this.showToast('Day Complete! Go to bed to sleep. 🛏️');
             return;
         }
 
-        this.endDay();
+        const activity = this.pendingActivities.shift();
+        if (!activity) {
+            this.processNextActivity();
+            return;
+        }
+
+        // --- STAT EFFECTS ---
+        let handledInternally = false;
+        let toastMessage = '';
+
+        if (activity.id === 'study') {
+            this.hoursWorked += 3;
+            // Launch study mini-game (pauses this scene)
+            this.scene.launch('StudyMiniGame');
+            this.scene.pause('HighSchoolScene');
+            return; // STOP here. Resume handler will call processNextActivity()
+        }
+
+        if (activity.id.startsWith('socialize_')) {
+            const charId = activity.id.replace('socialize_', '');
+            this.relationshipManager.modifyConnection(charId, 8);
+            this.hoursWithPeople += 3;
+
+            // Trigger dialogue if available
+            const npc = this.npcs[charId];
+            if (npc?.dialogueKey) {
+                this.launchDialogue(npc.dialogueKey, charId);
+                return; // STOP here. Resume handler will call processNextActivity()
+            } else {
+                toastMessage = `Hung out with ${charId}. +Conn`;
+                handledInternally = true;
+            }
+        }
+
+        if (activity.id === 'extracurricular') {
+            this.statManager.modifyStat('network', 5);
+            this.statManager.modifyStat('prestige', 3);
+            this.hoursWorked += 3;
+            toastMessage = 'Extracurriculars done. +Network';
+            handledInternally = true;
+        }
+
+        if (activity.id === 'rest') {
+            this.statManager.modifyStat('burnout', -10);
+
+            // Track consecutive rest days for guilt popup
+            this.consecutiveRestDays++;
+            this.registry.set('consecutiveRestDays', this.consecutiveRestDays);
+
+            toastMessage = 'Rested. -Burnout';
+            handledInternally = true;
+        } else {
+            // Reset rest streak if not resting
+            this.consecutiveRestDays = 0;
+            this.registry.set('consecutiveRestDays', 0);
+        }
+
+        // --- IF HANDLED INTERNALLY, SHOW TOAST AND CONTINUE ---
+        if (handledInternally) {
+            this.showToast(toastMessage || `Did ${activity.label}`);
+
+            // Wait a bit before next activity so toasts don't overlap too fast
+            this.time.delayedCall(1500, () => {
+                this.processNextActivity();
+            });
+            return;
+        }
+
+        // Fallback if unknown activity
+        this.processNextActivity();
     }
+
+    showToast(message) {
+        const { width, height } = this.cameras.main;
+        const toastBg = this.add.rectangle(width / 2, height - 80, message.length * 10, 40, 0x000000, 0.8)
+            .setDepth(100);
+        const toastText = this.add.text(width / 2, height - 80, message, {
+            fontFamily: 'Inter', fontSize: '12px', color: '#ffffff'
+        }).setOrigin(0.5).setDepth(101);
+
+        this.tweens.add({
+            targets: [toastBg, toastText],
+            alpha: 0,
+            delay: 1000,
+            duration: 500,
+            onComplete: () => {
+                toastBg.destroy();
+                toastText.destroy();
+            }
+        });
+    }
+
+    // REMOVED checkBurnoutEvent and endDay from here. 
+    // They will now be triggered by sleeping in the bed.
 
     checkBurnoutEvent() {
         const burnoutEvents = [
@@ -400,7 +448,40 @@ export default class HighSchoolScene extends Phaser.Scene {
                 this.launchDialogue(nearNPC.dialogueKey, nearNPC.id);
             }
         } else {
-            this.promptText.setAlpha(0);
+            // Check interaction zones (like Bed)
+            let inZone = null;
+            for (const zone of this.interactionZones) {
+                if (
+                    this.player.x > zone.x && this.player.x < zone.x + zone.w &&
+                    this.player.y > zone.y && this.player.y < zone.y + zone.h
+                ) {
+                    inZone = zone;
+                    break;
+                }
+            }
+
+            if (inZone) {
+                if (inZone.name === 'Bedroom') {
+                    this.promptText.setText('[E] Sleep (End Day)');
+                } else {
+                    this.promptText.setText(`[E] ${inZone.name}`);
+                }
+                this.promptText.setAlpha(1);
+
+                if (Phaser.Input.Keyboard.JustDown(this.interactKey)) {
+                    if (inZone.name === 'Bedroom') {
+                        // Check burnout or end day
+                        // Burnout event check
+                        if (this.statManager.getStat('burnout') > 70) {
+                            this.checkBurnoutEvent();
+                        } else {
+                            this.endDay();
+                        }
+                    }
+                }
+            } else {
+                this.promptText.setAlpha(0);
+            }
         }
     }
 }

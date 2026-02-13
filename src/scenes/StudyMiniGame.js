@@ -256,8 +256,7 @@ export default class StudyMiniGame extends Phaser.Scene {
             btn.on('pointerdown', () => {
                 this.scene.stop('StudyMiniGame');
                 this.scene.resume('HighSchoolScene');
-                const hs = this.scene.get('HighSchoolScene');
-                hs.endDay();
+                // Parent scene will handle the rest via 'resume' event
             });
         });
     }

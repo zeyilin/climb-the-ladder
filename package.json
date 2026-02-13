@@ -1,0 +1,17 @@
+{
+  "name": "climb-the-ladder",
+  "version": "0.1.0",
+  "description": "A darkly comedic 2D pixel-art life-sim about grinding yourself into a husk for a corner office",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

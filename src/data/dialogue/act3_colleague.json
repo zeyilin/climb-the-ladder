@@ -1,0 +1,127 @@
+{
+    "id": "act3_colleague",
+    "character": "Jamie",
+    "context": "Break room. The coffee machine is broken again. It's always broken.",
+    "nodes": {
+        "start": {
+            "speaker": "Jamie",
+            "text": "The Keurig's dead again. I think it's a metaphor. ...Do you ever think about what we'd be doing if we weren't doing... this?",
+            "internal": "(Jamie started the same week as you. They're the only person here who doesn't say \"synergy\" unironically.)",
+            "choices": [
+                {
+                    "text": "Every single day. I had a dream about spreadsheets last night. A good one. That's when I knew.",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 10
+                        },
+                        "authenticity": 5
+                    },
+                    "next": "honest"
+                },
+                {
+                    "text": "I don't know, man. This is fine. The benefits are good.",
+                    "internal": "(\"The benefits are good\" — the mantra of someone who's given up.)",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 3
+                        },
+                        "authenticity": -3
+                    },
+                    "next": "deflect"
+                },
+                {
+                    "text": "I was going to be a marine biologist. I still have the poster.",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 12
+                        },
+                        "authenticity": 8
+                    },
+                    "next": "dream"
+                }
+            ]
+        },
+        "honest": {
+            "speaker": "Jamie",
+            "text": "A GOOD dream about spreadsheets? That's... actually terrifying. Maybe we should both go outside. Touch grass. Do normal people things.",
+            "choices": [
+                {
+                    "text": "When? We have the Q3 review presentation.",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 5
+                        }
+                    },
+                    "next": "q3"
+                },
+                {
+                    "text": "Let's get lunch. Not Sweetgreen. Real food.",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 8
+                        },
+                        "burnout": -3
+                    },
+                    "next": "lunch"
+                }
+            ]
+        },
+        "deflect": {
+            "speaker": "Jamie",
+            "text": "The benefits. Yeah. My dental plan has been the highlight of my twenties. I got a crown last month. That's my biggest accomplishment this year. A crown.",
+            "internal": "(Jamie's joking. Probably.)",
+            "choices": [
+                {
+                    "text": "At least you have a crown. Royalty, basically.",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 8
+                        }
+                    },
+                    "next": "royalty"
+                }
+            ]
+        },
+        "dream": {
+            "speaker": "Jamie",
+            "text": "Marine biologist! That rules. I wanted to be a park ranger. Now I range... the fourth floor? I patrol meeting rooms. Same energy.",
+            "choices": [
+                {
+                    "text": "At what point did you trade the forest for the fluorescents?",
+                    "effects": {
+                        "relationship": {
+                            "colleague": 10
+                        },
+                        "authenticity": 3
+                    },
+                    "next": "trade"
+                }
+            ]
+        },
+        "q3": {
+            "speaker": "Jamie",
+            "text": "Right. The Q3 review. Where we present numbers to people who already know the numbers. Theater. Corporate theater. We should get matching masks.",
+            "effects": {},
+            "end": true
+        },
+        "lunch": {
+            "speaker": "Jamie",
+            "text": "Real food. Bold. There's a place down the block that makes sandwiches the size of your head. Patricia will send a passive-aggressive Slack if we take more than 45 minutes. But what's she gonna do, fire us? ...Actually don't answer that.",
+            "effects": {},
+            "end": true
+        },
+        "royalty": {
+            "speaker": "Jamie",
+            "text": "King Jamie of Desk 4B. My kingdom is a cubicle and my subjects are three dead succulents. ...Anyway, back to the presentation. The kingdom demands it.",
+            "effects": {},
+            "end": true
+        },
+        "trade": {
+            "speaker": "Jamie",
+            "text": "Student loans. The answer is always student loans. I crunched the numbers once — my degree cost more per hour than this job pays. So now I'm here. Crunching different numbers. It's poetic if you don't think about it too hard.",
+            "internal": "(You both sit there for a moment. The broken Keurig gurgles. It's strangely comforting.)",
+            "effects": {},
+            "end": true
+        }
+    }
+}

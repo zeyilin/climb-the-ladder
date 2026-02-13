@@ -1,0 +1,110 @@
+{
+    "start": "root",
+    "nodes": {
+        "root": {
+            "speaker": "Mom",
+            "text": "How was school today, sweetie? You look tired. Are you eating enough? I made lasagna.",
+            "choices": [
+                {
+                    "text": "It was fine, Mom. Can I eat in my room? I have to study.",
+                    "effects": {
+                        "mom_connection": -3,
+                        "gpa": 2
+                    },
+                    "internal_monologue": "(The lasagna is really good. You'll regret this.)",
+                    "next": "mom_study_response"
+                },
+                {
+                    "text": "Lasagna! Yeah, let me tell you about this insane thing Sam did today.",
+                    "effects": {
+                        "mom_connection": 8,
+                        "authenticity": 3
+                    },
+                    "internal_monologue": "(Mom laughs at the story. This is nice. You won't remember this moment in 10 years. You should.)",
+                    "next": "mom_happy_dinner"
+                },
+                {
+                    "text": "I need to work on my college applications. Can we talk later?",
+                    "effects": {
+                        "mom_connection": -5,
+                        "network": 3
+                    },
+                    "internal_monologue": "(You won't talk later.)",
+                    "next": "mom_applications_response"
+                }
+            ]
+        },
+        "mom_study_response": {
+            "speaker": "Mom",
+            "text": "Of course, honey. I'll leave a plate outside your door. Don't stay up too late, okay?",
+            "choices": [
+                {
+                    "text": "Thanks, Mom.",
+                    "effects": {},
+                    "internal_monologue": "(The plate will still be there at midnight. Untouched. She'll find it in the morning and say nothing.)",
+                    "next": null
+                }
+            ]
+        },
+        "mom_happy_dinner": {
+            "speaker": "Mom",
+            "text": "Ha! That Sam. You two have been friends since what, third grade? Don't ever lose that, okay?",
+            "choices": [
+                {
+                    "text": "We won't. Sam's the best.",
+                    "effects": {
+                        "mom_connection": 3,
+                        "sam_connection": 2
+                    },
+                    "internal_monologue": "(Narrator voice: They will.)",
+                    "next": null
+                },
+                {
+                    "text": "Yeah... Hey Mom, do you think I'll get into a good school?",
+                    "effects": {
+                        "mom_connection": 2,
+                        "authenticity": 2
+                    },
+                    "internal_monologue": "(You need her to say yes. She always says yes. That's the problem.)",
+                    "next": "mom_college_talk"
+                }
+            ]
+        },
+        "mom_applications_response": {
+            "speaker": "Mom",
+            "text": "...Sure. The lasagna will be in the fridge.",
+            "choices": [
+                {
+                    "text": "[Go upstairs]",
+                    "effects": {},
+                    "internal_monologue": "(She paused before 'Sure.' You noticed. You kept walking anyway.)",
+                    "next": null
+                }
+            ]
+        },
+        "mom_college_talk": {
+            "speaker": "Mom",
+            "text": "Sweetie, you could get into anywhere. But... you know what matters more than the name on the diploma, right?",
+            "choices": [
+                {
+                    "text": "Yeah, I know. The people.",
+                    "effects": {
+                        "mom_connection": 10,
+                        "authenticity": 5
+                    },
+                    "internal_monologue": "(You mean it right now. Right now counts for something.)",
+                    "next": null
+                },
+                {
+                    "text": "Sure, Mom. I should go study though.",
+                    "effects": {
+                        "mom_connection": -2,
+                        "gpa": 2
+                    },
+                    "internal_monologue": "(She was about to say something else. The moment passes.)",
+                    "next": null
+                }
+            ]
+        }
+    }
+}

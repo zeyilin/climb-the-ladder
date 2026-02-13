@@ -1,0 +1,112 @@
+{
+    "start": "root",
+    "nodes": {
+        "root": {
+            "speaker": "Priya",
+            "text": "Hey! Are you going to Professor Martin's office hours? I heard if you go twice, she remembers your name. That's basically a letter of rec.",
+            "choices": [
+                {
+                    "text": "Oh absolutely. Strategic face-time. I've got my questions pre-written.",
+                    "effects": {
+                        "priya_connection": 5,
+                        "network": 3,
+                        "authenticity": -3
+                    },
+                    "internal_monologue": "(Two people bonding over calculated sincerity. This is college friendship at its finest.)",
+                    "next": "priya_office_hours"
+                },
+                {
+                    "text": "I was actually just gonna study at the library. Wanna come?",
+                    "effects": {
+                        "priya_connection": 8,
+                        "authenticity": 3
+                    },
+                    "internal_monologue": "(Priya seems surprised you suggested something that isn't résumé-motivated. She says yes immediately. There's a whole person in there under the LinkedIn profile.)",
+                    "next": "priya_library"
+                },
+                {
+                    "text": "Can't, I need to prep for the career fair. Next time?",
+                    "effects": {
+                        "priya_connection": -3,
+                        "network": 2
+                    },
+                    "internal_monologue": "(Priya nods. She understood 'next time' perfectly. It's the same 'next time' you used on Sam. You're getting very good at this word.)",
+                    "next": null
+                }
+            ]
+        },
+        "priya_office_hours": {
+            "speaker": "Priya",
+            "text": "Oh good, I ranked my questions by 'most likely to seem insightful.' ...Is that normal? That's normal, right?",
+            "choices": [
+                {
+                    "text": "Totally normal. I color-coded mine.",
+                    "effects": {
+                        "priya_connection": 5,
+                        "authenticity": -5
+                    },
+                    "internal_monologue": "(You are both describing sociopathy and calling it 'being proactive.' The system rewards this.)",
+                    "next": null
+                },
+                {
+                    "text": "Priya... do you ever just like, genuinely want to learn something? Without the strategy?",
+                    "effects": {
+                        "priya_connection": 10,
+                        "authenticity": 8
+                    },
+                    "internal_monologue": "(She goes quiet for a second. Then: 'Sometimes I forget what that feels like.' This is the most honest thing either of you has said in weeks.)",
+                    "next": "priya_honest"
+                }
+            ]
+        },
+        "priya_library": {
+            "speaker": "Priya",
+            "text": "This is nice. Just... studying. No angle. When's the last time we did something without calculating the ROI?",
+            "choices": [
+                {
+                    "text": "I genuinely can't remember.",
+                    "effects": {
+                        "priya_connection": 10,
+                        "authenticity": 8
+                    },
+                    "internal_monologue": "(You can't. That should alarm you more than it does.)",
+                    "next": null
+                },
+                {
+                    "text": "Well technically the ROI on studying is a higher GPA, so...",
+                    "effects": {
+                        "priya_connection": 3,
+                        "authenticity": -3,
+                        "gpa": 2
+                    },
+                    "internal_monologue": "(Priya laughs, but it's the kind of laugh that's also a sigh.)",
+                    "next": null
+                }
+            ]
+        },
+        "priya_honest": {
+            "speaker": "Priya",
+            "text": "My parents mortgaged their house for this. Literally. I can't just... enjoy things. Everything has to lead somewhere.",
+            "choices": [
+                {
+                    "text": "I get it. I really do.",
+                    "effects": {
+                        "priya_connection": 12,
+                        "authenticity": 5
+                    },
+                    "internal_monologue": "(You do get it. The weight of other people's sacrifice turns every choice into a transaction. Priya's eyes are a little red. Neither of you mentions it.)",
+                    "next": null
+                },
+                {
+                    "text": "Then let's make THIS lead somewhere. Study group every Tuesday?",
+                    "effects": {
+                        "priya_connection": 8,
+                        "network": 3
+                    },
+                    "internal_monologue": "(Even your kindness has a structure. Priya notices. Priya doesn't mind. Priya is you in a different font.)",
+                    "next": null
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "characters": [
+        {
+            "id": "mom",
+            "name": "Mom",
+            "connection": 75,
+            "role": "Unconditional love, but she gets hurt quietly",
+            "color": "#FF9AA2",
+            "emoji": "👩",
+            "act": 1
+        },
+        {
+            "id": "dad",
+            "name": "Dad",
+            "connection": 65,
+            "role": "Proud of you at first, then worried, then distant",
+            "color": "#6B93D6",
+            "emoji": "👨",
+            "act": 1
+        },
+        {
+            "id": "jordan",
+            "name": "Jordan",
+            "connection": 70,
+            "role": "Your sibling — chose a simpler life, seems happier",
+            "color": "#98D8AA",
+            "emoji": "🧑",
+            "act": 1
+        },
+        {
+            "id": "sam",
+            "name": "Sam",
+            "connection": 80,
+            "role": "Your best friend. For now.",
+            "color": "#FFD93D",
+            "emoji": "🧑‍🤝‍🧑",
+            "act": 1
+        }
+    ]
+}

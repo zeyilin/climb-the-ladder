@@ -1,0 +1,25 @@
+{
+    "characters": [
+        {
+            "id": "derek",
+            "name": "Derek",
+            "role": "Your nemesis. Always promoted first. LinkedIn posts with \"Humbled to announce...\"",
+            "portrait": "npc_derek",
+            "connection": 30
+        },
+        {
+            "id": "colleague",
+            "name": "Jamie",
+            "role": "Work friend who bonds over shared misery in the break room",
+            "portrait": "npc_colleague",
+            "connection": 40
+        },
+        {
+            "id": "boss",
+            "name": "Patricia",
+            "role": "Your manager. Sends emails at 11pm \"just thinking out loud\"",
+            "portrait": "npc_boss",
+            "connection": 50
+        }
+    ]
+}

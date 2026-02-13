@@ -1,0 +1,148 @@
+{
+    "start": "root",
+    "nodes": {
+        "root": {
+            "speaker": "Sam",
+            "text": "Yo, wanna hit the park after school? I found this sick spot by the creek. Also I have Doritos.",
+            "choices": [
+                {
+                    "text": "Absolutely. Let's go.",
+                    "effects": {
+                        "sam_connection": 10,
+                        "authenticity": 5
+                    },
+                    "internal_monologue": "(The creek is cold and the Doritos are stale. This is the best day of your month. You won't know this until you're 32.)",
+                    "next": "sam_park"
+                },
+                {
+                    "text": "Can't, gotta study for the SATs. Next time?",
+                    "effects": {
+                        "sam_connection": -5,
+                        "gpa": 3
+                    },
+                    "internal_monologue": "(There will be 14 more 'next times.' Then there won't be.)",
+                    "next": "sam_rejected"
+                },
+                {
+                    "text": "I have debate practice. But maybe after?",
+                    "effects": {
+                        "sam_connection": -2,
+                        "network": 3
+                    },
+                    "internal_monologue": "(Debate practice ends at 6. By then Sam will be home. You'll text 'sorry' with a grimace emoji. Sam will send back 'all good'. It's not.)",
+                    "next": "sam_maybe"
+                }
+            ]
+        },
+        "sam_park": {
+            "speaker": "Sam",
+            "text": "Dude, check it out. You can see the whole town from up here. Pretty mid, honestly. I can't wait to get out of here.",
+            "choices": [
+                {
+                    "text": "Same. I'm gonna go somewhere big. Big city, big job, the whole thing.",
+                    "effects": {
+                        "sam_connection": 3,
+                        "prestige": 2
+                    },
+                    "internal_monologue": "(Sam nods. Sam is not going to the big city. You both know this and neither says it.)",
+                    "next": "sam_future_talk"
+                },
+                {
+                    "text": "I dunno. This is kinda nice, actually. Just... sitting here.",
+                    "effects": {
+                        "sam_connection": 8,
+                        "authenticity": 5
+                    },
+                    "internal_monologue": "(This IS nice. File this memory somewhere safe. You'll need it later.)",
+                    "next": "sam_nice_moment"
+                }
+            ]
+        },
+        "sam_rejected": {
+            "speaker": "Sam",
+            "text": "Yeah... sure. Next time. You've been saying that a lot lately.",
+            "choices": [
+                {
+                    "text": "I know. I'm sorry. After the SATs, I promise.",
+                    "effects": {
+                        "sam_connection": 2
+                    },
+                    "internal_monologue": "(The SATs are in 3 months. After that it'll be college apps. After that it'll be college. The goalposts move forever.)",
+                    "next": null
+                },
+                {
+                    "text": "Come on, don't be like that. You know this stuff matters.",
+                    "effects": {
+                        "sam_connection": -5,
+                        "authenticity": -3
+                    },
+                    "internal_monologue": "(Sam's face does the thing where they smile but their eyes don't. You pretend not to notice.)",
+                    "next": null
+                }
+            ]
+        },
+        "sam_maybe": {
+            "speaker": "Sam",
+            "text": "Yeah, sure. Text me when you're done. Or whatever.",
+            "choices": [
+                {
+                    "text": "I will! For real this time.",
+                    "effects": {
+                        "sam_connection": 1
+                    },
+                    "internal_monologue": "(You will not text Sam.)",
+                    "next": null
+                }
+            ]
+        },
+        "sam_future_talk": {
+            "speaker": "Sam",
+            "text": "Yeah, you will. You're like... the most driven person I know. It's honestly kinda scary sometimes. Like, do you ever just... chill?",
+            "choices": [
+                {
+                    "text": "I'm chilling right now! This is me chilling!",
+                    "effects": {
+                        "sam_connection": 5,
+                        "authenticity": 3
+                    },
+                    "internal_monologue": "(You are mentally reviewing your extracurricular list while saying this.)",
+                    "next": null
+                },
+                {
+                    "text": "I'll chill when I've made it. Then I can relax.",
+                    "effects": {
+                        "sam_connection": -2,
+                        "prestige": 3,
+                        "authenticity": -5
+                    },
+                    "internal_monologue": "(This is the biggest lie anyone has ever told themselves. It has been told by every person who has ever 'made it.' None of them relaxed.)",
+                    "next": null
+                }
+            ]
+        },
+        "sam_nice_moment": {
+            "speaker": "Sam",
+            "text": "Right? Sometimes I think the whole 'get into a good school, get a good job' thing is just... a game everyone plays. Like, who even decided this was the game?",
+            "choices": [
+                {
+                    "text": "...That's actually kind of deep, Sam.",
+                    "effects": {
+                        "sam_connection": 8,
+                        "authenticity": 8
+                    },
+                    "internal_monologue": "(Sam just described the thesis of this entire game. Sam has no idea. You have no idea. The player might.)",
+                    "next": null
+                },
+                {
+                    "text": "Careful, you're starting to sound like a philosophy major.",
+                    "effects": {
+                        "sam_connection": 5,
+                        "authenticity": 2
+                    },
+                    "internal_monologue": "(Both of you laugh. It's the kind of laugh where you're deflecting because the truth is too big to sit with right now.)",
+                    "next": null
+                }
+            ]
+        }
+    }
+}

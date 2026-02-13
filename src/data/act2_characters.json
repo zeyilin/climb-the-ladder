@@ -1,0 +1,22 @@
+{
+    "characters": [
+        {
+            "id": "priya",
+            "name": "Priya",
+            "connection": 0,
+            "role": "Ambitious like you, but cracks sooner",
+            "color": "#E88D67",
+            "emoji": "👩‍💻",
+            "act": 2
+        },
+        {
+            "id": "morgan",
+            "name": "Morgan",
+            "connection": 0,
+            "role": "The relationship that tests your priorities most",
+            "color": "#C084FC",
+            "emoji": "💜",
+            "act": 2
+        }
+    ]
+}

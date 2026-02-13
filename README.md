@@ -18,51 +18,29 @@
 * **Build Tool**: [Vite](https://vitejs.dev/)
 * **Language**: JavaScript (ES Modules)
 
-## 🚀 Getting Started
+## �️ Play Online
+
+[Link to Vercel Deployment]
+
+## 🛠️ Development
+
+> **Note:** This section is for development purposes only.
 
 ### Prerequisites
 
 * Node.js (v16+ recommended)
 * npm
 
-### Installation
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/yourusername/climb-the-ladder.git
-    cd climb-the-ladder
-    ```
-
-2. Install dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Start the development server:
-
-    ```bash
-    npm run dev
-    ```
-
-4. Open your browser to `http://localhost:5173` (or the port shown in your terminal).
-
-## 📦 Building for Production
-
-To create a production build:
+### Setup
 
 ```bash
-npm run build
+git clone https://github.com/yourusername/climb-the-ladder.git
+cd climb-the-ladder
+npm install
+npm run dev
 ```
-
-The output will be in the `dist/` directory, ready to be deployed.
-
-## ☁️ Deployment
-
-This project is optimized for deployment on **Vercel**.
-Simply import your GitHub repository into Vercel, and it will automatically detect the Vite configuration.
 
 ## 📄 License
 
-[MIT](LICENSE)
+© 2024 Climb the Ladder. All Rights Reserved.
+Redistribution, modification, or commercial use of this code is strictly prohibited without prior written consent.

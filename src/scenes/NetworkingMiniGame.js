@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * NetworkingMiniGame — Dialogue-tree style career fair mini-game.
@@ -6,7 +7,7 @@ import Phaser from 'phaser';
  * Performative → +Network, −Authenticity.
  * Authentic → +Authenticity, slower network growth.
  */
-export default class NetworkingMiniGame extends Phaser.Scene {
+export default class NetworkingMiniGame extends BaseScene {
     constructor() {
         super({ key: 'NetworkingMiniGame' });
     }
@@ -35,6 +36,8 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         // Timer bar
         this.timerBar = this.add.rectangle(width / 2, 60, 500, 6, 0x6c63ff).setOrigin(0.5);
         this.timerBg = this.add.rectangle(width / 2, 60, 500, 6, 0x1a1a2e).setOrigin(0.5).setDepth(-1);
+
+        this.initBaseScene();
 
         this.startRound();
     }

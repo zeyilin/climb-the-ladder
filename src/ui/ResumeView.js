@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import BaseScene from '../scenes/BaseScene.js';
 import Theme from './Theme.js';
 
 /**
@@ -6,7 +6,7 @@ import Theme from './Theme.js';
  * Shows the player's accumulating life choices.
  * "Corporate Dossier" Style — DOM-based for crisp text.
  */
-export default class ResumeViewScene extends Phaser.Scene {
+export default class ResumeViewScene extends BaseScene {
     constructor() {
         super({ key: 'ResumeViewScene' });
     }
@@ -58,10 +58,10 @@ export default class ResumeViewScene extends Phaser.Scene {
         });
 
         // Resize
-        this.scale.on('resize', this.handleResize, this);
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-        });
+        this.registerResizeHandler(this.handleResize);
+
+        // BaseScene auto-cleanup
+        this.initBaseScene();
     }
 
     buildHTML() {

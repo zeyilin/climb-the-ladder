@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * ReckoningScene — Act V Overworld.
  * Revisit key locations from earlier acts. Everything's smaller than you remember.
  * Warm golden tones, muted. No mini-games. Just walking and talking.
  */
-export default class ReckoningScene extends Phaser.Scene {
+export default class ReckoningScene extends BaseScene {
     constructor() {
         super({ key: 'ReckoningScene' });
     }
@@ -58,6 +59,9 @@ export default class ReckoningScene extends Phaser.Scene {
             sub2.destroy();
             this.buildLocationMap();
         });
+
+        // --- Register auto-cleanup ---
+        this.initBaseScene();
     }
 
     buildLocationMap() {
@@ -98,6 +102,9 @@ export default class ReckoningScene extends Phaser.Scene {
         this.player.setCollideWorldBounds(true);
         this.cursors = this.input.keyboard.createCursorKeys();
 
+        // Create the E key ONCE here, not inside the overlap callback
+        this.interactKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+
         for (const loc of locations) {
             const rect = this.add.rectangle(loc.x, loc.y, 140, 85, loc.color)
                 .setStrokeStyle(2, 0x3a2a1a);
@@ -111,7 +118,7 @@ export default class ReckoningScene extends Phaser.Scene {
             const zone = this.add.zone(loc.x, loc.y, 140, 85);
             this.physics.add.existing(zone, true);
             this.physics.add.overlap(this.player, zone, () => {
-                if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey('E'))) {
+                if (Phaser.Input.Keyboard.JustDown(this.interactKey)) {
                     this.visitLocation(loc.scene);
                 }
             });

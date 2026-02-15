@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from '../scenes/BaseScene.js';
 import Theme from './Theme.js';
 
 /**
  * HUDScene — Persistent overlay.
  * "Corporate Cyber-Retro" Style.
  */
-export default class HUDScene extends Phaser.Scene {
+export default class HUDScene extends BaseScene {
     constructor() {
         super({ key: 'HUDScene' });
     }
@@ -22,13 +22,11 @@ export default class HUDScene extends Phaser.Scene {
         this.border = this.add.graphics();
 
         // --- Date Display (Far Left) ---
-        // "WEEK 1 OF 1"
         this.weekLabel = this.add.text(0, 0, '', {
             ...Theme.STYLES.HEADER_SM,
             color: '#8888aa',
         }).setDepth(101);
 
-        // "Day 1"
         this.dayDisplay = this.add.text(0, 0, '', {
             ...Theme.STYLES.BODY_LG,
             color: '#ffffff',
@@ -36,19 +34,16 @@ export default class HUDScene extends Phaser.Scene {
         }).setDepth(101);
 
         // --- Career Progress ---
-        // Label
         this.careerLabel = this.add.text(0, 0, 'CAREER LADDER', {
             ...Theme.STYLES.HEADER_SM,
             color: Theme.toHex(Theme.COLORS.NEON_CYAN),
         }).setOrigin(0, 0.5).setDepth(101);
 
-        // Bar Graphics
         this.progBg = this.add.graphics().setDepth(101);
         this.progressFill = this.add.graphics().setDepth(102);
 
         // --- Stat Bars (Center/Right) ---
         this.statDisplays = {};
-        // Create objects once, position later
         this.createStatObjects('gpa', 'GPA', '📚', Theme.COLORS.NEON_CYAN);
         this.createStatObjects('network', 'NETWORK', '🤝', Theme.COLORS.NEON_YELLOW);
         this.createStatObjects('authenticity', 'SELF', '🎭', Theme.COLORS.NEON_GREEN);
@@ -58,8 +53,7 @@ export default class HUDScene extends Phaser.Scene {
         this.btnContainer = this.add.container(0, 42);
 
         const btnBg = this.add.graphics();
-        this.btnBg = btnBg; // Ref for hover
-        // Initial draw for hit area
+        this.btnBg = btnBg;
         this.drawTabButton(btnBg, Theme.COLORS.MUTED);
 
         const btnIcon = this.add.text(-80, 0, 'TAB', {
@@ -79,7 +73,6 @@ export default class HUDScene extends Phaser.Scene {
         this.btnContainer.add([btnBg, btnIcon, btnText]);
         this.btnContainer.setDepth(101);
 
-        // "Juice"
         this.tweens.add({
             targets: btnIcon,
             alpha: 0.7,
@@ -88,7 +81,6 @@ export default class HUDScene extends Phaser.Scene {
             repeat: -1
         });
 
-        // Interaction - Matches new 200px width (-100 to 100)
         this.btnContainer.setInteractive(new Phaser.Geom.Rectangle(-100, -18, 200, 36), Phaser.Geom.Rectangle.Contains);
         this.btnContainer.on('pointerdown', () => {
             if (this.scene.isActive('RelationshipPanelScene')) {
@@ -127,17 +119,10 @@ export default class HUDScene extends Phaser.Scene {
             }
         });
 
-        // --- Resize ---
-        this.scale.on('resize', this.handleResize, this);
-        this.handleResize({ width: this.scale.width, height: this.scale.height });
+        // --- Resize + lifecycle ---
+        this.registerResizeHandler(this.handleResize);
+        this.initBaseScene();
 
-        // --- Cleanup on shutdown ---
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-            this.input.keyboard.removeAllListeners();
-        });
-
-        // Initial Update
         this.updateHUD();
     }
 
@@ -151,9 +136,6 @@ export default class HUDScene extends Phaser.Scene {
     }
 
     createStatObjects(key, labelName, icon, color) {
-        // Create Text and Graphics objects, store in statDisplays
-
-        // Icon Text (visible mainly on mobile or if we want)
         const iconText = this.add.text(0, 0, icon, {
             fontSize: '14px',
         }).setOrigin(0.5);
@@ -174,13 +156,7 @@ export default class HUDScene extends Phaser.Scene {
         const barFill = this.add.graphics();
 
         this.statDisplays[key] = {
-            iconText,
-            labelText,
-            valueText,
-            barBg,
-            barFill,
-            color,
-            // barX, barY, barW, barH will be set in handleResize
+            iconText, labelText, valueText, barBg, barFill, color,
         };
     }
 
@@ -192,7 +168,6 @@ export default class HUDScene extends Phaser.Scene {
 
         this.cameras.main.setViewport(0, 0, width, height);
 
-        // BG
         this.bg.clear();
         this.bg.fillStyle(Theme.COLORS.BG_PANEL, 0.95);
         this.bg.fillRect(0, 0, width, barHeight);
@@ -201,10 +176,7 @@ export default class HUDScene extends Phaser.Scene {
         this.border.fillStyle(Theme.COLORS.CORP_BLUE, 1);
         this.border.fillRect(0, barHeight, width, 2);
 
-        // Check for mobile layout
         const isMobile = width < 600;
-
-        // Date (Left)
         const ex = isMobile ? 10 : 40;
         this.weekLabel.setPosition(ex, 24);
         this.dayDisplay.setPosition(ex, 42);
@@ -217,8 +189,6 @@ export default class HUDScene extends Phaser.Scene {
             this.dayDisplay.setFontSize('32px');
         }
 
-        // Career (Left)
-        // On mobile, hide completely to save space for stats
         this.careerLabel.setVisible(!isMobile);
         this.progBg.setVisible(!isMobile);
         this.progressFill.setVisible(!isMobile);
@@ -227,7 +197,6 @@ export default class HUDScene extends Phaser.Scene {
         const careerX = ex + 180;
         this.careerLabel.setPosition(careerX, 28);
 
-        // Progress Bar
         const progBarX = careerX;
         const progBarY = 44;
         const progBarW = 200;
@@ -239,31 +208,24 @@ export default class HUDScene extends Phaser.Scene {
         this.progBg.lineStyle(2, 0x333333);
         this.progBg.strokeRect(progBarX, progBarY, progBarW, progBarH);
 
-        // Store prompt for updateHUD
         this.progBarX = progBarX;
         this.progBarY = progBarY;
         this.progBarW = progBarW;
         this.progBarH = progBarH;
 
-        // Tab Button (Right)
-        // Mobile: Small, Icon only logic if we had icons, but text is fine if small.
+        // Tab Button
         const btnW = isMobile ? 60 : 200;
         const btnRightMargin = isMobile ? 40 : 130;
         this.btnContainer.setPosition(width - btnRightMargin, 42);
 
-        // Update button visual
         this.drawTabButton(this.btnBg, Theme.COLORS.MUTED, btnW);
         this.btnContainer.input.hitArea.setTo(-btnW / 2, -18, btnW, 36);
 
-        // Hide "CONTACTS" text on mobile, verify "TAB" availability? 
-        // The container has children: [bg, btnIcon("TAB"), btnText("CONTACTS")]
-        // btnIcon is at -80, btnText at 10.
-        // We need to re-layout the button internals for mobile.
         const btnIcon = this.btnContainer.list[1];
         const btnText = this.btnContainer.list[2];
 
         if (isMobile) {
-            btnIcon.setPosition(0, 0); // Center "TAB"
+            btnIcon.setPosition(0, 0);
             btnText.setVisible(false);
         } else {
             btnIcon.setPosition(-80, 0);
@@ -271,16 +233,12 @@ export default class HUDScene extends Phaser.Scene {
             btnText.setPosition(10, 0);
         }
 
-        // Stats (Distributed in center space)
-        // On Mobile: Start after Date, End before Button
-        // Date ends around ex + 50 approx.
-        // Button starts around width - btnRightMargin - btnW/2
-
+        // Stats
         const centerStart = isMobile ? (ex + 60) : (progBarX + progBarW + 40);
         const centerEnd = width - (btnRightMargin + btnW / 2 + (isMobile ? 10 : 40));
         const availableW = Math.max(0, centerEnd - centerStart);
 
-        const count = 4; // GPA, Network, Self, Burnout
+        const count = 4;
         const slotW = availableW / count;
         const keys = ['gpa', 'network', 'authenticity', 'burnout'];
 
@@ -289,14 +247,10 @@ export default class HUDScene extends Phaser.Scene {
             const centerX = centerStart + (slotW * i) + (slotW / 2);
             const y = 42;
 
-            // Adaptive bar width
             const maxBarW = isMobile ? 30 : 80;
             const barW = Math.min(maxBarW, Math.max(10, slotW - (isMobile ? 2 : 20)));
             const barLeft = centerX - barW / 2;
             const barY = y + 8;
-
-            // Mobile: Show Icon, Hide Label
-            // Desktop: Show Label, Hide Icon (or Show both? Let's hide icon for clean retro look)
 
             if (isMobile) {
                 display.labelText.setVisible(false);
@@ -304,17 +258,13 @@ export default class HUDScene extends Phaser.Scene {
                 display.iconText.setPosition(barLeft, y - 10);
                 display.iconText.setOrigin(0, 0.5);
                 display.iconText.setFontSize('12px');
-
-                // Value
                 display.valueText.setPosition(barLeft + barW, y - 10);
                 display.valueText.setFontSize('12px');
             } else {
                 display.labelText.setVisible(true);
                 display.iconText.setVisible(false);
-
                 display.labelText.setPosition(barLeft, y - 12);
                 display.labelText.setFontSize('8px');
-
                 display.valueText.setPosition(barLeft + barW, y - 12);
                 display.valueText.setFontSize('20px');
             }
@@ -331,28 +281,23 @@ export default class HUDScene extends Phaser.Scene {
             display.barH = 8;
         });
 
-        // Trigger redraw of dynamic fills
         this.updateHUD();
     }
 
     updateHUD() {
-        if (!this.timeManager) return; // Scale event might fire before init?
+        if (!this.timeManager) return;
 
-        // Time
         this.weekLabel.setText(this.timeManager.getWeekDisplay().toUpperCase());
         this.dayDisplay.setText(this.timeManager.getDayDisplay());
 
-        // Progress
         const prog = this.timeManager.getProgress();
-        // Use stored dimensions
         if (this.progBarW) {
             const fillW = this.progBarW * Math.min(1, prog);
             this.progressFill.clear();
             this.progressFill.fillStyle(Theme.COLORS.NEON_CYAN, 1);
-            this.progressFill.fillRect(this.progBarX, this.progBarY, fillW, 12); // Matches progBarH
+            this.progressFill.fillRect(this.progBarX, this.progBarY, fillW, 12);
         }
 
-        // Stats
         for (const [key, display] of Object.entries(this.statDisplays)) {
             const val = this.statManager.getStat(key);
             display.valueText.setText(`${val}`);

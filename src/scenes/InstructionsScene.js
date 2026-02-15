@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 import Theme from '../ui/Theme.js';
 
 /**
@@ -6,7 +6,7 @@ import Theme from '../ui/Theme.js';
  * Accessible via ? key from HUD or HOW TO PLAY button from MenuScene.
  * Uses DOM element for crisp text rendering.
  */
-export default class InstructionsScene extends Phaser.Scene {
+export default class InstructionsScene extends BaseScene {
     constructor() {
         super({ key: 'InstructionsScene' });
     }
@@ -58,10 +58,10 @@ export default class InstructionsScene extends Phaser.Scene {
         });
 
         // --- Resize ---
-        this.scale.on('resize', this.handleResize, this);
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-        });
+        this.registerResizeHandler(this.handleResize);
+
+        // --- BaseScene auto-cleanup ---
+        this.initBaseScene();
     }
 
     buildHTML() {

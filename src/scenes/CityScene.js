@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * CityScene — Act III Overworld.
  * Tiny apartment → gleaming office tower → sad Sweetgreen → subway at midnight.
  * Desaturated grey-blue palette. The fluorescent lighting energy of your twenties.
  */
-export default class CityScene extends Phaser.Scene {
+export default class CityScene extends BaseScene {
     constructor() {
         super({ key: 'CityScene' });
     }
@@ -35,7 +36,7 @@ export default class CityScene extends Phaser.Scene {
         this.player = this.physics.add.sprite(width / 2, height / 2, 'player');
         this.player.setCollideWorldBounds(true);
 
-        // Controls
+        // Controls — create E key ONCE here
         this.cursors = this.input.keyboard.createCursorKeys();
         this.interactKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
@@ -67,10 +68,8 @@ export default class CityScene extends Phaser.Scene {
         // Lifestyle inflation flavor text
         this.showLifestyleText();
 
-        // --- Cleanup on shutdown ---
-        this.events.on('shutdown', () => {
-            this.input.keyboard.removeAllListeners();
-        });
+        // --- Register auto-cleanup ---
+        this.initBaseScene();
     }
 
     addAct3Characters() {
@@ -139,7 +138,7 @@ export default class CityScene extends Phaser.Scene {
         npc.setAlpha(opacity);
         label.setAlpha(opacity);
 
-        // Overlap detection for interaction
+        // Overlap detection for interaction — reference this.interactKey created in create()
         this.physics.add.overlap(this.player, npc, () => {
             if (!this.interacting && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
                 this.interacting = true;

@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * InsuranceAdjustingMiniGame — The hidden 5th career track.
  * 10% chance when you pivot. You fill out forms. That's it.
  * This is the game's funniest bit.
  */
-export default class InsuranceAdjustingMiniGame extends Phaser.Scene {
+export default class InsuranceAdjustingMiniGame extends BaseScene {
     constructor() {
         super({ key: 'InsuranceAdjustingMiniGame' });
     }
@@ -36,6 +36,9 @@ export default class InsuranceAdjustingMiniGame extends Phaser.Scene {
         });
 
         this.claims = this.generateClaims();
+
+        this.initBaseScene();
+
         this.showClaim();
     }
 

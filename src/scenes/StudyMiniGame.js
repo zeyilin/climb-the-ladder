@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * StudyMiniGame — Timed memory matching card game.
  * Match pairs of academic symbols. Performance → GPA.
  */
-export default class StudyMiniGame extends Phaser.Scene {
+export default class StudyMiniGame extends BaseScene {
     constructor() {
         super({ key: 'StudyMiniGame' });
     }
@@ -57,6 +58,8 @@ export default class StudyMiniGame extends Phaser.Scene {
 
         // Generate card grid
         this.createCards();
+
+        this.initBaseScene();
 
         // Timer countdown
         this.timerEvent = this.time.addEvent({

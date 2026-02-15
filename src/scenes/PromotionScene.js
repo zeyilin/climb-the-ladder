@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * PromotionScene — Act III Climax.
  * The big promotion. The salary number. The screenshot you almost send.
  * The text from Mom that's been sitting unread for 3 days.
  */
-export default class PromotionScene extends Phaser.Scene {
+export default class PromotionScene extends BaseScene {
     constructor() {
         super({ key: 'PromotionScene' });
     }
@@ -80,6 +80,8 @@ export default class PromotionScene extends Phaser.Scene {
                 fontFamily: '"VT323", monospace', fontSize: '9px', color: '#ff6b6b', fontStyle: 'italic',
             }).setOrigin(0.5);
         }
+
+        this.initBaseScene();
 
         // The promotion — dramatic reveal
         this.time.delayedCall(3000, () => this.showPromotion(careerTrack, stats));

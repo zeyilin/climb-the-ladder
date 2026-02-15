@@ -147,6 +147,28 @@ game.registry.set('resumeSystem', resumeSystem);
 game.registry.set('audioCues', audioCues);
 game.registry.set('persistenceManager', persistenceManager);
 
+// --- Game Reset Function ---
+// Resets all systems and registry values for a fresh new game.
+function resetGame() {
+    statManager.reset();
+    relationshipManager.reset();
+    relationshipManager.init(characterData.characters);
+    timeManager.reset();
+    dialogueSystem.reset();
+    resumeSystem.reset();
+    audioCues.reset();
+
+    // Reset registry values
+    game.registry.set('hoursWorked', 0);
+    game.registry.set('hoursWithPeople', 0);
+    game.registry.set('doorDashOrders', 0);
+    game.registry.set('consecutiveRestDays', 0);
+    game.registry.set('careerTrack', null);
+    game.registry.set('scrapbook', []);
+}
+
+game.registry.set('resetGame', resetGame);
+
 // --- Manual Resize Management ---
 // Wraps resizing logic to ensure canvas buffer matches window size 1:1
 const resizeGame = () => {

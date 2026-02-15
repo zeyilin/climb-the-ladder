@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * EndingScene — 4 endings based on cumulative relationship states.
@@ -7,7 +7,7 @@ import Phaser from 'phaser';
  * 🌤️ "The Long Road Back" — awkward coffee, baby steps
  * 💀 "The Full Send" — TED talk, parked car, 30 seconds of silence
  */
-export default class EndingScene extends Phaser.Scene {
+export default class EndingScene extends BaseScene {
     constructor() {
         super({ key: 'EndingScene' });
     }
@@ -39,11 +39,11 @@ export default class EndingScene extends Phaser.Scene {
         }
 
         this.time.delayedCall(1000, () => this.playEnding(ending));
+
+        this.initBaseScene();
     }
 
     playEnding(ending) {
-        const { width, height } = this.cameras.main;
-
         switch (ending) {
             case 'whatMatters': return this.endingWhatMatters();
             case 'tooLate': return this.endingTooLate();
@@ -52,7 +52,6 @@ export default class EndingScene extends Phaser.Scene {
         }
     }
 
-    // 🌅 "What Matters" — ≥3 relationships above 50%
     endingWhatMatters() {
         const { width, height } = this.cameras.main;
 
@@ -96,7 +95,6 @@ export default class EndingScene extends Phaser.Scene {
         this.showCredits(14000);
     }
 
-    // 🌫️ "Too Late" — all below 25%
     endingTooLate() {
         const { width, height } = this.cameras.main;
 
@@ -141,7 +139,6 @@ export default class EndingScene extends Phaser.Scene {
         this.showCredits(14000);
     }
 
-    // 🌤️ "The Long Road Back" — mixed
     endingLongRoad() {
         const { width, height } = this.cameras.main;
 
@@ -187,7 +184,6 @@ export default class EndingScene extends Phaser.Scene {
         this.showCredits(15000);
     }
 
-    // 💀 "The Full Send" — prestige maxed, ALL at 0
     endingFullSend() {
         const { width, height } = this.cameras.main;
 
@@ -199,7 +195,6 @@ export default class EndingScene extends Phaser.Scene {
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: title, alpha: 1, delay: 1000, duration: 1000 });
 
-        // TED talk
         const tedLines = [
             'A TED stage. Red circle.',
             'Alex gives a talk titled:',
@@ -215,12 +210,10 @@ export default class EndingScene extends Phaser.Scene {
                 fontFamily: i === 2 ? '"Press Start 2P"' : 'Inter',
                 fontSize: i === 2 ? '9px' : '12px',
                 color: i === 2 ? '#FF6B6B' : '#8a8a8a',
-                fontStyle: i === 2 ? 'normal' : 'normal',
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: t, alpha: 1, delay: 2000 + i * 700, duration: 700 });
         });
 
-        // The parking lot — 30 seconds of nothing
         this.time.delayedCall(9000, () => {
             this.children.removeAll(true);
             this.cameras.main.setBackgroundColor('#050505');
@@ -237,7 +230,6 @@ export default class EndingScene extends Phaser.Scene {
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: carText, alpha: 0.4, delay: 3000, duration: 2000 });
 
-            // Hold for a long time — this is intentional
             this.showCredits(25000);
         });
     }
@@ -246,7 +238,6 @@ export default class EndingScene extends Phaser.Scene {
         this.time.delayedCall(delay, () => {
             const { width, height } = this.cameras.main;
 
-            // The Hours Counter — the ratio is always devastating
             const hoursWorked = this.registry.get('hoursWorked') || 0;
             const hoursWithPeople = this.registry.get('hoursWithPeople') || 0;
 
@@ -262,7 +253,6 @@ export default class EndingScene extends Phaser.Scene {
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: credits, alpha: 0.5, delay: 2000, duration: 2000 });
 
-            // New game prompt
             this.time.delayedCall(5000, () => {
                 const restart = this.add.text(width / 2, height - 20,
                     '[ Play Again? ]', {
@@ -274,12 +264,8 @@ export default class EndingScene extends Phaser.Scene {
                 restart.on('pointerdown', () => {
                     this.cameras.main.fadeOut(2000);
                     this.time.delayedCall(2000, () => {
-                        // Stop any overlay scenes still running from previous game
-                        ['HUDScene', 'RelationshipPanelScene', 'ResumeViewScene'].forEach(key => {
-                            if (this.scene.isActive(key) || this.scene.isPaused(key)) {
-                                this.scene.stop(key);
-                            }
-                        });
+                        // Stop ALL scenes before going to menu
+                        this.stopAllOverlays();
                         this.scene.start('MenuScene');
                     });
                 });

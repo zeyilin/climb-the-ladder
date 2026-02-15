@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * HighSchoolScene — Top-down exploration of the school environment.
  * Walk around, interact with NPCs and locations. HUD overlay shows stats.
  */
-export default class HighSchoolScene extends Phaser.Scene {
+export default class HighSchoolScene extends BaseScene {
     constructor() {
         super({ key: 'HighSchoolScene' });
     }
@@ -108,14 +109,10 @@ export default class HighSchoolScene extends Phaser.Scene {
         });
 
         // --- Resize Handling ---
-        this.scale.on('resize', this.handleResize, this);
-        this.handleResize({ width: this.scale.width, height: this.scale.height });
+        this.registerResizeHandler(this.handleResize);
 
-        // --- Cleanup on shutdown ---
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-            this.input.keyboard.removeAllListeners();
-        });
+        // --- Register auto-cleanup ---
+        this.initBaseScene();
     }
 
     handleResize(gameSize) {
@@ -346,7 +343,7 @@ export default class HighSchoolScene extends Phaser.Scene {
         });
     }
 
-    // REMOVED checkBurnoutEvent and endDay from here. 
+    // REMOVED checkBurnoutEvent and endDay from here.
     // They will now be triggered by sleeping in the bed.
 
     checkBurnoutEvent() {

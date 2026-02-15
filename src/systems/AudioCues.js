@@ -12,6 +12,10 @@ export default class AudioCues {
         this.airHornPlayed = false; // only once, ever
     }
 
+    reset() {
+        this.airHornPlayed = false;
+    }
+
     /** Lazy-init AudioContext (requires user gesture on most browsers) */
     getContext() {
         if (!this.ctx) {

@@ -1,10 +1,11 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * MajorSelectionScene — One-time scene at start of Act II.
  * Pick your major. It won't matter as much as you think.
  */
-export default class MajorSelectionScene extends Phaser.Scene {
+export default class MajorSelectionScene extends BaseScene {
     constructor() {
         super({ key: 'MajorSelectionScene' });
     }
@@ -95,6 +96,8 @@ export default class MajorSelectionScene extends Phaser.Scene {
                 this.selectMajor(major);
             });
         });
+
+        this.initBaseScene();
     }
 
     selectMajor(major) {

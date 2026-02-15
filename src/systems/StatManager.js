@@ -4,7 +4,7 @@
  */
 export default class StatManager {
     constructor() {
-        this.stats = {
+        this.defaults = {
             gpa: 50,
             network: 10,
             authenticity: 80,
@@ -13,12 +13,18 @@ export default class StatManager {
             prestige: 5,
         };
 
+        this.stats = { ...this.defaults };
+
         // Inverse correlation config: gaining prestige costs authenticity
         this.inversePairs = [
             { stat: 'prestige', inverse: 'authenticity', ratio: 0.5 },
         ];
 
         this.audioCues = null; // injected after construction
+    }
+
+    reset() {
+        this.stats = { ...this.defaults };
     }
 
     setAudioCues(audioCues) {

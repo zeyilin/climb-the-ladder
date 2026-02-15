@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * ConsultingMiniGame — Business Case Puzzles.
  * Match the right recommendation to the client's problem.
  * The client already knows the answer. You're just expensive validation.
  */
-export default class ConsultingMiniGame extends Phaser.Scene {
+export default class ConsultingMiniGame extends BaseScene {
     constructor() {
         super({ key: 'ConsultingMiniGame' });
     }
@@ -54,6 +55,9 @@ export default class ConsultingMiniGame extends Phaser.Scene {
         });
 
         this.cases = this.generateCases();
+
+        this.initBaseScene();
+
         this.showCase();
     }
 

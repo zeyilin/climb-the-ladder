@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * TeamManagementScene — You now manage people.
  * Push them hard (better output, they burn out) or support them (slower output, loyalty).
  * Their outcomes mirror your own trajectory. The irony is not lost.
  */
-export default class TeamManagementScene extends Phaser.Scene {
+export default class TeamManagementScene extends BaseScene {
     constructor() {
         super({ key: 'TeamManagementScene' });
     }
@@ -41,6 +41,9 @@ export default class TeamManagementScene extends Phaser.Scene {
         }).setOrigin(1, 0);
 
         this.situations = this.generateSituations();
+
+        this.initBaseScene();
+
         this.showSituation();
     }
 

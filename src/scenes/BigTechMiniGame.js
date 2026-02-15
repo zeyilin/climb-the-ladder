@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * BigTechMiniGame — System Design + Office Politics.
  * You optimized a button color for 3 weeks. The stock went up anyway.
  * Navigate design reviews, 1-on-1s, and the planning doc that nobody reads.
  */
-export default class BigTechMiniGame extends Phaser.Scene {
+export default class BigTechMiniGame extends BaseScene {
     constructor() {
         super({ key: 'BigTechMiniGame' });
     }
@@ -37,6 +37,9 @@ export default class BigTechMiniGame extends Phaser.Scene {
         });
 
         this.scenarios = this.generateScenarios();
+
+        this.initBaseScene();
+
         this.showScenario();
     }
 

@@ -1,10 +1,10 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * InternshipMiniGame — Papers, Please-style processing.
  * Sort applications, format cover letters, and prep under time pressure.
  */
-export default class InternshipMiniGame extends Phaser.Scene {
+export default class InternshipMiniGame extends BaseScene {
     constructor() {
         super({ key: 'InternshipMiniGame' });
     }
@@ -51,6 +51,8 @@ export default class InternshipMiniGame extends Phaser.Scene {
         this.scoreText = this.add.text(20, 20, 'Sorted: 0/8', {
             fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#4CAF50',
         });
+
+        this.initBaseScene();
 
         this.showNextItem();
     }

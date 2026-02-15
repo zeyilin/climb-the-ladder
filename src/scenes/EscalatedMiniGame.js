@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * EscalatedMiniGame — Act IV career mini-games.
  * Same puzzles as Act III. Bigger numbers. That's the point.
  * The hedonic treadmill is a game mechanic.
  */
-export default class EscalatedMiniGame extends Phaser.Scene {
+export default class EscalatedMiniGame extends BaseScene {
     constructor() {
         super({ key: 'EscalatedMiniGame' });
     }
@@ -68,6 +68,9 @@ export default class EscalatedMiniGame extends Phaser.Scene {
         }
 
         this.challenges = this.generateChallenges();
+
+        this.initBaseScene();
+
         this.showChallenge();
     }
 

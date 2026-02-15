@@ -1,10 +1,10 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * PerformanceReviewScene — Quarterly Review.
  * Your output → rating → promotion or "we need to talk about your trajectory."
  */
-export default class PerformanceReviewScene extends Phaser.Scene {
+export default class PerformanceReviewScene extends BaseScene {
     constructor() {
         super({ key: 'PerformanceReviewScene' });
     }
@@ -83,6 +83,8 @@ export default class PerformanceReviewScene extends Phaser.Scene {
                 this.resumeSystem.addToList('promotions', `Q${quarter}: ${review.rating}`);
             }
         }
+
+        this.initBaseScene();
 
         // Derek comparison (he always does better)
         this.time.delayedCall(1500, () => {

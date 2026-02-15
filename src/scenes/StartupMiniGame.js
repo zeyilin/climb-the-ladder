@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * StartupMiniGame — Resource Management + VC Pitch.
  * Your app has 12 users. 4 of them are your mom on different devices.
  * Manage runway, build features, pitch VCs before you go broke.
  */
-export default class StartupMiniGame extends Phaser.Scene {
+export default class StartupMiniGame extends BaseScene {
     constructor() {
         super({ key: 'StartupMiniGame' });
     }
@@ -46,6 +46,9 @@ export default class StartupMiniGame extends Phaser.Scene {
         }).setOrigin(1, 0.5);
 
         this.decisions = this.generateDecisions();
+
+        this.initBaseScene();
+
         this.showDecision();
     }
 

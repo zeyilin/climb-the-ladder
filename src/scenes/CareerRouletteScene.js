@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * CareerRouletteScene — Act II Climax.
  * The slot machine that randomly assigns your career.
  * The player has no say. That's the point.
  */
-export default class CareerRouletteScene extends Phaser.Scene {
+export default class CareerRouletteScene extends BaseScene {
     constructor() {
         super({ key: 'CareerRouletteScene' });
     }
@@ -17,6 +17,8 @@ export default class CareerRouletteScene extends Phaser.Scene {
 
         this.statManager = this.registry.get('statManager');
         this.resumeSystem = this.registry.get('resumeSystem');
+
+        this.initBaseScene();
 
         // The buildup
         this.time.delayedCall(500, () => this.showGraduationIntro());

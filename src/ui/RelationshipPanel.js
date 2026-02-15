@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from '../scenes/BaseScene.js';
 import Theme from './Theme.js';
 
 /**
  * RelationshipPanelScene — Fading portraits panel.
  * "Corporate CRM" Style — DOM-based for crisp text and scrolling.
  */
-export default class RelationshipPanelScene extends Phaser.Scene {
+export default class RelationshipPanelScene extends BaseScene {
     constructor() {
         super({ key: 'RelationshipPanelScene' });
     }
@@ -53,10 +53,10 @@ export default class RelationshipPanelScene extends Phaser.Scene {
         this.overlay.on('pointerdown', () => this.closePanel());
 
         // --- Resize ---
-        this.scale.on('resize', this.handleResize, this);
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-        });
+        this.registerResizeHandler(this.handleResize);
+
+        // --- BaseScene auto-cleanup ---
+        this.initBaseScene();
     }
 
     buildHTML() {

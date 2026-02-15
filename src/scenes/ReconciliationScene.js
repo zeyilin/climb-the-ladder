@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * ReconciliationScene — Attempt to reconnect with faded relationships.
  * Each location maps to a character. Difficulty depends on neglect level.
  * Characters reference specific choices. Some can be repaired. Some cannot.
  */
-export default class ReconciliationScene extends Phaser.Scene {
+export default class ReconciliationScene extends BaseScene {
     constructor() {
         super({ key: 'ReconciliationScene' });
     }
@@ -62,6 +62,8 @@ export default class ReconciliationScene extends Phaser.Scene {
             fontStyle: 'italic', wordWrap: { width: 560 }, align: 'center',
             lineSpacing: 6,
         }).setOrigin(0.5);
+
+        this.initBaseScene();
 
         // Response choices
         const responses = this.getResponses(connection);

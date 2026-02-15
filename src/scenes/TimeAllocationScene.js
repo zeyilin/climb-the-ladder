@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 import Theme from '../ui/Theme.js';
 import UIButton from '../ui/components/UIButton.js';
 import LayoutManager from '../ui/LayoutManager.js';
@@ -8,7 +8,7 @@ import LayoutManager from '../ui/LayoutManager.js';
  * "Corporate Planner" Style.
  * Header + slots use DOM for crisp text; activity buttons remain Phaser UIButton.
  */
-export default class TimeAllocationScene extends Phaser.Scene {
+export default class TimeAllocationScene extends BaseScene {
     constructor() {
         super({ key: 'TimeAllocationScene' });
     }
@@ -64,15 +64,14 @@ export default class TimeAllocationScene extends Phaser.Scene {
         this.updateWarning();
 
         // --- Resize ---
-        this.scale.on('resize', this.handleResize, this);
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-        });
-        this.handleResize({ width: this.scale.width, height: this.scale.height });
+        this.registerResizeHandler(this.handleResize);
 
         // --- Launch HUD ---
         this.scene.launch('HUDScene');
         this.scene.bringToTop('HUDScene');
+
+        // --- BaseScene auto-cleanup ---
+        this.initBaseScene();
     }
 
     buildHeaderHTML() {

@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * CollegeCampusScene — Act II overworld.
  * Larger campus with dorms, lecture halls, library, career center.
  * Same top-down exploration as HighSchoolScene but with college activities.
  */
-export default class CollegeCampusScene extends Phaser.Scene {
+export default class CollegeCampusScene extends BaseScene {
     constructor() {
         super({ key: 'CollegeCampusScene' });
     }
@@ -92,10 +93,8 @@ export default class CollegeCampusScene extends Phaser.Scene {
         // Phone notification system (old friends texting)
         this.setupPhoneNotifications();
 
-        // --- Cleanup on shutdown ---
-        this.events.on('shutdown', () => {
-            this.input.keyboard.removeAllListeners();
-        });
+        // --- Register auto-cleanup ---
+        this.initBaseScene();
     }
 
     initializeAct2Characters() {

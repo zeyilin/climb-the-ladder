@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * CornerOfficeScene — Act IV Overworld.
  * Corner office, conference rooms, private clubs, airport lounges.
  * Gold and black — opulent but isolating. Your most frequent contact is a DoorDash driver.
  */
-export default class CornerOfficeScene extends Phaser.Scene {
+export default class CornerOfficeScene extends BaseScene {
     constructor() {
         super({ key: 'CornerOfficeScene' });
     }
@@ -94,10 +95,8 @@ export default class CornerOfficeScene extends Phaser.Scene {
             }
         });
 
-        // --- Cleanup on shutdown ---
-        this.events.on('shutdown', () => {
-            this.input.keyboard.removeAllListeners();
-        });
+        // --- Register auto-cleanup ---
+        this.initBaseScene();
     }
 
     createMentor(x, y) {

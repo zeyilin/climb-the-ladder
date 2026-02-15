@@ -1,10 +1,10 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * CollegeRevealScene — Act I Climax.
  * Envelope opening animation. Tier reveal. Transitions to Act II.
  */
-export default class CollegeRevealScene extends Phaser.Scene {
+export default class CollegeRevealScene extends BaseScene {
     constructor() {
         super({ key: 'CollegeRevealScene' });
     }
@@ -64,6 +64,8 @@ export default class CollegeRevealScene extends Phaser.Scene {
 
             recapY += 22;
         }
+
+        this.initBaseScene();
 
         this.time.delayedCall(2000, () => this.showEnvelope(tier));
     }

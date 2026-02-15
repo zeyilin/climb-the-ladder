@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * UltimatePromotionScene — Act IV Climax.
@@ -6,7 +6,7 @@ import Phaser from 'phaser';
  * Jordan's text: "Hey, congrats I think? Are you coming to Dad's birthday?"
  * Credits almost roll. They don't.
  */
-export default class UltimatePromotionScene extends Phaser.Scene {
+export default class UltimatePromotionScene extends BaseScene {
     constructor() {
         super({ key: 'UltimatePromotionScene' });
     }
@@ -20,6 +20,8 @@ export default class UltimatePromotionScene extends Phaser.Scene {
         this.resumeSystem = this.registry.get('resumeSystem');
         this.relationshipManager = this.registry.get('relationshipManager');
         this.careerTrack = this.registry.get('careerTrack') || 'consulting';
+
+        this.initBaseScene();
 
         this.time.delayedCall(500, () => this.showCelebration());
     }

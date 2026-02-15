@@ -9,6 +9,12 @@ export default class DialogueSystem {
         this.currentNode = null;
     }
 
+    reset() {
+        this.dialogueTrees = {};
+        this.currentTree = null;
+        this.currentNode = null;
+    }
+
     /**
      * Register a dialogue tree by ID
      * @param {string} treeId

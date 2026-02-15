@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 import Theme from '../ui/Theme.js';
 
 /**
  * MenuScene — Title screen.
  * "Corporate Cyber-Retro" Style.
  */
-export default class MenuScene extends Phaser.Scene {
+export default class MenuScene extends BaseScene {
     constructor() {
         super({ key: 'MenuScene' });
     }
@@ -13,15 +13,13 @@ export default class MenuScene extends Phaser.Scene {
     create() {
         const { width, height } = this.cameras.main;
 
-        // --- Stop any zombie scenes from a previous game ---
-        const zombieScenes = ['HUDScene', 'RelationshipPanelScene', 'ResumeViewScene', 'InstructionsScene'];
-        zombieScenes.forEach(key => {
-            if (this.scene.isActive(key) || this.scene.isPaused(key)) {
-                this.scene.stop(key);
-            }
-        });
+        // Stop any zombie scenes from a previous game
+        this.stopAllOverlays();
 
-        // --- Background ---
+        // Reset game state for a fresh start
+        const resetGame = this.registry.get('resetGame');
+        if (resetGame) resetGame();
+
         this.cameras.main.setBackgroundColor(Theme.COLORS.BG_DARK);
 
         // Container for all menu elements
@@ -31,16 +29,13 @@ export default class MenuScene extends Phaser.Scene {
         this.gridGraphics = this.add.graphics();
         this.menuContainer.add(this.gridGraphics);
 
-        // --- Animated Ladder (Abstract) ---
-        // Two rails going up
+        // Animated Ladder
         this.ladderContainer = this.add.container(0, 0);
         this.menuContainer.add(this.ladderContainer);
 
-        // Rails
         this.rails = this.add.graphics();
         this.ladderContainer.add(this.rails);
 
-        // Moving Rungs
         this.rungs = [];
         for (let i = 0; i < 20; i++) {
             const rung = this.add.rectangle(0, 0, 1, 8, Theme.COLORS.MUTED, 0.3);
@@ -48,10 +43,9 @@ export default class MenuScene extends Phaser.Scene {
             this.ladderContainer.add(rung);
         }
 
-        // --- Title ---
+        // Title
         const titleText = 'CLIMB THE\nLADDER';
 
-        // Glitch Shadow (Red/Cyan offset)
         this.titleShadow1 = this.add.text(0, 0, titleText, {
             ...Theme.STYLES.HEADER_LG,
             fontSize: '64px',
@@ -66,7 +60,6 @@ export default class MenuScene extends Phaser.Scene {
             align: 'center',
         }).setOrigin(0.5).setAlpha(0.7).setBlendMode(Phaser.BlendModes.ADD);
 
-        // Main Title
         this.titleMain = this.add.text(0, 0, titleText, {
             ...Theme.STYLES.HEADER_LG,
             fontSize: '64px',
@@ -76,7 +69,7 @@ export default class MenuScene extends Phaser.Scene {
 
         this.menuContainer.add([this.titleShadow1, this.titleShadow2, this.titleMain]);
 
-        // --- Tagline ---
+        // Tagline
         const taglines = [
             '"Because your parents didn\'t sacrifice everything\nfor you to have work-life balance."',
             '"LinkedIn is just Instagram for people\nwho peaked in college."',
@@ -89,43 +82,36 @@ export default class MenuScene extends Phaser.Scene {
         this.taglineText = this.add.text(0, 0, tagline, {
             fontFamily: '"VT323", monospace',
             fontSize: '24px',
-            color: Theme.toHex(Theme.COLORS.NEON_YELLOW), // Accent color
+            color: Theme.toHex(Theme.COLORS.NEON_YELLOW),
             align: 'center',
         }).setOrigin(0.5);
         this.menuContainer.add(this.taglineText);
 
-        // --- New Game / Continue Button ---
+        // Button Container
         this.btnContainer = this.add.container(0, 0);
         this.menuContainer.add(this.btnContainer);
 
         const persistence = this.registry.get('persistenceManager');
-        const hasSave = localStorage.getItem('climbtheladder_save_v1'); // Check directly for speed/existence
-
+        const hasSave = localStorage.getItem('climbtheladder_save_v1');
         const btnLabel = hasSave ? 'RESUME CAREER' : 'INITIALIZE CAREER';
 
-        // Create text FIRST to measure it
         this.btnText = this.add.text(0, 0, btnLabel, {
             ...Theme.STYLES.HEADER_MD,
             color: '#ffffff',
         }).setOrigin(0.5);
 
-        // Button BG
         this.btnBg = this.add.graphics();
-        // Initial draw in resize
 
         this.btnContainer.add([this.btnBg, this.btnText]);
-
-        // Interaction
         this.btnContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 1, 1), Phaser.Geom.Rectangle.Contains);
 
         this.btnContainer.on('pointerover', () => {
             const w = this.btnBg.width;
             const h = this.btnBg.height;
             this.drawButton(this.btnBg, w, h, Theme.COLORS.NEON_CYAN);
-            this.btnText.setColor('#000000'); // Invert text on hover
+            this.btnText.setColor('#000000');
             document.body.style.cursor = 'pointer';
 
-            // Pulse
             this.tweens.add({
                 targets: this.btnContainer,
                 scaleX: this.btnContainer.baseScale * 1.05,
@@ -150,13 +136,6 @@ export default class MenuScene extends Phaser.Scene {
 
             this.cameras.main.fadeOut(800, 0, 0, 0);
             this.time.delayedCall(800, () => {
-                // Determine start scene based on Act? For now default to HighSchool or assume TimeAllocation flow handles it?
-                // Actually persistence load sets the timeManager state. 
-                // We should jump to the relevant scene.
-                // Simple logic: Go to TimeAllocationScene directly if mid-game, or HighSchool if new.
-                // For simplicity, let's go to TimeAllocationScene which reads from TimeManager.
-                // BUT if it's new game, we usually go HighSchoolScene -> TimeAllocation.
-
                 if (hasSave) {
                     this.scene.start('TimeAllocationScene');
                 } else {
@@ -165,7 +144,7 @@ export default class MenuScene extends Phaser.Scene {
             });
         });
 
-        // --- HOW TO PLAY Button ---
+        // HOW TO PLAY Button
         this.howToPlayText = this.add.text(0, 0, '[ HOW TO PLAY ]', {
             fontFamily: Theme.FONTS.HEADER,
             fontSize: '12px',
@@ -183,7 +162,7 @@ export default class MenuScene extends Phaser.Scene {
         });
         this.menuContainer.add(this.howToPlayText);
 
-        // --- NEW GAME Button (only when save exists) ---
+        // NEW GAME Button (only when save exists)
         this.newGameText = this.add.text(0, 0, '[ NEW GAME ]', {
             fontFamily: Theme.FONTS.HEADER,
             fontSize: '10px',
@@ -204,22 +183,17 @@ export default class MenuScene extends Phaser.Scene {
         }
         this.menuContainer.add(this.newGameText);
 
-        // --- Version ---
+        // Version
         this.versionText = this.add.text(0, 0, 'v0.1 — Act I Prototype', {
             ...Theme.STYLES.BODY_SM,
             color: '#333355',
         }).setOrigin(0.5);
         this.menuContainer.add(this.versionText);
 
-        // --- Resize Handling ---
-        this.scale.on('resize', this.handleResize, this);
-        this.handleResize({ width: this.scale.width, height: this.scale.height });
+        // Resize + lifecycle
+        this.registerResizeHandler(this.handleResize);
+        this.initBaseScene();
 
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-        });
-
-        // Fade in
         this.cameras.main.fadeIn(1000, 0, 0, 0);
     }
 
@@ -252,8 +226,6 @@ export default class MenuScene extends Phaser.Scene {
 
         // Center Elements
         const centerX = width / 2;
-
-        // Title Scaling
         const titleScale = isMobile ? 0.6 : 1.0;
         const titleY = height * 0.35;
 
@@ -264,7 +236,6 @@ export default class MenuScene extends Phaser.Scene {
         this.titleShadow1.x -= 4 * titleScale;
         this.titleShadow2.x += 4 * titleScale;
 
-        // Tagline
         this.taglineText.setPosition(centerX, height * 0.55);
         this.taglineText.setWordWrapWidth(width * 0.8);
         this.taglineText.setFontSize(isMobile ? '18px' : '24px');
@@ -275,44 +246,36 @@ export default class MenuScene extends Phaser.Scene {
         const btnW = Math.max(300, this.btnText.width + paddingX);
         const btnH = Math.max(70, this.btnText.height + paddingY);
 
-        this.btnBg.width = btnW; // Store for hover checks
+        this.btnBg.width = btnW;
         this.btnBg.height = btnH;
 
         this.drawButton(this.btnBg, btnW, btnH, Theme.COLORS.CORP_BLUE);
         this.btnContainer.setPosition(centerX, height * 0.75);
-
-        // Update Hit Area
         this.btnContainer.input.hitArea.setTo(-btnW / 2, -btnH / 2, btnW, btnH);
 
         const btnScale = isMobile ? 0.8 : 1.0;
         this.btnContainer.setScale(btnScale);
         this.btnContainer.baseScale = btnScale;
 
-        // HOW TO PLAY
         this.howToPlayText.setPosition(centerX, height * 0.75 + 55);
 
-        // NEW GAME
         if (this.newGameText) {
             this.newGameText.setPosition(centerX, height * 0.75 + 80);
         }
 
-        // Version
         this.versionText.setPosition(centerX, height - 30);
     }
 
     update(time) {
-        // Animate Rungs (Infinite Scroll)
         const height = this.scale.height;
 
         this.rungs.forEach(rung => {
-            rung.y += 2; // Move down
-            // Reset to top if below screen
+            rung.y += 2;
             if (rung.y > height + 50) {
                 rung.y = -50;
             }
         });
 
-        // Glitch Effect on Title
         if (Phaser.Math.Between(0, 100) > 95) {
             const offset = Phaser.Math.Between(-5, 5);
             this.titleShadow1.x = (this.scale.width / 2) + offset;
@@ -363,6 +326,11 @@ export default class MenuScene extends Phaser.Scene {
         yesBtn.on('pointerdown', () => {
             cleanup();
             persistence.clear();
+
+            // Reset all game systems
+            const resetGameFn = this.registry.get('resetGame');
+            if (resetGameFn) resetGameFn();
+
             this.cameras.main.fadeOut(800, 0, 0, 0);
             this.time.delayedCall(800, () => {
                 this.scene.start('HighSchoolScene');
@@ -375,11 +343,9 @@ export default class MenuScene extends Phaser.Scene {
         gfx.fillStyle(color, 1);
         gfx.fillRect(-w / 2, -h / 2, w, h);
 
-        // Tech borders
         gfx.lineStyle(2, 0xffffff, 0.5);
         gfx.strokeRect(-w / 2, -h / 2, w, h);
 
-        // Corners
         const s = 10;
         gfx.lineStyle(2, 0xffffff, 1);
         gfx.beginPath();

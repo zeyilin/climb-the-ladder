@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * ScrapbookScene — Assembles from moments across the game.
  * Pages flip. Present moments glow. Missed moments are blank with captions.
  * This is the game's thesis statement.
  */
-export default class ScrapbookScene extends Phaser.Scene {
+export default class ScrapbookScene extends BaseScene {
     constructor() {
         super({ key: 'ScrapbookScene' });
     }
@@ -36,6 +36,8 @@ export default class ScrapbookScene extends Phaser.Scene {
         // Navigation
         this.input.keyboard.on('keydown-RIGHT', () => this.nextPage());
         this.input.keyboard.on('keydown-LEFT', () => this.prevPage());
+
+        this.initBaseScene();
     }
 
     buildPages() {

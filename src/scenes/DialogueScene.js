@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 import Theme from '../ui/Theme.js';
 
 /**
@@ -6,7 +7,7 @@ import Theme from '../ui/Theme.js';
  * "Corporate Visual Novel" Style.
  * Speaker name, dialogue text, choices, and monologue use DOM for crisp rendering.
  */
-export default class DialogueScene extends Phaser.Scene {
+export default class DialogueScene extends BaseScene {
     constructor() {
         super({ key: 'DialogueScene' });
     }
@@ -145,11 +146,9 @@ export default class DialogueScene extends Phaser.Scene {
             ease: 'Power2',
         });
 
-        // --- Resize Handling ---
-        this.scale.on('resize', this.handleResize, this);
-        this.events.on('shutdown', () => {
-            this.scale.off('resize', this.handleResize, this);
-        });
+        // --- Resize + lifecycle ---
+        this.registerResizeHandler(this.handleResize);
+        this.initBaseScene();
     }
 
     handleResize(gameSize) {

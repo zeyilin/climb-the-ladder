@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * BankingMiniGame — Spreadsheet Formatting Under Extreme Time Pressure.
  * Align numbers, fix cell references, format the pitch deck.
  * It's 3am. The associate above you is asleep under his desk. This is prestige.
  */
-export default class BankingMiniGame extends Phaser.Scene {
+export default class BankingMiniGame extends BaseScene {
     constructor() {
         super({ key: 'BankingMiniGame' });
     }
@@ -57,6 +57,9 @@ export default class BankingMiniGame extends Phaser.Scene {
         });
 
         this.tasks = this.generateTasks();
+
+        this.initBaseScene();
+
         this.showTask();
     }
 

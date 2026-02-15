@@ -5,7 +5,11 @@
  */
 export default class ResumeSystem {
     constructor() {
-        this.entries = {
+        this.entries = this._defaultEntries();
+    }
+
+    _defaultEntries() {
+        return {
             name: 'Alex Park',
             // Act I
             highSchool: 'Oakridge High School',
@@ -24,6 +28,10 @@ export default class ResumeSystem {
             font: 'Comic Sans MS',  // the wrong font
             lastUpdated: 'Day 1',
         };
+    }
+
+    reset() {
+        this.entries = this._defaultEntries();
     }
 
     setField(key, value) {

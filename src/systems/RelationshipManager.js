@@ -8,6 +8,10 @@ export default class RelationshipManager {
         this.audioCues = null;
     }
 
+    reset() {
+        this.relationships = {};
+    }
+
     setAudioCues(audioCues) {
         this.audioCues = audioCues;
     }

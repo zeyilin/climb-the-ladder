@@ -1,11 +1,11 @@
-import Phaser from 'phaser';
+import BaseScene from './BaseScene.js';
 
 /**
  * MirrorMomentScene — Non-interactive vignettes.
  * 5-10 seconds of silence. Your character sits alone.
  * Music cuts out. It's devastating. And also kind of funny.
  */
-export default class MirrorMomentScene extends Phaser.Scene {
+export default class MirrorMomentScene extends BaseScene {
     constructor() {
         super({ key: 'MirrorMomentScene' });
     }
@@ -88,6 +88,8 @@ export default class MirrorMomentScene extends Phaser.Scene {
                 this.scene.resume('CornerOfficeScene');
             });
         });
+
+        this.initBaseScene();
 
         // Allow skip with any key after 3 seconds
         this.time.delayedCall(3000, () => {

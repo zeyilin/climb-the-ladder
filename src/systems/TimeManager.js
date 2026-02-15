@@ -57,6 +57,18 @@ export default class TimeManager {
         this.applyActConfig();
     }
 
+    reset() {
+        this.currentAct = 1;
+        this.currentDay = 1;
+        this.currentWeek = 1;
+        this.currentSlot = 0;
+        this.totalDays = 0;
+        this.daySlots = [];
+        this.isGameOver = false;
+        this.isActOver = false;
+        this.applyActConfig();
+    }
+
     applyActConfig() {
         const config = ACT_CONFIGS[this.currentAct] || ACT_CONFIGS[1];
         this.slotsPerDay = config.slotsPerDay;

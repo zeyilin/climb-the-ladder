@@ -37,6 +37,7 @@ export default class CityScene extends Phaser.Scene {
 
         // Controls
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.interactKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
         // Launch HUD
         if (!this.scene.isActive('HUDScene')) {
@@ -65,6 +66,11 @@ export default class CityScene extends Phaser.Scene {
 
         // Lifestyle inflation flavor text
         this.showLifestyleText();
+
+        // --- Cleanup on shutdown ---
+        this.events.on('shutdown', () => {
+            this.input.keyboard.removeAllListeners();
+        });
     }
 
     addAct3Characters() {
@@ -135,7 +141,7 @@ export default class CityScene extends Phaser.Scene {
 
         // Overlap detection for interaction
         this.physics.add.overlap(this.player, npc, () => {
-            if (!this.interacting && Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey('E'))) {
+            if (!this.interacting && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
                 this.interacting = true;
                 this.interactWithNPC(id, name);
             }

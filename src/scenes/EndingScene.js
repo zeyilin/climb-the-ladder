@@ -274,6 +274,12 @@ export default class EndingScene extends Phaser.Scene {
                 restart.on('pointerdown', () => {
                     this.cameras.main.fadeOut(2000);
                     this.time.delayedCall(2000, () => {
+                        // Stop any overlay scenes still running from previous game
+                        ['HUDScene', 'RelationshipPanelScene', 'ResumeViewScene'].forEach(key => {
+                            if (this.scene.isActive(key) || this.scene.isPaused(key)) {
+                                this.scene.stop(key);
+                            }
+                        });
                         this.scene.start('MenuScene');
                     });
                 });

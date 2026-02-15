@@ -13,6 +13,14 @@ export default class MenuScene extends Phaser.Scene {
     create() {
         const { width, height } = this.cameras.main;
 
+        // --- Stop any zombie scenes from a previous game ---
+        const zombieScenes = ['HUDScene', 'RelationshipPanelScene', 'ResumeViewScene', 'InstructionsScene'];
+        zombieScenes.forEach(key => {
+            if (this.scene.isActive(key) || this.scene.isPaused(key)) {
+                this.scene.stop(key);
+            }
+        });
+
         // --- Background ---
         this.cameras.main.setBackgroundColor(Theme.COLORS.BG_DARK);
 
@@ -206,6 +214,10 @@ export default class MenuScene extends Phaser.Scene {
         // --- Resize Handling ---
         this.scale.on('resize', this.handleResize, this);
         this.handleResize({ width: this.scale.width, height: this.scale.height });
+
+        this.events.on('shutdown', () => {
+            this.scale.off('resize', this.handleResize, this);
+        });
 
         // Fade in
         this.cameras.main.fadeIn(1000, 0, 0, 0);

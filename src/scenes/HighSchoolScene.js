@@ -110,6 +110,12 @@ export default class HighSchoolScene extends Phaser.Scene {
         // --- Resize Handling ---
         this.scale.on('resize', this.handleResize, this);
         this.handleResize({ width: this.scale.width, height: this.scale.height });
+
+        // --- Cleanup on shutdown ---
+        this.events.on('shutdown', () => {
+            this.scale.off('resize', this.handleResize, this);
+            this.input.keyboard.removeAllListeners();
+        });
     }
 
     handleResize(gameSize) {

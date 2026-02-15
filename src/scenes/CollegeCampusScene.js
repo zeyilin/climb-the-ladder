@@ -91,6 +91,11 @@ export default class CollegeCampusScene extends Phaser.Scene {
 
         // Phone notification system (old friends texting)
         this.setupPhoneNotifications();
+
+        // --- Cleanup on shutdown ---
+        this.events.on('shutdown', () => {
+            this.input.keyboard.removeAllListeners();
+        });
     }
 
     initializeAct2Characters() {

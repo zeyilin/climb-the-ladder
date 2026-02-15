@@ -131,6 +131,12 @@ export default class HUDScene extends Phaser.Scene {
         this.scale.on('resize', this.handleResize, this);
         this.handleResize({ width: this.scale.width, height: this.scale.height });
 
+        // --- Cleanup on shutdown ---
+        this.events.on('shutdown', () => {
+            this.scale.off('resize', this.handleResize, this);
+            this.input.keyboard.removeAllListeners();
+        });
+
         // Initial Update
         this.updateHUD();
     }

@@ -56,6 +56,7 @@ export default class CornerOfficeScene extends Phaser.Scene {
         this.player = this.physics.add.sprite(width / 2, height / 2, 'player');
         this.player.setCollideWorldBounds(true);
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.interactKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
         // Mentor NPC
         this.createMentor(360, 160);
@@ -92,6 +93,11 @@ export default class CornerOfficeScene extends Phaser.Scene {
                 this.scene.stop('ResumeViewScene');
             }
         });
+
+        // --- Cleanup on shutdown ---
+        this.events.on('shutdown', () => {
+            this.input.keyboard.removeAllListeners();
+        });
     }
 
     createMentor(x, y) {
@@ -101,7 +107,7 @@ export default class CornerOfficeScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.physics.add.overlap(this.player, npc, () => {
-            if (!this.interacting && Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey('E'))) {
+            if (!this.interacting && Phaser.Input.Keyboard.JustDown(this.interactKey)) {
                 this.interacting = true;
                 this.showMentorDialogue();
             }

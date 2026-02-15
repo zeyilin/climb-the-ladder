@@ -1,0 +1,413 @@
+{
+    "moments": [
+        {
+            "id": "act5_day1_slot1",
+            "setting": {
+                "location": "The Old Neighborhood",
+                "description": "You parked the car two blocks away. The street is smaller than you remember.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "The corner store is still there. Mr. Kim waves. He looks older. Everyone looks older." },
+                { "type": "description", "text": "Your childhood house is at the end of the block. The porch light is on. Ma always leaves the porch light on." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Walk up and knock on the door",
+                            "effects": { "ma_connection": 5, "ba_connection": 5, "authenticity": 5, "burnout": -5 },
+                            "internal_monologue": "(Ma opens the door. She doesn't say 'why didn't you call.' She doesn't say 'it's been eight months.' She says 'you're too thin' and pulls you inside.)"
+                        },
+                        {
+                            "text": "Stand outside for a while first. You're not ready.",
+                            "effects": { "authenticity": 3, "burnout": -2 },
+                            "internal_monologue": "(Through the kitchen window, you can see Ma cooking. The same gestures. The same rhythm. She hasn't changed. You have.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day1_slot2",
+            "setting": {
+                "location": "The Kitchen Table",
+                "description": "Ma made congee. It's warm this time.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "The kitchen is the same. The calendar on the fridge still has your birthday circled. Every year." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Eat. You look tired. Are you sleeping enough? Are you eating?" },
+                { "type": "description", "text": "Ma sits across from you. She watches you eat. She's always watched you eat. You never noticed before how much love fits in that gesture." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Ma, I'm sorry I haven't called more.\"",
+                            "effects": { "ma_connection": 10, "authenticity": 8 },
+                            "internal_monologue": "(Ma's eyes fill. 'You're here now,' she says. 'That's enough.' It isn't. You both know it. But it's a start.)"
+                        },
+                        {
+                            "text": "Just eat. The congee says what words can't.",
+                            "effects": { "ma_connection": 5, "burnout": -3 },
+                            "internal_monologue": "(You finish every grain of rice. Ma refills your bowl without asking. Some languages don't need words.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day1_slot3",
+            "setting": {
+                "location": "Ba's Garage",
+                "description": "He reorganized it again. The third time this year. Everything has a label.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba is at his workbench. His engineering textbooks are still on the shelf. Dog-eared. Highlighted. In a language he doesn't need here." },
+                { "type": "description", "text": "He doesn't turn around when you come in. But he moves the second stool closer." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "You paid off the mortgage." },
+                { "type": "description", "text": "It's not a question. It's the closest Ba comes to saying 'I love you.'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"You built the foundation, Ba. I just finished what you started.\"",
+                            "effects": { "ba_connection": 12, "authenticity": 5 },
+                            "internal_monologue": "(Ba's hands stop moving. He's quiet for a long time. Then he picks up a wrench and hands it to you. 'Help me fix this shelf.' It's the most intimate thing he's ever said.)"
+                        },
+                        {
+                            "text": "\"It was the least I could do.\"",
+                            "effects": { "ba_connection": 5, "authenticity": -2 },
+                            "internal_monologue": "(Ba nods. 'You are good son.' The words are small. The silence after is enormous.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day2_slot1",
+            "setting": {
+                "location": "Lily's Apartment",
+                "description": "She lives across town now. The apartment is full of plants and half-finished art projects.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily opens the door. She's taller than you remember. When did that happen?" },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Wow. The prodigal sibling returns. Should I kill the fatted calf or just order Thai?" },
+                { "type": "description", "text": "She's smiling, but there's an edge. You missed a lot. She knows it. You know it." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I saw you're getting married. I found out on Instagram. I'm sorry.\"",
+                            "effects": { "lily_connection": 8, "authenticity": 10 },
+                            "internal_monologue": "(Lily's face softens. 'Yeah. That sucked.' Silence. Then: 'But you're here now. Do you want to meet them?' You nod. She hands you a photo album.)"
+                        },
+                        {
+                            "text": "\"I brought a gift. Congratulations on the engagement.\"",
+                            "effects": { "lily_connection": 3, "authenticity": -2, "wealth": -5 },
+                            "internal_monologue": "(Lily takes the gift. 'Thanks.' The word is flat. She wanted your time, not your money. You've been confusing the two for years.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day2_slot2",
+            "setting": {
+                "location": "The Old Park",
+                "description": "The bench where you and Dev used to study. Someone carved initials into it.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "You texted Dev yesterday. He replied in 3 minutes. You used to reply in 3 minutes too. Before." },
+                { "type": "description", "text": "He's standing by the bench. He looks different — beard, glasses. But the smile is the same." },
+                { "type": "dialogue", "speaker": "Dev", "speakerId": "dev", "text": "Dude. You look like you haven't slept since high school." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Laugh. Then say what you've been meaning to say for years.",
+                            "effects": { "dev_connection": 10, "authenticity": 8, "burnout": -5 },
+                            "internal_monologue": "('I'm sorry I disappeared,' you say. Dev shrugs. 'I know. Same thing almost happened to me.' He sits on the bench. 'But I caught it.' He looks at you. 'Did you?')"
+                        },
+                        {
+                            "text": "Keep it casual. \"So what have you been up to?\"",
+                            "effects": { "dev_connection": 3, "authenticity": -3 },
+                            "internal_monologue": "(Dev tells you about his life. A startup. A partner. A dog named Byte. You nod along, performing interest, when what you feel is envy. Not for what he has — for who he became.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day2_slot3",
+            "setting": {
+                "location": "Your Old Bedroom",
+                "description": "Ma kept it exactly the same. The SAT prep book is still on the desk.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "The bed is smaller than you remember. The posters are embarrassing. But the view from the window — the tree, the streetlight — that's exactly right." },
+                { "type": "description", "text": "On the desk, next to the SAT book: a stack of photos Ma printed. You at the awards ceremony. You at graduation. You in your first suit." },
+                { "type": "description", "text": "Under the photos: the drawing Lily made in elementary school. You in a graduation cap that's too big." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Sit at the desk. Open the SAT book to the page you left off on.",
+                            "effects": { "authenticity": 5, "burnout": -5 },
+                            "internal_monologue": "(Page 247. Vocabulary. 'Ephemeral: lasting for a very short time.' You close the book. Some words teach themselves.)"
+                        },
+                        {
+                            "text": "Take Lily's drawing. Frame it.",
+                            "effects": { "lily_connection": 3, "authenticity": 5 },
+                            "internal_monologue": "(The graduation cap is still too big. But you grew into it anyway. Not the way she drew it. Not the way anyone expected. But you did.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day3_slot1",
+            "setting": {
+                "location": "The Kitchen — Morning",
+                "description": "5:30 AM. You couldn't sleep. Ma is already up.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma is making congee. Her movements are slower now. Her hair is grey. But the rhythm is the same." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "You're up early. You used to sleep until noon when you were small." },
+                { "type": "description", "text": "You sit at the table. Ma doesn't ask why you're up. She knows. Mothers always know." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Help her cook. Learn the recipe you never asked for.",
+                            "effects": { "ma_connection": 10, "authenticity": 8, "burnout": -5 },
+                            "internal_monologue": "(Ma shows you how much water. How long to stir. When to add the century egg. She doesn't measure anything. 'You feel it,' she says. You've been measuring everything for twenty years. Feeling it is harder.)"
+                        },
+                        {
+                            "text": "\"Ma, was it worth it? Coming here?\"",
+                            "effects": { "ma_connection": 8, "authenticity": 10 },
+                            "internal_monologue": "(Ma stops stirring. She looks at you — really looks at you — for the first time in years. 'You're asking the wrong question,' she says. 'The question is: are you happy?' You don't answer. She doesn't need you to.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day3_slot2",
+            "setting": {
+                "location": "The Family Table",
+                "description": "Lunch. All four chairs could be full today.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "You called Lily. She said she'd come. Ba is setting the table. He put out the good bowls." },
+                { "type": "description", "text": "The doorbell rings. It's Lily. She brought her fiancé. Ba shakes their hand three times." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Alex, this is Sam. Sam, this is my sibling. The one I told you about." },
+                { "type": "description", "text": "'The one I told you about.' You wonder what version of you she described." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Be present. Really present. Phones away. Eyes up.",
+                            "effects": { "lily_connection": 8, "ma_connection": 5, "ba_connection": 5, "authenticity": 5 },
+                            "internal_monologue": "(The meal is loud and messy. Someone spills tea. Ba tells a joke in broken English and everyone laughs. Not at him — with him. For a moment, the four chairs are full and the noise is perfect.)"
+                        },
+                        {
+                            "text": "Try your best, but check your phone when it buzzes",
+                            "effects": { "lily_connection": 2, "ma_connection": -2, "network": 2 },
+                            "internal_monologue": "(Patricia emailed. 'Quick question.' It's never quick. You type a reply under the table. Lily sees. She doesn't say anything. She doesn't have to.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day3_slot3",
+            "setting": {
+                "location": "The Porch",
+                "description": "Evening. Ba is sitting outside. The streetlights just came on.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba has a cup of tea. There's a second cup on the step. He placed it there before you came out." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Sit." },
+                { "type": "description", "text": "You sit. The tea is the perfect temperature. Ba always gets the temperature right." },
+                { "type": "description", "text": "You watch the street together. A kid rides by on a bike. Someone is grilling next door. The smell of charcoal and summer." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Tell Ba about the engineering documentary you watched years ago",
+                            "effects": { "ba_connection": 10, "authenticity": 8 },
+                            "internal_monologue": "(Ba's eyes light up — the same way they did that night on the couch. 'You remember?' he asks. 'I remember everything, Ba.' It's the truest thing you've said in years.)"
+                        },
+                        {
+                            "text": "Just sit in silence. Some moments don't need words.",
+                            "effects": { "ba_connection": 8, "burnout": -5 },
+                            "internal_monologue": "(The silence between you and Ba has always been different from other silences. It's not empty. It's full. Full of everything he can't say and everything you're learning to hear.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day4_slot1",
+            "setting": {
+                "location": "Coffee Shop",
+                "description": "You asked Dev to meet again. This time, you're the one who arrived first.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Dev walks in. He's wearing a hoodie that says 'I survived my parents' expectations.' You both laugh." },
+                { "type": "dialogue", "speaker": "Dev", "speakerId": "dev", "text": "Remember when we used to study here? You'd get the same coffee every time. Extra shot. No sugar. Maximum efficiency." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Order something different. A lavender latte. Dev's eyebrows go up.",
+                            "effects": { "dev_connection": 5, "authenticity": 5, "burnout": -3 },
+                            "internal_monologue": "('Who are you and what have you done with Alex Chen?' Dev says. You laugh. 'I'm figuring that out,' you say. It feels good to say out loud.)"
+                        },
+                        {
+                            "text": "Order the same coffee. Some things don't need to change.",
+                            "effects": { "dev_connection": 3, "authenticity": 2 },
+                            "internal_monologue": "(Dev orders the same thing too. You sit across from each other. For a moment, you're 16 again. The SAT books are gone. The weight is still there. But it's lighter with two people carrying it.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day4_slot2",
+            "setting": {
+                "location": "Lily's Apartment — Wedding Planning",
+                "description": "Fabric swatches everywhere. Lily is in full production mode.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily has spreadsheets for the seating chart. 'I learned from the best,' she says, looking at you. It's a joke and a compliment and a wound all at once." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Alex... will you do a reading at the wedding? I know it's a lot to ask. You're busy." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I'll be there. I wouldn't miss it for anything.\"",
+                            "effects": { "lily_connection": 10, "authenticity": 8 },
+                            "internal_monologue": "(Lily's eyes fill. 'Promise?' she says. 'Promise,' you say. And you mean it in a way you haven't meant anything in a long time.)",
+                            "scrapbook": { "location": "Lily's Wedding", "text": "You stood at the podium. Your voice cracked twice. Nobody cared. Lily smiled the whole time.", "visited": true }
+                        },
+                        {
+                            "text": "\"I'll try. Let me check my calendar.\"",
+                            "effects": { "lily_connection": -5, "authenticity": -5 },
+                            "internal_monologue": "(Lily's face closes like a door. 'Sure. Let me know.' You both know what 'I'll try' means. It means 'I won't.')"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day4_slot3",
+            "setting": {
+                "location": "Your Old Bedroom — Night",
+                "description": "Last night in the old bed. The ceiling has the same crack it had when you were 12.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "You can hear Ma and Ba talking in their bedroom. The murmur of their voices through the wall is the soundtrack of your childhood." },
+                { "type": "description", "text": "Your phone has 47 unread work emails. The screen glows in the dark room." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Turn the phone face down. Listen to your parents' voices.",
+                            "effects": { "authenticity": 10, "burnout": -8, "ma_connection": 3, "ba_connection": 3 },
+                            "internal_monologue": "(You can't make out the words. But the rhythm — the rise and fall, the pauses, the soft laughter — tells you everything. They're talking about you. They're proud. They're worried. They love you. The emails can wait. The emails can always wait.)"
+                        },
+                        {
+                            "text": "Check the emails. Old habits die hard.",
+                            "effects": { "network": 3, "burnout": 5, "authenticity": -5 },
+                            "internal_monologue": "(Patricia wants the Q3 projections by Monday. Derek got another promotion. Jamie sent a meme about burnout. You reply to Patricia. You ignore Jamie. You close your eyes but don't sleep.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day5_slot1",
+            "setting": {
+                "location": "The Kitchen — Last Morning",
+                "description": "Ma is packing food for you to take back. Too much food. Always too much food.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Three containers of frozen dumplings. Two bags of dried noodles. A jar of chili oil she made herself." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "You call more now, okay? Every week. Sunday. I make congee Sunday morning." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Every Sunday, Ma. I promise.\"",
+                            "effects": { "ma_connection": 8, "authenticity": 5 },
+                            "internal_monologue": "(Ma nods. She believes you. The question is whether you believe yourself.)"
+                        },
+                        {
+                            "text": "\"I'll try, Ma. Work is—\" Stop yourself. \"Every Sunday.\"",
+                            "effects": { "ma_connection": 10, "authenticity": 8 },
+                            "internal_monologue": "(You almost said it. The excuse. The same one you've used for years. But you caught it. Ma catches it too. She smiles. 'Good,' she says. 'Good.')"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day5_slot2",
+            "setting": {
+                "location": "The Driveway",
+                "description": "Your car is packed. Ba is standing by the driver's side door.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba hands you something. A small wooden box. Inside: his engineering compass. The one from the old country." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "For finding your way." },
+                { "type": "description", "text": "His voice cracks. He turns away quickly. Ba doesn't cry. But his shoulders shake once, just once, before he steadies himself." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Hug him. For the first time in years.",
+                            "effects": { "ba_connection": 15, "authenticity": 10, "burnout": -5 },
+                            "internal_monologue": "(Ba is stiff at first. Then his arms come up. He holds on. You hold on. Ma watches from the porch, crying. Lily is filming. The video will be shaky and perfect.)"
+                        },
+                        {
+                            "text": "Take the compass. Nod. Some things are understood.",
+                            "effects": { "ba_connection": 8, "authenticity": 5 },
+                            "internal_monologue": "(You put the compass in your pocket. Ba puts his hand on your shoulder — the same gesture from a lifetime ago. 'Drive safe,' he says. 'Have good day.' His voice cracks on the last word. Same as always.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act5_day5_slot3",
+            "setting": {
+                "location": "The Car",
+                "description": "Driving away. The rearview mirror shows the house getting smaller.",
+                "palette": "homeWarm"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma is waving from the porch. Ba is standing beside her. Lily is in the driveway, still filming." },
+                { "type": "description", "text": "The house shrinks in the mirror. The porch light stays on." },
+                { "type": "description", "text": "Your phone buzzes. It's the family group chat." },
+                { "type": "description", "text": "Ma: 'Drive safe ❤️❤️❤️❤️❤️'" },
+                { "type": "description", "text": "Ba: '👍'" },
+                { "type": "description", "text": "Lily: 'ok boomer come back soon'" },
+                { "type": "description", "text": "Ba's compass sits on the passenger seat. The needle points somewhere between where you came from and where you're going." },
+                { "type": "monologue", "text": "The congee was warm. The house was small. The weight was there, but lighter. You're not sure if you found what you were looking for. But you know where to look now." }
+            ]
+        }
+    ]
+}

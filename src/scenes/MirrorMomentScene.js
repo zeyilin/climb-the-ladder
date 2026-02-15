@@ -30,8 +30,8 @@ export default class MirrorMomentScene extends BaseScene {
             },
             {
                 visual: '📱',
-                text: 'You\'re scrolling old photos.\nYou accidentally like one from 2014.\nIt\'s you and Sam at the beach.',
-                subtext: 'Sam will see the notification. You hope they don\'t. You hope they do.',
+                text: 'You\'re scrolling old photos.\nYou accidentally like one from 2014.\nIt\'s you and Dev at the beach.',
+                subtext: 'Dev will see the notification. You hope he doesn\'t. You hope he does.',
             },
             {
                 visual: '🥣',
@@ -82,24 +82,29 @@ export default class MirrorMomentScene extends BaseScene {
         // Auto-close after duration
         const duration = 7000 + Math.random() * 3000;
         this.time.delayedCall(duration, () => {
-            this.cameras.main.fadeOut(1500);
-            this.time.delayedCall(1500, () => {
-                this.scene.stop('MirrorMomentScene');
-                this.scene.resume('CornerOfficeScene');
-            });
+            this.closeMirror();
         });
 
         this.initBaseScene();
 
-        // Allow skip with any key after 3 seconds
+        // Allow skip with any key/click after 3 seconds
         this.time.delayedCall(3000, () => {
-            this.input.keyboard.once('keydown', () => {
-                this.cameras.main.fadeOut(800);
-                this.time.delayedCall(800, () => {
-                    this.scene.stop('MirrorMomentScene');
-                    this.scene.resume('CornerOfficeScene');
-                });
-            });
+            this.input.keyboard.once('keydown', () => this.closeMirror());
+            this.input.once('pointerdown', () => this.closeMirror());
+        });
+    }
+
+    closeMirror() {
+        if (this._closing) return;
+        this._closing = true;
+        this.cameras.main.fadeOut(1000);
+        this.time.delayedCall(1000, () => {
+            this.scene.stop('MirrorMomentScene');
+            const callback = this.registry.get('mirrorMomentCallback');
+            if (callback) {
+                this.registry.set('mirrorMomentCallback', null);
+                callback();
+            }
         });
     }
 }

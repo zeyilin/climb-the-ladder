@@ -208,10 +208,14 @@ export default class CareerRouletteScene extends BaseScene {
             btn.on('pointerdown', () => {
                 this.cameras.main.fadeOut(1000);
                 this.time.delayedCall(1000, () => {
-                    // End of Act II → Act III (Early Career)
-                    const timeManager = this.registry.get('timeManager');
-                    if (timeManager) timeManager.advanceAct();
-                    this.scene.start('CityScene');
+                    // End of Act II → Act III via GameFlowController
+                    this.scene.stop('CareerRouletteScene');
+                    const gfc = this.registry.get('gameFlowController');
+                    if (gfc) {
+                        const timeManager = this.registry.get('timeManager');
+                        if (timeManager) timeManager.advanceAct();
+                        gfc.startAct(3);
+                    }
                 });
             });
         });

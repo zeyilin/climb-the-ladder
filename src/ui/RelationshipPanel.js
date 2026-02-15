@@ -61,7 +61,13 @@ export default class RelationshipPanelScene extends BaseScene {
 
     buildHTML() {
         const charData = this.cache.json.get('characters');
-        const characters = charData.characters;
+        const act2Data = this.cache.json.get('act2_characters');
+        const act3Data = this.cache.json.get('act3_characters');
+        const characters = [
+            ...(charData?.characters || []),
+            ...(act2Data?.characters || []),
+            ...(act3Data?.characters || []),
+        ];
         const sorted = this.relationshipManager.getSorted();
 
         const rows = sorted.map((rel) => {

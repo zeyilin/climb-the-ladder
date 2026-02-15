@@ -72,10 +72,10 @@ export default class MenuScene extends BaseScene {
         // Tagline
         const taglines = [
             '"Because your parents didn\'t sacrifice everything\nfor you to have work-life balance."',
-            '"LinkedIn is just Instagram for people\nwho peaked in college."',
+            '"We came here for you.\nThat sentence is the weight you carry in every choice."',
             '"Your worth is not defined by your job title.\nHaha, just kidding. It totally is."',
             '"A game about climbing a ladder\nthat\'s leaning against the wrong wall."',
-            '"Alexa, play Everybody Wants to Rule the World\nbut make it ironic."',
+            '"Ma left congee outside your door.\nYou ate in your room. She ate alone."',
         ];
         const tagline = Phaser.Math.RND.pick(taglines);
 
@@ -136,10 +136,12 @@ export default class MenuScene extends BaseScene {
 
             this.cameras.main.fadeOut(800, 0, 0, 0);
             this.time.delayedCall(800, () => {
+                const gfc = this.registry.get('gameFlowController');
                 if (hasSave) {
-                    this.scene.start('TimeAllocationScene');
+                    // Resume from save — restore narrative progress
+                    gfc.resumeFromSave();
                 } else {
-                    this.scene.start('HighSchoolScene');
+                    gfc.startAct(1);
                 }
             });
         });
@@ -184,7 +186,7 @@ export default class MenuScene extends BaseScene {
         this.menuContainer.add(this.newGameText);
 
         // Version
-        this.versionText = this.add.text(0, 0, 'v0.1 — Act I Prototype', {
+        this.versionText = this.add.text(0, 0, 'v2.0 — The Reimagining', {
             ...Theme.STYLES.BODY_SM,
             color: '#333355',
         }).setOrigin(0.5);
@@ -333,7 +335,8 @@ export default class MenuScene extends BaseScene {
 
             this.cameras.main.fadeOut(800, 0, 0, 0);
             this.time.delayedCall(800, () => {
-                this.scene.start('HighSchoolScene');
+                const gfc = this.registry.get('gameFlowController');
+                gfc.startAct(1);
             });
         });
     }

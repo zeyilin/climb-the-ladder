@@ -21,6 +21,7 @@ export default class PersistenceManager {
             doorDashOrders: registry.get('doorDashOrders') || 0,
             consecutiveRestDays: registry.get('consecutiveRestDays') || 0,
             scrapbook: registry.get('scrapbook') || [],
+            narrativeProgress: registry.get('narrativeEngine')?.getProgress() || null,
             timestamp: Date.now(),
         };
 
@@ -68,6 +69,12 @@ export default class PersistenceManager {
             registry.set('doorDashOrders', data.doorDashOrders || 0);
             registry.set('consecutiveRestDays', data.consecutiveRestDays || 0);
             if (data.scrapbook) registry.set('scrapbook', data.scrapbook);
+
+            // Restore narrative progress
+            const narrativeEngine = registry.get('narrativeEngine');
+            if (narrativeEngine && data.narrativeProgress) {
+                narrativeEngine.restoreProgress(data.narrativeProgress);
+            }
 
             console.log('Game loaded.');
             return true;

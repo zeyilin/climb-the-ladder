@@ -1,0 +1,596 @@
+{
+    "moments": [
+        {
+            "id": "act3_day1_slot1",
+            "setting": {
+                "location": "Your New Apartment",
+                "description": "Day one. The apartment smells like fresh paint and IKEA cardboard. Your offer letter is taped to the fridge.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "$150,000. You take a photo of the offer letter and send it to the family group chat." },
+                { "type": "description", "text": "Ma sends 17 heart emojis. Ba sends a thumbs up. Lily sends 'ok boomer.' Dev sends a gif of someone making it rain." },
+                { "type": "description", "text": "You stare at the number. Ba drove a taxi for $34,000 a year. Ma's hands cracked for $28,000. You will make more than both of them combined." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Screenshot Ma's 17 hearts. Save it to favorites.",
+                            "effects": { "ma_connection": 5, "authenticity": 3 },
+                            "internal_monologue": "(This is what it was all for. Every cold bowl of congee. Every SAT flashcard. Seventeen hearts. You earned every single one.)"
+                        },
+                        {
+                            "text": "Already calculating — loans, rent, how much you can send home.",
+                            "effects": { "wealth": 3, "ma_connection": -1, "burnout": 2 },
+                            "internal_monologue": "(After rent, loans, and the money you'll send home, $150k feels like $40k. The number that looked so big on the offer letter shrinks on the spreadsheet.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day1_slot2",
+            "setting": {
+                "location": "The Office — Orientation",
+                "description": "Glass and steel. The lobby has a waterfall. The badge has your name spelled right, which feels like a small miracle.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Twenty new hires in a conference room. Free coffee. Free snacks. A welcome packet thicker than your college thesis." },
+                { "type": "dialogue", "speaker": "Derek", "speakerId": "derek", "text": "Alex, right? Derek. My dad's college roommate is on the board here. Small world." },
+                { "type": "description", "text": "Derek shakes your hand like he owns the building. He might, eventually." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Nice to meet you. I'm just glad to be here.\"",
+                            "effects": { "derek_connection": 3, "authenticity": -2, "prestige": 2 },
+                            "internal_monologue": "(Derek nods like he expected that answer. Of course you're glad. People like you are always glad. People like him are always 'excited for the opportunity.')"
+                        },
+                        {
+                            "text": "\"Small world for some. My parents didn't go to college here.\"",
+                            "effects": { "derek_connection": -2, "authenticity": 5 },
+                            "internal_monologue": "(Derek blinks. A flicker of something — discomfort? respect? — crosses his face. He laughs. 'Fair enough.' You've drawn a line. He's already decided it doesn't apply to him.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day1_slot3",
+            "setting": {
+                "location": "The Break Room",
+                "description": "3 PM. The coffee machine makes a sound like a dying animal. You're on your fourth cup.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Someone is already at the machine, staring into a mug like it contains the meaning of life." },
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "Don't trust the hazelnut. Tastes like regret. I'm Jamie, by the way. Also new. Also terrified." },
+                { "type": "description", "text": "Jamie smiles. It's the first honest expression you've seen all day." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Terrified? I thought it was just me.\"",
+                            "effects": { "jamie_connection": 5, "authenticity": 3, "burnout": -2 },
+                            "internal_monologue": "(Jamie laughs. 'Oh god, no. I've read the employee handbook three times and I still don't know where the bathrooms are.' For the first time today, your shoulders drop an inch.)"
+                        },
+                        {
+                            "text": "\"I'm excited. This is a great opportunity.\" (Autopilot.)",
+                            "effects": { "jamie_connection": -1, "prestige": 2, "authenticity": -3 },
+                            "internal_monologue": "(Jamie's smile dims slightly. 'Right. Yeah. Great opportunity.' They turn back to the coffee machine. You just lost the only real person in the building.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day1_slot4",
+            "setting": {
+                "location": "Your Apartment",
+                "description": "10:47 PM. The apartment is quiet in a way your family's house never was. The fridge has ketchup and Tuesday's takeout. It's Monday.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Your phone lights up. Ma has sent a photo: your old bedroom, now a sewing room. 'Making curtains for Mrs. Wang! But your bed is still here.'" },
+                { "type": "description", "text": "Below it, a second text: 'When are you coming home to visit?'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Soon, Ma. Let me get settled first.\"",
+                            "effects": { "ma_connection": -2, "burnout": 2 },
+                            "internal_monologue": "('Soon.' The word that means nothing. You've been saying it since college. Ma sends a heart emoji. Just one this time.)"
+                        },
+                        {
+                            "text": "Call her. Right now. Hear her voice.",
+                            "effects": { "ma_connection": 8, "burnout": -3, "authenticity": 3 },
+                            "internal_monologue": "(Ma picks up on the first ring. 'Alex!' She tells you about Mrs. Wang's curtains for twenty minutes. You don't say much. You don't need to. The silence between her sentences sounds like home.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day2_slot1",
+            "setting": {
+                "location": "Open Floor Plan — Your Desk",
+                "description": "Week two. Your desk is in the middle of the floor. No walls. No privacy. Nowhere to hide.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Patricia walks by at 8:02 AM. You arrived at 7:45. She doesn't say good morning. She says:" },
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "Alex. The Henderson deck. I sent some thoughts last night. Did you see them?" },
+                { "type": "description", "text": "Last night means 11:47 PM. You were asleep. Normal people were asleep." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Yes, I saw them. I'll have revisions by noon.\"",
+                            "effects": { "patricia_connection": 5, "authenticity": -3, "burnout": 3 },
+                            "internal_monologue": "(You open the email under your desk. Fourteen bullet points. Some are feedback. Some are thoughts. Some are just Patricia thinking out loud at midnight and making it your problem. You learn to read her mind by lunch.)"
+                        },
+                        {
+                            "text": "\"I'll review them now and circle back with a timeline.\"",
+                            "effects": { "patricia_connection": 2, "authenticity": 2, "burnout": 1 },
+                            "internal_monologue": "(Patricia pauses. She expected the lie. The honest answer confuses her for half a second. Then she nods. 'By noon.' It wasn't really a question.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day2_slot2",
+            "setting": {
+                "location": "Conference Room B",
+                "description": "Your first real meeting. The table is longer than your parents' apartment.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Derek is presenting. He's polished. He uses words like 'synergy' and 'leverage' without flinching. The partners nod." },
+                { "type": "description", "text": "You have an idea. A better idea. But Derek is mid-sentence and the room is full of people whose names you're still memorizing." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Raise your hand and share the idea",
+                            "effects": { "prestige": 5, "derek_connection": -3, "authenticity": 3, "network": 3 },
+                            "internal_monologue": "(The room goes quiet. The partner at the head of the table leans forward. 'That's interesting, Alex.' Derek's smile doesn't reach his eyes. You just learned a rule: being right and being liked are different currencies.)"
+                        },
+                        {
+                            "text": "Write it down. Bring it up to Patricia later, privately.",
+                            "effects": { "patricia_connection": 3, "prestige": 2, "derek_connection": 1, "authenticity": -2 },
+                            "internal_monologue": "(Patricia nods when you show her after the meeting. 'Good instinct. Next time, speak up in the room.' She doesn't say: 'Derek would have.' She doesn't need to.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day2_slot3",
+            "setting": {
+                "location": "Elevator",
+                "description": "6:45 PM. You and Jamie are the last ones on the floor. The cleaning crew is already here.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "Want to get food? I can't look at another spreadsheet or I'll start crying into my pivot tables." },
+                { "type": "description", "text": "Your inbox has 23 unread emails. Patricia sent another 'thought' twelve minutes ago." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Go with Jamie. The emails will still be there at midnight.",
+                            "effects": { "jamie_connection": 5, "burnout": -3, "patricia_connection": -1 },
+                            "internal_monologue": "(Jamie orders two beers and a plate of fries the size of your head. You talk about nothing — bad TV, worse coffee, the guy on floor 7 who microwaves fish. It's the most human you've felt in two weeks.)"
+                        },
+                        {
+                            "text": "\"Rain check. Patricia just sent something.\"",
+                            "effects": { "jamie_connection": -3, "patricia_connection": 3, "burnout": 4 },
+                            "internal_monologue": "(Jamie shrugs. 'Don't die in here.' The elevator doors close. You go back to your desk. The cleaning woman vacuums around you. She looks at you with something like pity.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day2_slot4",
+            "setting": {
+                "location": "Your Apartment",
+                "description": "11:58 PM. Your laptop is open on the bed. You're still in your work clothes.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily has sent three TikToks to the family group chat. You haven't opened them. Ba sent a photo of a new route he found — saves ten minutes. Ma asked if you're eating enough." },
+                { "type": "description", "text": "You open the fridge. Ketchup. Soy sauce. Half a burrito from Tuesday. It's Thursday." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Watch Lily's TikToks. Reply with the crying-laughing emoji.",
+                            "effects": { "lily_connection": 3, "ma_connection": 2, "burnout": -2 },
+                            "internal_monologue": "(One is a cat falling off a table. One is a dance. One is Lily lip-syncing to a song about missing someone. You watch that one twice. You don't think she meant it for you specifically. But.)"
+                        },
+                        {
+                            "text": "Eat the burrito. Answer Patricia's last email. Sleep.",
+                            "effects": { "patricia_connection": 2, "burnout": 3, "ma_connection": -2 },
+                            "internal_monologue": "(The burrito is cold. The email is efficient. Sleep comes at 1:14 AM. Your alarm is set for 6:30. This is the life you worked so hard for.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day3_slot1",
+            "setting": {
+                "location": "The Office — 7:30 AM",
+                "description": "Month two. You know the coffee machine's name now. (Brenda. Jamie named her.) You are on your sixth consecutive 80-hour week.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "You're good at this. You've been grinding since you were twelve. SAT prep at dawn, violin at dusk, college apps at midnight. This is just the next version." },
+                { "type": "description", "text": "Derek arrives at 9:15, somehow already cc'd on the email chain you started at 6 AM. He's wearing a watch that costs more than your first car." },
+                { "type": "dialogue", "speaker": "Derek", "speakerId": "derek", "text": "Hey, Alex — heads up, I'm grabbing lunch with Thompson from the partner track. Want me to put in a word for you?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"That would be great, thanks.\" (Swallow it.)",
+                            "effects": { "derek_connection": 3, "network": 4, "authenticity": -5 },
+                            "internal_monologue": "(Derek 'puts in a word.' The word is probably 'hardworking.' Which is what they call people like you. People like Derek get called 'leadership material.' Same company. Different vocabulary.)"
+                        },
+                        {
+                            "text": "\"I'll set up my own meeting with Thompson.\"",
+                            "effects": { "derek_connection": -3, "network": 2, "authenticity": 5, "prestige": 2 },
+                            "internal_monologue": "(Derek raises an eyebrow. He's not used to hearing 'no' from people who don't look like him. Thompson's assistant gives you a slot three weeks from now. Derek had lunch yesterday. But the slot is yours.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day3_slot2",
+            "setting": {
+                "location": "Stairwell",
+                "description": "The only place in the building without cameras or Slack notifications.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Jamie is sitting on the stairs, staring at their phone." },
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "My sister had her baby. I missed the shower because of the Henderson project. Patricia said she 'understood' in that voice that means she absolutely did not." },
+                { "type": "description", "text": "Jamie shows you the photo. A tiny hand wrapped around a finger." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Take tomorrow off. I'll cover the Henderson deliverable.\"",
+                            "effects": { "jamie_connection": 8, "burnout": 5, "patricia_connection": -2 },
+                            "internal_monologue": "(Jamie stares at you. 'You serious?' You're already calculating: if you start at 6 AM, you can absorb their workload and still hit the deadline. You've done harder math for less important reasons.)"
+                        },
+                        {
+                            "text": "\"That's rough. Patricia will forget about it in a week.\"",
+                            "effects": { "jamie_connection": 1, "patricia_connection": 1, "authenticity": -2 },
+                            "internal_monologue": "(Jamie nods. 'Yeah. Probably.' They put their phone away. The baby photo disappears. You both go back to your desks. The stairwell goes quiet again.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day3_slot3",
+            "setting": {
+                "location": "Patricia's Office",
+                "description": "Glass walls. A orchid that somehow thrives under fluorescent light. Patricia is always backlit.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "Alex, close the door. Your work on Henderson was solid. Very solid." },
+                { "type": "description", "text": "She pauses. With Patricia, the pause is where the real message lives." },
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "There's a leadership rotation opening up. I'm putting a few names forward. I need to know you're committed. Not nine-to-five committed. Committed committed." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I'm committed. Whatever it takes.\"",
+                            "effects": { "patricia_connection": 5, "prestige": 5, "burnout": 5, "authenticity": -3 },
+                            "internal_monologue": "('Whatever it takes.' You've been saying that your whole life. To teachers, to your parents, to admissions officers. The words taste different now. More expensive.)"
+                        },
+                        {
+                            "text": "\"I'm interested. Can you tell me more about the expectations?\"",
+                            "effects": { "patricia_connection": 1, "prestige": 2, "authenticity": 4, "burnout": 2 },
+                            "internal_monologue": "(Patricia tilts her head. She didn't expect a question. She expected gratitude. 'The expectation is that you make this your priority.' She says 'priority' the way Ma says 'family.' Like there's only one right answer.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day3_slot4",
+            "setting": {
+                "location": "Your Apartment",
+                "description": "Midnight. The apartment is so quiet you can hear the fridge humming. It sounds nothing like Ma's kitchen.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Phone screen: 8 unread messages from Ma. The most recent: 'Lily got award at school today! She said she wants to be like you. 😊'" },
+                { "type": "description", "text": "Below that: 'When are you coming home?'" },
+                { "type": "description", "text": "You open the calendar app. The next three weekends are blocked: Henderson Phase 2, client dinner, team offsite." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Soon.\"",
+                            "effects": { "ma_connection": -5, "burnout": 2 },
+                            "internal_monologue": "(You've said 'soon' for three months. Ma sends a smiley face. You wonder when she'll stop believing you. You wonder if she already has.)"
+                        },
+                        {
+                            "text": "Block off next Saturday. Non-negotiable. You're going home.",
+                            "effects": { "ma_connection": 8, "ba_connection": 3, "lily_connection": 3, "burnout": -5, "prestige": -2 },
+                            "internal_monologue": "(You type it into the calendar before you can talk yourself out of it. 'HOME.' All caps. Patricia will notice the gap. Let her.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day4_slot1",
+            "setting": {
+                "location": "The Office — Monday Morning",
+                "description": "Month five. You can navigate office politics like Ma navigates a crowded restaurant kitchen. Instinct.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "The email hits at 8:00 AM sharp. Derek has been promoted to Senior Associate. The announcement includes the phrase 'natural leadership qualities.'" },
+                { "type": "description", "text": "You started the same day. You have better numbers. You billed more hours. But Derek had lunch with Thompson." },
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "You okay? I saw the email." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I'm fine. He earned it.\" (He didn't.)",
+                            "effects": { "jamie_connection": -1, "authenticity": -5, "burnout": 4 },
+                            "internal_monologue": "(Jamie doesn't push. But the look on their face says: 'You don't have to do that with me.' You do it anyway. You've been trained to swallow this. Since you were twelve. The taste never changes.)"
+                        },
+                        {
+                            "text": "\"No. I'm not okay. This is bullshit.\"",
+                            "effects": { "jamie_connection": 5, "authenticity": 5, "burnout": -2, "prestige": -1 },
+                            "internal_monologue": "(Jamie exhales. 'There it is.' They hand you a coffee. 'For what it's worth, everyone on the team knows.' Everyone knows. Nobody does anything. Knowing without acting is the company's unofficial value.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day4_slot2",
+            "setting": {
+                "location": "Video Call — Family",
+                "description": "Your lunch break. You eat at your desk. The video call is the closest thing to going home.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma's face fills the screen. Behind her, the kitchen. Ba's voice from somewhere off-camera. Lily walks by, waves, keeps walking." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "You look thin! Are you eating? Your face looks tired. Why your face so tired?" },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Let him talk. Alex, how is work? They treating you okay?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Work is great. I'm learning a lot.\"",
+                            "effects": { "ma_connection": 2, "ba_connection": 2, "authenticity": -5 },
+                            "internal_monologue": "(Ma nods. Ba nods. They don't need the truth. They need to know it was worth it — the taxi, the restaurant, the apartment that never felt like home. You give them that. It's the least you owe.)"
+                        },
+                        {
+                            "text": "\"Ba, a guy with half my numbers got promoted because his dad knows people.\"",
+                            "effects": { "ba_connection": 5, "authenticity": 5, "ma_connection": -1, "burnout": -2 },
+                            "internal_monologue": "(Ba is quiet for a long time. Then: 'When I came here, they said my engineering degree was not valid. I had to start over.' He pauses. 'You will not have to start over. But you will have to be twice as good.' You already knew that. Hearing him say it makes it weigh less.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day4_slot3",
+            "setting": {
+                "location": "Rooftop Bar — Team Event",
+                "description": "Derek's promotion celebration. The cocktails cost $22 each. The company is paying.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Derek is holding court by the railing. Partners are laughing at his stories. He makes it look easy. Maybe for him it is." },
+                { "type": "dialogue", "speaker": "Derek", "speakerId": "derek", "text": "Alex! Get over here. I was just telling them about the Henderson save — that was all you." },
+                { "type": "description", "text": "He's giving you credit. Publicly. In front of partners. It feels generous. It also feels like a leash." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Play the game. Smile, shake hands, network.",
+                            "effects": { "network": 5, "derek_connection": 3, "prestige": 3, "authenticity": -3 },
+                            "internal_monologue": "(You work the room. You laugh at the right jokes. A partner says: 'Derek speaks highly of you.' This is how it works. Your talent is the product. Derek is the salesman. You need him more than he needs you. For now.)"
+                        },
+                        {
+                            "text": "One drink. Then leave. Find Jamie.",
+                            "effects": { "jamie_connection": 3, "authenticity": 3, "network": -2, "burnout": -2 },
+                            "internal_monologue": "(Jamie is at a corner table, drawing faces on cocktail napkins. 'Escaped the gravitational pull of Derek's ego?' You sit. The city lights are below you. For a minute, it's not a networking event. It's just two people on a roof.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day4_slot4",
+            "setting": {
+                "location": "The Train Home",
+                "description": "11:30 PM. The train is half-empty. A man sleeps in the corner seat. His work badge is still clipped to his jacket.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "Your phone lights up. Priya, from college: 'Hey stranger. Jordan and I are in town next weekend. Dinner?'" },
+                { "type": "description", "text": "Below that: a text from Dev. 'Bro you alive? Haven't heard from you in 3 weeks.'" },
+                { "type": "description", "text": "Below that: Ma. A photo of the moon over the backyard. 'Moon is beautiful tonight. Can you see it from your city?'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Text everyone back. One by one. Start with Ma.",
+                            "effects": { "ma_connection": 3, "dev_connection": 3, "authenticity": 3, "burnout": -3 },
+                            "internal_monologue": "(You text Ma: 'I can see it.' You text Dev: 'Alive. Barely.' You text Priya: 'I'm in.' For fifteen minutes on the train, you remember all the people who knew you before the badge and the title.)"
+                        },
+                        {
+                            "text": "Put the phone in your pocket. You'll reply tomorrow.",
+                            "effects": { "ma_connection": -3, "dev_connection": -2, "burnout": 3 },
+                            "internal_monologue": "(Tomorrow becomes the day after. The day after becomes next week. The unreplied texts stack up like dishes in your empty sink. You'll get to them. Soon.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day5_slot1",
+            "setting": {
+                "location": "Your Desk — 6:47 AM",
+                "description": "Month eight. You are the first one here. You are always the first one here.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "The sun comes up over the skyline. You used to think this view meant something. Now it just means you got here before the sunrise again." },
+                { "type": "description", "text": "Your phone shows 34 unread messages from Ma. Not texts — just the ones you haven't opened. Recipe photos. Lily updates. Weather warnings for a city you don't live in anymore." },
+                { "type": "description", "text": "Thirty-four times she reached out. Thirty-four times the notification sat there while you answered Patricia instead." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Start scrolling through them. Read every single one.",
+                            "effects": { "ma_connection": 5, "authenticity": 5, "burnout": -3, "gpa": -2 },
+                            "internal_monologue": "(A photo of Ba napping with the cat. Lily's report card — all A's. A recipe for the soup you liked as a kid. 'Made this today, thought of you.' Date: three weeks ago. You never replied. The soup is long gone. The thought remains.)"
+                        },
+                        {
+                            "text": "Clear the notification badge. You'll catch up later.",
+                            "effects": { "ma_connection": -5, "burnout": 3, "gpa": 2 },
+                            "internal_monologue": "(The red badge disappears. 34 becomes 0. Your phone looks clean. Your chest does not. Later never comes. You know that by now.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day5_slot2",
+            "setting": {
+                "location": "Conference Room A — The Big Pitch",
+                "description": "The client is worth $40 million. Patricia has been preparing for this for six months. You've been preparing for three days because she handed it to you on Tuesday.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "The room is full of suits. Derek is in the front row, relaxed. You're presenting. Patricia chose you. Or rather, Patricia chose your work and your face in front of the client." },
+                { "type": "description", "text": "Slide one. Your hands don't shake. You've done harder things than this. You once translated a parent-teacher conference in real time when you were nine." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Deliver it flawlessly. Every number, every insight, every smile.",
+                            "effects": { "prestige": 8, "patricia_connection": 5, "burnout": 3, "wealth": 3 },
+                            "internal_monologue": "(The client nods. Patricia's face does something it rarely does: it softens. 'Excellent work, Alex.' You did it. You performed perfectly. The word 'performed' sticks in your throat like a fishbone.)"
+                        },
+                        {
+                            "text": "Go off-script. Share the insight you actually believe in, not the safe one.",
+                            "effects": { "prestige": 3, "authenticity": 8, "patricia_connection": -2, "network": 5 },
+                            "internal_monologue": "(The room shifts. The client leans forward. 'That's not what's in the deck.' Patricia's jaw tightens. But the client is nodding. 'I like that better.' You just gambled your career on honesty. It paid off. This time.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day5_slot3",
+            "setting": {
+                "location": "Break Room — After the Pitch",
+                "description": "Jamie is waiting with two cups of Brenda's worst coffee. The universal post-battle offering.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "I heard it went well. Also heard Derek tried to take credit in the hallway debrief." },
+                { "type": "description", "text": "Jamie sips their coffee. Makes a face. Sips again anyway." },
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "You know what I realized? We're not burning out. We burned out months ago. This is what comes after. We're just... ash that shows up at 7 AM." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Ash that bills 80 hours a week.\"",
+                            "effects": { "jamie_connection": 5, "authenticity": 3, "burnout": -2 },
+                            "internal_monologue": "(Jamie laughs. Really laughs. The sound bounces off the break room walls. Someone down the hall looks over. Let them. This is the only honest moment you'll have today, and it tastes like burnt hazelnut.)"
+                        },
+                        {
+                            "text": "\"It'll be worth it. It has to be.\"",
+                            "effects": { "jamie_connection": -2, "burnout": 3, "prestige": 2 },
+                            "internal_monologue": "(Jamie looks at you. 'You sound like a LinkedIn post.' They're joking. Mostly. But the look behind their eyes says: 'Please don't turn into one of them.' You're not sure you haven't already.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_day5_slot4",
+            "setting": {
+                "location": "Your Apartment — 2 AM",
+                "description": "The apartment is dark. The city glows through windows you never bought curtains for. Ma offered to make you some. You said 'soon.'",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "description", "text": "You're lying on the bed, still in your suit. The ceiling has a crack that looks like the route Ba used to drive to your school." },
+                { "type": "description", "text": "Lily texted at 10 PM: 'Hey. You missed my recital. I played the piece Ba used to hum.' Then, twenty minutes later: 'It's fine. I know you're busy.'" },
+                { "type": "description", "text": "It's not fine. You know it's not fine. She learned to say 'it's fine' from watching you." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Call Lily. Right now. Even though it's 2 AM.",
+                            "effects": { "lily_connection": 8, "authenticity": 5, "burnout": -3 },
+                            "internal_monologue": "(She picks up on the second ring. She wasn't sleeping either. 'I'm sorry,' you say. She's quiet. Then: 'I recorded it. Want me to play it?' The melody comes through the phone speaker, tinny and perfect. Ba's song. Your song. You cry for the first time in eight months. Lily pretends not to hear.)"
+                        },
+                        {
+                            "text": "Type a long reply. Delete it. Send a heart emoji instead.",
+                            "effects": { "lily_connection": -2, "authenticity": -3, "burnout": 2 },
+                            "internal_monologue": "(A heart emoji. That's what you've been reduced to. Ma's language. One symbol to carry everything you can't say. Lily sends one back. It's generous. It's also a mirror: she's learning to compress her feelings into pixels. She learned that from you.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act3_promotion",
+            "setting": {
+                "location": "Patricia's Office — Glass Walls, Morning Light",
+                "description": "The orchid has bloomed. Patricia is smiling. Patricia never smiles.",
+                "palette": "careerGrey"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "Alex. Sit down. I want you to hear this from me before the email goes out." },
+                { "type": "description", "text": "She slides a folder across the desk. Senior Associate. The title Derek got three months ago. Your numbers were always better. It just took longer for them to say it out loud." },
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "You've earned this. The partners were unanimous. There's a significant raise attached." },
+                { "type": "description", "text": "You think of Ba's engineering degree, framed and useless on the living room wall. You think of Ma's hands. You think of the number on the new offer and how it would have been unimaginable at the dinner table where Uncle Chen's son and Auntie Li's daughter were the measuring sticks." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Thank you, Patricia. I won't let you down.\"",
+                            "effects": { "patricia_connection": 5, "prestige": 8, "wealth": 8, "burnout": 5, "authenticity": -5 },
+                            "internal_monologue": "(The words come out on autopilot. You've been rehearsing gratitude your whole life. Patricia nods. 'I know you won't.' It sounds like a promise. It also sounds like a warning.)"
+                        },
+                        {
+                            "text": "\"I need a minute.\" Look at your phone. 34 unread texts from Ma.",
+                            "effects": { "patricia_connection": -1, "prestige": 5, "wealth": 5, "authenticity": 8, "ma_connection": -2 },
+                            "internal_monologue": "(Patricia raises an eyebrow. You stare at the phone. 34 messages. Recipes you never cooked. Photos you never liked. Questions you never answered. You got the promotion. You got everything you were supposed to want. Your phone weighs more than the folder on Patricia's desk.)"
+                        }
+                    ]
+                },
+                { "type": "description", "text": "You take a photo of the letter. You open the family group chat. Your thumb hovers." },
+                { "type": "description", "text": "Ma's last message, sent this morning at 6:12 AM: 'Good morning Alex! Cold today, wear jacket! 🧥'" },
+                { "type": "description", "text": "Above that: 33 messages you never opened." },
+                { "type": "description", "text": "You send the photo." },
+                { "type": "description", "text": "Ma sends 23 heart emojis. Ba sends a thumbs up. Then a second thumbs up — he's learning. Lily sends 'ok boomer (but congrats).' Dev sends a gif of someone popping champagne." },
+                { "type": "description", "text": "Jamie walks by Patricia's office. Sees you through the glass. Gives you a thumbs up and mouths: 'Drinks later?'" },
+                { "type": "description", "text": "Derek sends a Slack message: 'Congrats, well deserved.' The period at the end says everything." },
+                { "type": "monologue", "text": "You made it. Senior Associate. The title your parents can tell their friends about. The salary that justifies everything — the distance, the missed recitals, the 34 unread texts. You close the folder. The office hums around you. Somewhere across the city, Ma is calling Auntie Li. Somewhere, Ba is sitting in his taxi, reading your message at a red light, nodding to himself. Somewhere, Lily is rolling her eyes and smiling at the same time. You did the thing. You climbed the ladder. And from up here, home looks very far away." }
+            ]
+        }
+    ]
+}

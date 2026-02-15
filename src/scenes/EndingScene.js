@@ -2,10 +2,10 @@ import BaseScene from './BaseScene.js';
 
 /**
  * EndingScene — 4 endings based on cumulative relationship states.
- * 🌅 "What Matters" — dinner table, burned rice, perfect
- * 🌫️ "Too Late" — corner office, whiskey, phone rings
- * 🌤️ "The Long Road Back" — awkward coffee, baby steps
- * 💀 "The Full Send" — TED talk, parked car, 30 seconds of silence
+ * 🌅 "What Matters" — kitchen table, congee, all four chairs full
+ * 🌫️ "Too Late" — corner office, phone rings, weather talk
+ * 🌤️ "The Long Road Back" — coffee shop, baby steps
+ * 💀 "The Full Send" — TED talk, parking lot, silence
  */
 export default class EndingScene extends BaseScene {
     constructor() {
@@ -64,14 +64,14 @@ export default class EndingScene extends BaseScene {
         this.tweens.add({ targets: title, alpha: 1, delay: 1000, duration: 1000 });
 
         const lines = [
-            'A dinner table.',
-            'It\'s loud in there.',
-            'Someone burned the rice.',
-            'Nobody cares.',
-            'Your phone is on the counter. Screen down.',
-            'The notification light blinks. You don\'t check it.',
+            'The kitchen table.',
+            'All four chairs are full.',
+            'Ma made too much food. She always makes too much food.',
+            'Ba is telling a joke. His English stumbles. Nobody cares.',
+            'Lily is showing everyone photos of the honeymoon.',
+            'Your phone is in the other room.',
             '',
-            'It\'s perfect.',
+            'The congee is warm.',
         ];
 
         lines.forEach((line, i) => {
@@ -85,7 +85,7 @@ export default class EndingScene extends BaseScene {
 
         this.time.delayedCall(10000, () => {
             const postCredit = this.add.text(width / 2, height - 60,
-                'Alex\'s LinkedIn still says CEO.\nNobody at the table cares.', {
+                'Alex\'s LinkedIn still says VP.\nNobody at the table cares.', {
                 fontFamily: '"VT323", monospace', fontSize: '10px', color: '#3a3a3a', fontStyle: 'italic',
                 align: 'center', lineSpacing: 6,
             }).setOrigin(0.5).setAlpha(0);
@@ -112,7 +112,7 @@ export default class EndingScene extends BaseScene {
             'The city glitters below you.',
             '',
             'Your phone rings.',
-            'It\'s Mom.',
+            'It\'s Ma.',
             'You answer.',
             'She asks about the weather.',
             'You talk about the weather.',
@@ -154,7 +154,7 @@ export default class EndingScene extends BaseScene {
             'A coffee shop. Two people.',
             'It\'s painfully awkward.',
             'Alex says "so how are you" three times.',
-            'The friend says "good, good" each time.',
+            'Dev says "good, good" each time.',
             '',
             'They both order the same thing.',
             'Nobody mentions the 4 years.',
@@ -224,7 +224,7 @@ export default class EndingScene extends BaseScene {
             this.tweens.add({ targets: car, alpha: 0.5, duration: 2000 });
 
             const carText = this.add.text(width / 2, height / 2 + 30,
-                'An empty parking lot. The engine is off.\nNo music.', {
+                'An empty parking lot. The engine is off.\nNo music. Ba\'s compass sits on the dashboard.\nThe needle doesn\'t move.', {
                 fontFamily: '"VT323", monospace', fontSize: '11px', color: '#2a2a2a',
                 align: 'center', lineSpacing: 6,
             }).setOrigin(0.5).setAlpha(0);
@@ -264,7 +264,6 @@ export default class EndingScene extends BaseScene {
                 restart.on('pointerdown', () => {
                     this.cameras.main.fadeOut(2000);
                     this.time.delayedCall(2000, () => {
-                        // Stop ALL scenes before going to menu
                         this.stopAllOverlays();
                         this.scene.start('MenuScene');
                     });

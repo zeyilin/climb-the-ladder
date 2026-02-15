@@ -1,0 +1,501 @@
+{
+    "moments": [
+        {
+            "id": "act4_day1_slot1",
+            "setting": {
+                "location": "Corner Office",
+                "description": "7:02 AM. The city is still waking up. Your office is on the 38th floor. You can see the river from here.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "The nameplate on the door says VP. The desk is mahogany. There's a framed photo of Ma and Ba from ten years ago. They look younger than you remember." },
+                { "type": "description", "text": "Your phone shows 3 unread from Patricia, 11 from your team, and 1 from Ma. Ma's is from last night: 'Are you eating?' You never replied." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Reply to Ma first. \"Yes Ma. Ate dinner. Sorry for late reply.\"",
+                            "effects": { "ma_connection": 3, "prestige": -2 },
+                            "internal_monologue": "(You didn't eat dinner. You had a protein bar at 9pm standing over the sink. But the lie is small and it will make her stop worrying. At least until tomorrow.)"
+                        },
+                        {
+                            "text": "Open Patricia's emails first. Ma will understand.",
+                            "effects": { "prestige": 4, "ma_connection": -3, "burnout": 2 },
+                            "internal_monologue": "(Patricia's thread is about Q3 projections. Urgent. Ma's text sits unanswered. By lunch you've forgotten it's there. By evening she's sent another: 'Alex?' You reply at 11pm. 'Sorry, busy day.')"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day1_slot2",
+            "setting": {
+                "location": "Executive Conference Room",
+                "description": "The chairs are leather. The coffee is from a machine that costs more than Ba's first car in America.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "You're presenting the annual strategy to the partners. Twelve people around the table. You built this deck over three weekends." },
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "Alex has been instrumental in our growth this year. I'll let them walk you through the numbers." },
+                { "type": "description", "text": "You stand. The room is quiet. Every eye on you. You've rehearsed this forty times. You know every slide, every transition, every anticipated question." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Deliver it flawlessly. Every number. Every pivot. Leave nothing to chance.",
+                            "effects": { "prestige": 6, "burnout": 3, "patricia_connection": 4 },
+                            "internal_monologue": "(They nod. They lean forward. One partner writes something down. Patricia gives you the smallest smile. This is what it looks like when years of work pay off. You should feel something. You keep waiting to feel something.)"
+                        },
+                        {
+                            "text": "Go off-script. Talk about what you actually believe the company should do.",
+                            "effects": { "authenticity": 6, "prestige": -3, "patricia_connection": -2, "network": 3 },
+                            "internal_monologue": "(Some partners shift in their seats. One leans back. But two lean forward harder. Patricia's smile disappears, replaced by something you can't read. After the meeting she says, 'That was bold.' She doesn't say whether bold is good.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day1_slot3",
+            "setting": {
+                "location": "Your Apartment",
+                "description": "9:45 PM. The apartment is 1,200 square feet. You use maybe 400 of them.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "The DoorDash driver texts: 'Left at door.' You eat pad thai on the couch. The TV is on but you're not watching it." },
+                { "type": "description", "text": "Your phone buzzes. It's Lily, in a group chat you muted three months ago. She posted a photo of a ring. The caption: 'I said yes!!!'" },
+                { "type": "description", "text": "Forty-seven people have already reacted. You didn't know she was dating someone seriously." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Call her immediately",
+                            "effects": { "lily_connection": 5, "authenticity": 4 },
+                            "internal_monologue": "(Lily picks up on the first ring. 'Alex! Oh my god, I was hoping you'd call.' Her voice is so bright. You ask about the ring, the proposal, his name. You realize you don't know any of the answers already. She tells you everything. You listen for forty minutes. When you hang up, the pad thai is cold. The apartment feels quieter than before.)"
+                        },
+                        {
+                            "text": "Heart-react the photo. Text \"Congrats!!!\" You'll call this weekend.",
+                            "effects": { "lily_connection": -5, "burnout": -1 },
+                            "internal_monologue": "(You don't call this weekend. Or the next. Three weeks later, Ma mentions the wedding date on the phone and you realize Lily never told you directly. She told Ma. Ma told you. That's how information moves in your family now. Through intermediaries.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day1_slot4",
+            "setting": {
+                "location": "Your Apartment — Bedroom",
+                "description": "1:15 AM. The ceiling is expensive. You stare at it for free.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "You scroll through your contacts. Dev's name is there. Last message: 'Happy birthday bro' — seven months ago. He replied with a thumbs up. Before that, nothing for a year." },
+                { "type": "description", "text": "You think about texting him. Something casual. 'Hey, how's it going.' But it's 1 AM and you haven't talked in so long that casual feels dishonest." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Text him. \"Hey. Can't sleep. Remember when we used to study until 2am and think that was hard?\"",
+                            "effects": { "dev_connection": 4, "authenticity": 5, "burnout": -3 },
+                            "internal_monologue": "(Three dots appear immediately. He's awake too. 'Bro. I think about that all the time.' You text back and forth for an hour. He's a software engineer now. He did CS after all. Neither of you says 'I miss this.' You don't have to.)"
+                        },
+                        {
+                            "text": "Put the phone down. You have a 7 AM meeting.",
+                            "effects": { "dev_connection": -3, "burnout": 2, "prestige": 2 },
+                            "internal_monologue": "(You set two alarms. The phone goes dark. Dev's name disappears into the scroll. You'll reach out when things slow down. Things don't slow down.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day2_slot1",
+            "setting": {
+                "location": "Ba and Ma's House",
+                "description": "Saturday morning. You drove two hours. The house looks smaller than you remember.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba opens the door. His hair is grey. When did his hair go grey? He moves to the side to let you in and you notice it — the careful way he shifts his weight. His knee." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Alex. You look tired. Come in, come in. Ma is cooking." },
+                { "type": "description", "text": "The house smells the same. Ginger. Sesame oil. The couch still has the plastic cover Ma put on twelve years ago. But everything is slightly different. The hallway is narrower. The ceiling is lower. Or maybe you're just bigger now." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Sit with Ba in the living room. Ask about his knee.",
+                            "effects": { "ba_connection": 6, "authenticity": 4 },
+                            "internal_monologue": "(Ba waves it off. 'Old injury. From driving.' Then, quieter: 'The doctor says maybe surgery. But insurance...' He trails off. You make a mental note. You can cover it. You can cover all of it now. That's the whole point.)"
+                        },
+                        {
+                            "text": "Go help Ma in the kitchen. Ba seems fine.",
+                            "effects": { "ma_connection": 3, "ba_connection": -2 },
+                            "internal_monologue": "(Ma hands you a knife and points at the scallions. 'Too thin. You forget how.' She's right. You've forgotten how to cut scallions. You eat them in restaurants now, cut by someone else's hands.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day2_slot2",
+            "setting": {
+                "location": "The Kitchen Table",
+                "description": "Lunch. The table has four chairs but only three are occupied. Lily is in another city now.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma puts food on your plate without asking. Too much food. Always too much food." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "You are too skinny. You don't cook, right? Always ordering food. I can tell." },
+                { "type": "description", "text": "Ma's hands. You look at them while she serves. They're different. Rougher. There are spots that weren't there before. She moves her right wrist carefully, like it hurts." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Ma, I want to pay off the house. I can do it now.\"",
+                            "effects": { "ma_connection": 5, "ba_connection": 5, "wealth": -10, "authenticity": 5 },
+                            "internal_monologue": "(Ma stops chewing. Ba sets down his chopsticks. The silence lasts three seconds. Then Ma says, 'No, no, you save your money.' Ba says nothing. His eyes are wet. 'I want to,' you say. 'This is why I worked.' Ma starts clearing plates even though no one is finished. She does this when she doesn't want you to see her cry.)"
+                        },
+                        {
+                            "text": "\"I've been promoted again, Ma. Vice President.\"",
+                            "effects": { "prestige": 5, "ma_connection": 2, "authenticity": -3 },
+                            "internal_monologue": "(Ma nods. 'Vice President. Very good.' She says it the way she says 'eat more vegetables.' Like it's expected. Like anything less would be a problem. Ba reaches for the remote. The conversation moves on. You wanted more. You always want more from these visits. You never know what 'more' looks like.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day2_slot3",
+            "setting": {
+                "location": "Your Old Bedroom",
+                "description": "Afternoon. Ma kept it exactly the same. The SAT prep book is still on the desk.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily's drawing is still taped to the wall. You, in a graduation cap that's too big. The paper has yellowed." },
+                { "type": "description", "text": "Your phone rings. It's Jamie. On a Saturday." },
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "Hey. Sorry to call on the weekend. Did you see the email from Derek? He's taking credit for the Meridian account. Again." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I'll handle it Monday. I'm with my parents right now.\"",
+                            "effects": { "jamie_connection": 3, "ba_connection": 2, "ma_connection": 2, "prestige": -2 },
+                            "internal_monologue": "(Jamie pauses. 'Right. Yeah. Sorry, Alex.' You hang up and look at Lily's drawing. The graduation cap. She drew it before she knew what it would cost. Before any of you did.)"
+                        },
+                        {
+                            "text": "Step into the hallway and deal with it now. Twenty minutes, tops.",
+                            "effects": { "prestige": 4, "derek_connection": -3, "ba_connection": -3 },
+                            "internal_monologue": "(It takes ninety minutes. Three calls. Two emails. When you come back, Ba has fallen asleep in his chair. Ma is washing dishes alone. 'You should go back,' Ma says. 'You are busy.' She says it without bitterness. That's worse.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day2_slot4",
+            "setting": {
+                "location": "The Driveway",
+                "description": "Evening. Your car is the nicest one on the street. You parked it around the corner so the neighbors wouldn't see.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba walks you to the door. He moves slower than he used to. At the car, he stops." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Alex." },
+                { "type": "description", "text": "He puts his hand on your shoulder. His grip is lighter than you remember. He opens his mouth. Closes it. Opens it again." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Drive safe." },
+                { "type": "description", "text": "That's not what he wanted to say. You both know it." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Ba. I know. Me too.\"",
+                            "effects": { "ba_connection": 8, "authenticity": 6 },
+                            "internal_monologue": "(Ba's hand tightens on your shoulder. Just for a second. Then he lets go. He nods once. You get in the car. In the rearview mirror, he's still standing in the driveway. You drive two blocks before you pull over and sit there for a while.)"
+                        },
+                        {
+                            "text": "\"I will, Ba. See you soon.\"",
+                            "effects": { "ba_connection": -2, "burnout": 1 },
+                            "internal_monologue": "('Soon' is a word that means nothing. You both know it. Ba watches you pull away. You don't look in the rearview mirror. If you do, you'll see him standing there, and you'll have to feel the thing you've been avoiding.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day3_slot1",
+            "setting": {
+                "location": "The Office — Early Morning",
+                "description": "6:30 AM. You're the first one here. You're always the first one here.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Derek's office is across the hall. Same size as yours. He got his title three years after you, but he got it easier. His dad's name is on the donor wall in the lobby." },
+                { "type": "description", "text": "An email from Patricia lands. Subject: 'Partner Track — Confidential.' Your heart rate spikes." },
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "The committee is meeting next month. I've put your name forward. But I need you all-in for the next six weeks. No distractions." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I'm all in. Whatever it takes.\"",
+                            "effects": { "prestige": 6, "patricia_connection": 5, "burnout": 5, "authenticity": -4 },
+                            "internal_monologue": "(Whatever it takes. You've been saying that since you were sixteen. The words used to feel like ambition. Now they feel like a contract you can't get out of. Lily's wedding is in five weeks.)"
+                        },
+                        {
+                            "text": "\"I'm committed, but I have my sister's wedding in five weeks. I need that weekend.\"",
+                            "effects": { "lily_connection": 4, "patricia_connection": -3, "prestige": -3, "authenticity": 5 },
+                            "internal_monologue": "(Patricia is quiet for a moment. 'Family. Right.' She says it like it's a foreign concept. 'We'll make it work.' But her tone says: noted. Filed. Remembered. The partner track has no room for weekends you need.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day3_slot2",
+            "setting": {
+                "location": "Office Kitchen",
+                "description": "Noon. Jamie is eating a sad sandwich. You're eating a sadder salad.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "So I'm leaving. Put in my two weeks yesterday." },
+                { "type": "description", "text": "You stop mid-bite. Jamie has been your closest ally here for four years. The person who covered for you. Who told you the truth when no one else would." },
+                { "type": "dialogue", "speaker": "Jamie", "speakerId": "jamie", "text": "I'm going to a smaller firm. Less money. Less prestige. More... me. I don't know. I'm tired of becoming someone I don't recognize." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I get it. I really do. I'm happy for you, Jamie.\"",
+                            "effects": { "jamie_connection": 6, "authenticity": 5, "burnout": -2 },
+                            "internal_monologue": "(Jamie looks at you. Really looks at you. 'You could leave too, you know.' You laugh. But neither of you is laughing. 'I can't,' you say. 'I know,' Jamie says. And the worst part is that Jamie does know.)"
+                        },
+                        {
+                            "text": "\"You're making a mistake. You're so close to partner.\"",
+                            "effects": { "jamie_connection": -5, "prestige": 3, "authenticity": -5 },
+                            "internal_monologue": "(Jamie's face changes. The warmth drains out. 'That's what Patricia would say.' The words hit harder than anything Derek has ever done to you. Because Jamie is right. You sound exactly like Patricia.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day3_slot3",
+            "setting": {
+                "location": "Phone Call — Parked Car",
+                "description": "8 PM. You're sitting in the parking garage. Engine off. Just sitting.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba called. You almost didn't answer. But something made you pick up." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Alex. I want to say... the mortgage. Ma told me what you did." },
+                { "type": "description", "text": "His voice cracks. Ba never — his voice never cracks. Not when he couldn't get an engineering job. Not when Uncle Wei said he'd wasted his degree. Not once in your entire life." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "Thank you. I... We came here for you and Lily. And you..." },
+                { "type": "description", "text": "He can't finish. You hear Ma in the background, gently taking the phone." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Ba is very happy. We are both very happy. You are a good son, Alex." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"This is all I ever wanted. For you to not have to worry anymore.\"",
+                            "effects": { "ba_connection": 8, "ma_connection": 8, "authenticity": 6, "burnout": -4 },
+                            "internal_monologue": "(Ma is quiet. Then: 'We always worry. That is what parents do. But now we worry different.' After you hang up, you sit in the parking garage for twenty minutes. The engine is off. The lights are off. You did it. The thing you were supposed to do. You did it. It should feel bigger than this. It does feel big. It also feels like a door closing.)"
+                        },
+                        {
+                            "text": "\"It's nothing, Ba. Don't worry about it. I should get back to work.\"",
+                            "effects": { "ba_connection": -2, "prestige": 3, "authenticity": -5 },
+                            "internal_monologue": "(You minimize it because you don't know how to sit in the feeling. Ba wanted to share this moment with you and you rushed through it like a calendar item. You hang up. The parking garage is very quiet. You turn the engine on so you don't have to hear the silence.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day3_slot4",
+            "setting": {
+                "location": "Your Apartment",
+                "description": "11 PM. The fridge has oat milk, hot sauce, and three takeout containers of varying age.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "You open Instagram. Lily posted engagement photos. She's glowing. The man next to her is someone you've met once, at a family dinner you left early." },
+                { "type": "description", "text": "You scroll further. Priya posted from a beach somewhere. Caption: 'Took a sabbatical. Best decision I ever made.' Jordan posted a gallery show. Dev posted his daughter's first birthday." },
+                { "type": "description", "text": "Dev has a daughter. When did Dev have a daughter?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Like every photo. Comment on Dev's. \"She's beautiful, man. I had no idea. Congrats.\"",
+                            "effects": { "dev_connection": 3, "authenticity": 4, "burnout": -2 },
+                            "internal_monologue": "(Dev replies: 'Thanks bro! Yeah it's been a wild year. We should catch up.' You type 'Definitely' and mean it. You wonder if he means it too. You wonder when you became the kind of person whose best friend has a child you didn't know about.)"
+                        },
+                        {
+                            "text": "Close the app. Open your laptop. You have work to do.",
+                            "effects": { "dev_connection": -2, "lily_connection": -2, "prestige": 3, "burnout": 3 },
+                            "internal_monologue": "(The laptop screen glows. The spreadsheet opens. Everyone's life is happening somewhere else, on a feed you scroll through at midnight, and your life is happening here, in the blue light, in the numbers, in the quiet.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day4_slot1",
+            "setting": {
+                "location": "Lily's Wedding — Getting Ready",
+                "description": "Saturday morning. A hotel ballroom. Lily is in a white dress. Ma is crying already.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily looks at you in the mirror. She's twenty-six. When did she become twenty-six? In your head she's still the girl with the math homework, the drawing of you in the too-big graduation cap." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Alex. Will you do my toast? I know I asked you months ago and you never confirmed but... please?" },
+                { "type": "description", "text": "She asked four months ago. You said 'let me check my schedule.' That was the last either of you mentioned it." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Of course. I wouldn't miss it for anything.\"",
+                            "effects": { "lily_connection": 8, "authenticity": 3, "prestige": -2 },
+                            "internal_monologue": "(You have nothing prepared. You'll write it on a napkin during cocktail hour. It will be the most honest thing you've written since your college essay. Lily squeezes your hand. Her grip is stronger than Ba's now. When did that happen?)"
+                        },
+                        {
+                            "text": "\"Lily, I didn't prepare anything. I don't want to mess up your day.\"",
+                            "effects": { "lily_connection": -6, "authenticity": -3, "burnout": 2 },
+                            "internal_monologue": "(Lily's face. The way she nods quickly and says 'It's okay, it's fine, David's brother will do it.' The way she turns back to the mirror. The way she adjusts her veil so you can't see her eyes. You are very good at your job. You are VP of a company that moves billions. And you couldn't write your sister a toast.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day4_slot2",
+            "setting": {
+                "location": "Lily's Wedding — The Ceremony",
+                "description": "Ba walks Lily down the aisle. His knee is bad but he doesn't limp. Not today.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma is in the front row. She's wearing the dress she bought for this specific occasion — the one she told you about on the phone three times. She's gripping the program so hard the paper is wrinkling." },
+                { "type": "description", "text": "Ba kisses Lily on the forehead and hands her off. He walks back to his seat. He sits down next to you. His eyes are red." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "She is beautiful. Like her mother." },
+                { "type": "description", "text": "He doesn't look at you when he says it. He's looking straight ahead. But his hand finds yours and squeezes once." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Squeeze back. Stay present. This moment is not about you.",
+                            "effects": { "ba_connection": 6, "lily_connection": 4, "authenticity": 6, "burnout": -5 },
+                            "internal_monologue": "(For the first time in years, you are not thinking about work. You are watching your sister become someone's family. You are sitting next to a man who crossed an ocean so his children could have this. The ceremony is twenty-two minutes. You are present for every second. It costs you nothing. It costs you everything you built your life around avoiding.)"
+                        },
+                        {
+                            "text": "You feel your phone vibrate. Patricia. You don't look. But you think about it the entire ceremony.",
+                            "effects": { "ba_connection": -1, "lily_connection": -1, "patricia_connection": 2, "burnout": 3 },
+                            "internal_monologue": "(You hear the vows but you're calculating. The partner meeting is Tuesday. Patricia doesn't call on Saturdays unless it matters. Lily says 'I do.' You clap. Ba is crying. Your phone buzzes again. You're here but you're not here. You've mastered the art of being physically present and emotionally offshore.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day4_slot3",
+            "setting": {
+                "location": "Lily's Wedding — Reception",
+                "description": "The dance floor is full. Ma is dancing. You didn't know Ma could dance.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "You're at the family table. Ba is resting his knee. A cousin you haven't seen in years asks what you do. You explain. Their eyes glaze over." },
+                { "type": "description", "text": "Auntie Li finds you. She grabs your arm. 'VP! Your mother told everyone. We are so proud.' She asks when you're getting married. She asks twice." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Alex! Come dance!" },
+                { "type": "description", "text": "Ma is on the dance floor. Her hair is grey at the temples. Her face is flushed. She's laughing. You haven't heard her laugh like this in years." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Go dance with Ma",
+                            "effects": { "ma_connection": 8, "authenticity": 5, "prestige": -2, "burnout": -5 },
+                            "internal_monologue": "(Ma grabs your hands and spins. She's terrible. You're worse. Lily cheers from across the room. Ba watches from his chair, smiling. For three minutes and forty-seven seconds you are not VP of anything. You are Ma's kid, dancing badly, laughing. It is the most expensive thing you own — this feeling — and it didn't cost a cent.)"
+                        },
+                        {
+                            "text": "\"In a minute, Ma.\" Step outside to check Patricia's voicemail.",
+                            "effects": { "ma_connection": -6, "patricia_connection": 3, "prestige": 4, "burnout": 4 },
+                            "internal_monologue": "(Patricia's voicemail is about a client dinner Monday. Important but not urgent. Not Saturday-at-a-wedding urgent. When you come back inside, Ma is sitting down. The song is over. She's not laughing anymore. 'You missed a good song,' she says. She says it the same way she used to leave congee outside your door.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_day4_slot4",
+            "setting": {
+                "location": "Hotel Parking Lot",
+                "description": "Midnight. The reception is winding down. You're leaving early. You have a flight at 6 AM.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily finds you by the elevator. Her veil is off. Her mascara is smudged. She looks exhausted and incandescent." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "You're leaving already?" },
+                { "type": "description", "text": "She says it the way she used to say 'Ask Ba, I have homework' — knowing the answer, hoping to be wrong." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Alex, I know you're busy. I know your job is important. But... I need you to know something. I'm not mad. I'm just... I miss you. I miss my brother." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Cancel the flight. Stay until morning.",
+                            "effects": { "lily_connection": 8, "ma_connection": 4, "ba_connection": 4, "prestige": -5, "authenticity": 8 },
+                            "internal_monologue": "(You call the airline. The rebooking fee is nothing. Lily's face — that's everything. You stay for the after-party. You help Ba to his car. You sit with Ma and Lily in the hotel lobby until 3 AM, eating leftover cake and talking about nothing. It's the closest you've felt to home in years. The partner meeting can wait. Everything can wait. Not this.)"
+                        },
+                        {
+                            "text": "\"I miss you too. I'll be better. I promise.\" Hug her and leave.",
+                            "effects": { "lily_connection": -3, "prestige": 3, "authenticity": -6 },
+                            "internal_monologue": "('I'll be better' is a promise you've made before. To Ma, to Ba, to Dev, to yourself. The elevator doors close. Through the narrowing gap, you see Lily standing there in her wedding dress, watching you go. You add it to the collection of images you carry: Ba in the driveway. Ma's congee outside the door. Lily in the elevator frame. The gallery of people you love, watching you leave.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act4_ultimate_promotion",
+            "setting": {
+                "location": "The Celebration",
+                "description": "A private room at a restaurant you've never been to. The wine costs more per glass than Ba used to make in a day driving.",
+                "palette": "peakGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "They made you Partner. The youngest in the firm's history, they said. Someone from HR sent a press release. Your LinkedIn has 2,000 new notifications." },
+                { "type": "description", "text": "The room is full. Thirty people. You scan the faces." },
+                { "type": "description", "text": "Patricia is here. Derek is here, smiling too wide, shaking your hand too hard. There are people from Legal you've emailed but never met. People from the board. People whose names you know from org charts." },
+                { "type": "description", "text": "Jamie is not here. Jamie left six months ago. Dev is not here. Priya is not here. Jordan is not here. Ma and Ba are not here. Lily is on her honeymoon." },
+                { "type": "description", "text": "You do not recognize most of the people in this room. They are celebrating you. They do not know you." },
+                { "type": "dialogue", "speaker": "Derek", "speakerId": "derek", "text": "Congrats, Alex. Really. You earned it." },
+                { "type": "description", "text": "He means it. That's the strangest part. He actually means it. Derek, who took credit for your work, who got every advantage you didn't, is standing here telling you that you earned it. And you believe him. And it doesn't fill the space you thought it would." },
+                { "type": "dialogue", "speaker": "Patricia", "speakerId": "patricia", "text": "I knew from the day I met you. You had that hunger. That drive. You were going to make it no matter what." },
+                { "type": "description", "text": "Patricia raises her glass. The room raises their glasses. 'To Alex.' Thirty voices. Thirty strangers." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Smile. Raise your glass. \"Thank you. I want to thank my parents, who gave up everything so I could stand here.\"",
+                            "effects": { "prestige": 8, "ma_connection": 3, "ba_connection": 3, "authenticity": -4, "burnout": 3 },
+                            "internal_monologue": "(The room claps. Some people get misty-eyed. It's a good line. It's also true. Those two things used to not coexist. Now the truest things you say are performances. Your parents gave up everything. And here you are, in a room of strangers, turning their sacrifice into a toast. You drink the wine. It's excellent. You taste nothing.)"
+                        },
+                        {
+                            "text": "Smile. Raise your glass. Say nothing for a long moment. Then: \"I'm grateful. And I need to make a phone call.\"",
+                            "effects": { "authenticity": 8, "prestige": -4, "ma_connection": 5, "ba_connection": 5, "burnout": -4 },
+                            "internal_monologue": "(You step out of the room. The hallway is quiet. You call Ma. She picks up on the second ring. 'Alex? It's late.' 'I know, Ma. I just... they made me Partner.' Ma is quiet. Then: 'Are you happy?' No one in that room asked you that. 'I don't know,' you say. Ma says, 'Come home this weekend. I'll make congee.' You stand in the hallway for a long time. Inside, they're toasting without you. Out here, Ma is on the phone, waiting for you to say something. You listen to her breathe.)"
+                        },
+                        {
+                            "text": "Look around the room. Really look. Then excuse yourself to the bathroom and sit on the floor for ten minutes.",
+                            "effects": { "authenticity": 6, "burnout": -3, "prestige": -2, "wealth": 5 },
+                            "internal_monologue": "(The bathroom is marble. The soap is lavender. You sit on the floor in your $3,000 suit and think about Ba's taxi with the covered meter. Ma's cracked hands. Lily's drawing. Dev's thumbs up emoji. The promotion is real. The title is real. The money is real. But the room you want to be in doesn't exist. It's the kitchen table with four chairs. It's 9:30 PM and everyone is home. It's a place you left and can't go back to and might have invented. You wash your hands. You go back to the party. You shake every hand. You say the right things. You are very, very good at this.)"
+                        }
+                    ]
+                },
+                { "type": "description", "text": "Later. The restaurant is closing. The last person shakes your hand and leaves. You stand alone in the private room." },
+                { "type": "description", "text": "The table is covered in empty glasses. Someone left a napkin with 'CONGRATS PARTNER' written in Sharpie. The handwriting is neat and impersonal." },
+                { "type": "description", "text": "You made it. You're at the top." },
+                { "type": "monologue", "text": "This is what the view looks like from here: everything you wanted and everyone you left behind to get it. The city below is enormous and lit up and full of people going home to each other. You button your coat and walk out alone. Your most recent DoorDash order: Pad Thai, extra peanuts, no modifications, eat alone." }
+            ]
+        }
+    ]
+}

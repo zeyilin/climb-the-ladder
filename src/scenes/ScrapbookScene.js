@@ -33,9 +33,18 @@ export default class ScrapbookScene extends BaseScene {
         this.currentPage = 0;
         this.showPage();
 
-        // Navigation
+        // Navigation — keyboard and click
         this.input.keyboard.on('keydown-RIGHT', () => this.nextPage());
         this.input.keyboard.on('keydown-LEFT', () => this.prevPage());
+
+        // Click/tap navigation
+        this.input.on('pointerdown', (pointer) => {
+            if (pointer.x > this.scale.width / 2) {
+                this.nextPage();
+            } else {
+                this.prevPage();
+            }
+        });
 
         this.initBaseScene();
     }
@@ -47,69 +56,69 @@ export default class ScrapbookScene extends BaseScene {
         // Always-present pages — key life milestones
         const pages = [
             {
-                title: 'HIGH SCHOOL GRADUATION',
+                title: 'THE KITCHEN TABLE',
                 present: true,
-                text: 'Mom cried. Dad pretended not to.\nYou didn\'t know yet that this was the last time\neveryone would be in the same room and happy.',
-                emoji: '🎓',
+                text: 'Ma made congee. All four chairs were full.\nYou didn\'t know yet that this was the last time\neveryone would be in the same room and happy.',
+                emoji: '🍜',
             },
             {
-                title: 'SAM\'S BIRTHDAY PARTY',
-                present: sorted.find(r => r.id === 'sam')?.connection > 30,
-                text: sorted.find(r => r.id === 'sam')?.connection > 30
-                    ? 'You were there. Sam laughed so hard they snorted.\nIt was the kind of night you don\'t photograph\nbecause you\'re too busy living it.'
+                title: 'DEV\'S STUDY SESSIONS',
+                present: sorted.find(r => r.id === 'dev')?.connection > 30,
+                text: sorted.find(r => r.id === 'dev')?.connection > 30
+                    ? 'Two kids carrying the weight of two generations.\nYou studied together. You dreamed together.\nThe silence between you was comfortable.'
                     : null,
-                blankCaption: 'Sam\'s birthday — you were on a work call.\nYou sent a Venmo for $50 and a 🎂 emoji.',
-                emoji: '🎂',
+                blankCaption: 'Dev texted "miss u dude" six months ago.\nYou never replied.',
+                emoji: '📚',
             },
             {
-                title: 'FIRST APARTMENT',
+                title: 'MOVE-IN DAY',
                 present: true,
-                text: 'The mattress was on the floor.\nThe kitchen had one pan and no spatula.\nYou made eggs anyway. They were terrible.\nYou\'ve never been happier.',
-                emoji: '🏠',
+                text: 'Ma cried. Ba carried boxes silently.\nThe dorm room was smaller than your bedroom.\nMa left three containers of frozen dumplings\nin your mini fridge.',
+                emoji: '📦',
             },
             {
-                title: 'JORDAN\'S WEDDING',
-                present: sorted.find(r => r.id === 'jordan')?.connection > 40,
-                text: sorted.find(r => r.id === 'jordan')?.connection > 40
-                    ? 'You walked Jordan down the aisle.\nMom ugly-cried. Dad had tissues ready.\nThe DJ played "September." Everyone danced badly.'
+                title: 'LILY\'S WEDDING',
+                present: sorted.find(r => r.id === 'lily')?.connection > 40,
+                text: sorted.find(r => r.id === 'lily')?.connection > 40
+                    ? 'You stood at the podium. Your voice cracked twice.\nNobody cared. Lily smiled the whole time.\nBa cried. He pretended it was allergies.'
                     : null,
-                blankCaption: 'Jordan\'s wedding — you were in Singapore\nclosing a deal that fell through anyway.',
+                blankCaption: 'Lily\'s wedding — you were in a meeting\nthat could have been an email.',
                 emoji: '💒',
             },
             {
-                title: 'DAD\'S 60TH BIRTHDAY',
-                present: sorted.find(r => r.id === 'dad')?.connection > 35,
-                text: sorted.find(r => r.id === 'dad')?.connection > 35
-                    ? 'Dad opened your gift and pretended it was\n"too much." He wore the watch every day after.\nHe told the guys at the hardware store about it. Twice.'
+                title: 'BA\'S ENGINEERING COMPASS',
+                present: sorted.find(r => r.id === 'ba')?.connection > 35,
+                text: sorted.find(r => r.id === 'ba')?.connection > 35
+                    ? 'Ba handed you the compass from the old country.\n"For finding your way," he said.\nHis voice cracked. Ba doesn\'t cry.\nBut his shoulders shook once.'
                     : null,
-                blankCaption: 'Dad\'s 60th birthday — you sent a gift card.\nIt was to SoulCycle. He\'s 60.',
-                emoji: '🎁',
+                blankCaption: 'Ba reorganized the garage again.\nThe compass is still in the drawer.',
+                emoji: '🧭',
             },
             {
-                title: 'MOM\'S SUNDAY CALLS',
-                present: sorted.find(r => r.id === 'mom')?.connection > 50,
-                text: sorted.find(r => r.id === 'mom')?.connection > 50
+                title: 'MA\'S SUNDAY CALLS',
+                present: sorted.find(r => r.id === 'ma')?.connection > 50,
+                text: sorted.find(r => r.id === 'ma')?.connection > 50
                     ? 'She calls every Sunday. You answer now.\nSometimes you talk about nothing for 40 minutes.\nNothing has never felt so important.'
                     : null,
-                blankCaption: 'Mom called 47 Sundays in a row.\nYou answered 6.',
+                blankCaption: 'Ma called 47 Sundays in a row.\nYou answered 6.',
                 emoji: '📞',
             },
             {
-                title: 'SAM\'S GRADUATION',
-                present: sorted.find(r => r.id === 'sam')?.connection > 50,
-                text: sorted.find(r => r.id === 'sam')?.connection > 50
-                    ? 'You sat in the third row. You cheered too loud.\nSam found you after and said "I can\'t believe you came."\nYou said "Where else would I be?" and meant it.'
+                title: 'THE CONGEE RECIPE',
+                present: sorted.find(r => r.id === 'ma')?.connection > 60,
+                text: sorted.find(r => r.id === 'ma')?.connection > 60
+                    ? 'Ma showed you how much water.\nHow long to stir. When to add the century egg.\nShe doesn\'t measure anything.\n"You feel it," she said.'
                     : null,
-                blankCaption: 'Sam\'s graduation — you were in Singapore\nclosing a deal that fell through anyway.',
-                emoji: '🎓',
+                blankCaption: 'Ma\'s congee recipe will die with her.\nYou never asked.',
+                emoji: '🥣',
             },
         ];
 
-        // Add scrapbook moments from gameplay
+        // Add scrapbook moments from gameplay choices
         for (const entry of scrapbook) {
             if (entry.visited) {
                 pages.push({
-                    title: entry.location.toUpperCase() + ' — REVISITED',
+                    title: entry.location.toUpperCase(),
                     present: true,
                     text: entry.text,
                     emoji: '🚶',
@@ -177,7 +186,7 @@ export default class ScrapbookScene extends BaseScene {
 
         // Navigation hints
         const nav = this.add.text(width / 2, height - 30,
-            this.currentPage < this.pages.length - 1 ? '← →  to flip pages' : '[ Press ENTER to close the book ]', {
+            this.currentPage < this.pages.length - 1 ? '← →  or tap to flip pages' : '[ Press ENTER or tap to close the book ]', {
             fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#3a2a1a',
         }).setOrigin(0.5);
         this.pageGroup.push(nav);
@@ -185,18 +194,24 @@ export default class ScrapbookScene extends BaseScene {
         // On last page, allow closing
         if (this.currentPage >= this.pages.length - 1) {
             this.input.keyboard.once('keydown-ENTER', () => {
-                this.cameras.main.fadeOut(1500);
-                this.time.delayedCall(1500, () => {
-                    this.scene.start('EndingScene');
-                });
+                this.goToEnding();
             });
         }
+    }
+
+    goToEnding() {
+        this.cameras.main.fadeOut(1500);
+        this.time.delayedCall(1500, () => {
+            this.scene.start('EndingScene');
+        });
     }
 
     nextPage() {
         if (this.currentPage < this.pages.length - 1) {
             this.currentPage++;
             this.showPage();
+        } else {
+            this.goToEnding();
         }
     }
 

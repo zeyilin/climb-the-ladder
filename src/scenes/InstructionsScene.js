@@ -69,8 +69,7 @@ export default class InstructionsScene extends BaseScene {
             {
                 title: 'CONTROLS',
                 lines: [
-                    'WASD / Arrows ........ Move',
-                    'E .................... Interact',
+                    'Click / Tap .......... Make choices',
                     'TAB .................. Contacts',
                     'R .................... Resume',
                     '? .................... This screen',
@@ -79,8 +78,8 @@ export default class InstructionsScene extends BaseScene {
             {
                 title: 'GAME OVERVIEW',
                 lines: [
-                    'Allocate your limited time across activities each day. Every choice has trade-offs.',
-                    'Your decisions shape your stats, relationships, and ultimately your career trajectory.',
+                    'Plan your day, then live through narrative moments shaped by your choices.',
+                    'Your parents left everything behind so you could have a better life. That sentence is the weight you carry.',
                 ]
             },
             {
@@ -102,8 +101,8 @@ export default class InstructionsScene extends BaseScene {
             {
                 title: 'BURNOUT',
                 lines: [
-                    'High burnout corrupts dialogue, slows controls, and penalizes performance.',
-                    'Rest to recover.',
+                    'High burnout corrupts dialogue and penalizes performance.',
+                    'Rest to recover. But Derek just got promoted...',
                 ]
             },
         ];

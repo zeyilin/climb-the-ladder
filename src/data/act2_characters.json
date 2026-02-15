@@ -4,18 +4,18 @@
             "id": "priya",
             "name": "Priya",
             "connection": 0,
-            "role": "Ambitious like you, but cracks sooner",
+            "role": "Your mirror. Same grind, same guilt, same hunger. She cracks before you do.",
             "color": "#E88D67",
             "emoji": "👩‍💻",
             "act": 2
         },
         {
-            "id": "morgan",
-            "name": "Morgan",
+            "id": "jordan",
+            "name": "Jordan",
             "connection": 0,
-            "role": "The relationship that tests your priorities most",
+            "role": "From a different world. Makes you question whether your path is chosen or assigned.",
             "color": "#C084FC",
-            "emoji": "💜",
+            "emoji": "🎨",
             "act": 2
         }
     ]

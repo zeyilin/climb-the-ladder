@@ -1,0 +1,41 @@
+{
+    "palettes": {
+        "warmGold": {
+            "top": "#2a1a08",
+            "bottom": "#0f0d05",
+            "accent": "#d4a853",
+            "text": "#c8c8a8"
+        },
+        "collegeBright": {
+            "top": "#1a1a3e",
+            "bottom": "#050510",
+            "accent": "#6c63ff",
+            "text": "#c8c8e8"
+        },
+        "careerGrey": {
+            "top": "#1a1a2e",
+            "bottom": "#050508",
+            "accent": "#4d4dff",
+            "text": "#aaaacc"
+        },
+        "peakGold": {
+            "top": "#1a1508",
+            "bottom": "#050505",
+            "accent": "#ffd93d",
+            "text": "#c8c8a8"
+        },
+        "homeWarm": {
+            "top": "#1a1408",
+            "bottom": "#0a0805",
+            "accent": "#d4a853",
+            "text": "#c8c8a8"
+        }
+    },
+    "actPalettes": {
+        "1": "warmGold",
+        "2": "collegeBright",
+        "3": "careerGrey",
+        "4": "peakGold",
+        "5": "homeWarm"
+    }
+}

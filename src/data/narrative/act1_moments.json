@@ -1,0 +1,438 @@
+{
+    "moments": [
+        {
+            "id": "act1_day1_slot1",
+            "setting": {
+                "location": "Your Bedroom",
+                "description": "6:47 AM. The SAT prep book has been open to the same page for twenty minutes.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Downstairs, you hear Ma and Ba in the kitchen. The smell of congee drifts up. Lily is probably already at the table." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Alex! Breakfast is ready! Come eat before school!" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Go downstairs for breakfast",
+                            "effects": { "ma_connection": 5, "gpa": -1 },
+                            "internal_monologue": "(The congee is better warm. The vocabulary words will still be there.)"
+                        },
+                        {
+                            "text": "Five more minutes — just need to finish this section",
+                            "effects": { "gpa": 3, "ma_connection": -2 },
+                            "internal_monologue": "(You hear Ma set a bowl outside your door twenty minutes later. It's cold by the time you notice.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day1_slot2",
+            "setting": {
+                "location": "School Hallway",
+                "description": "The fluorescent lights hum. Your locker combination is muscle memory.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Dev is waiting by your locker. He's got that look — the one where he's about to tell you his practice SAT score." },
+                { "type": "dialogue", "speaker": "Dev", "speakerId": "dev", "text": "Bro. 1480. I'm so close to 1500. What'd you get?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Tell him honestly — you haven't taken the practice test yet",
+                            "effects": { "dev_connection": 3, "authenticity": 3 },
+                            "internal_monologue": "(Dev doesn't judge. That's why he's your best friend. But you judge yourself enough for both of you.)"
+                        },
+                        {
+                            "text": "\"Same range. Still grinding.\" (You got a 1390.)",
+                            "effects": { "dev_connection": -1, "authenticity": -3, "gpa": 2 },
+                            "internal_monologue": "(The lie comes easy. That's the part that scares you.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day1_slot3",
+            "setting": {
+                "location": "The Kitchen Table",
+                "description": "9:30 PM. The house is quiet. Ba is watching the news in the other room.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Lily is doing homework at the kitchen table. She looks up when you walk in." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Alex, can you help me with math? Mrs. Patterson gave us these problems and I don't—" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Sit down and help her",
+                            "effects": { "lily_connection": 5, "gpa": -1 },
+                            "internal_monologue": "(She gets it on the third try. The smile on her face is worth more than a vocabulary word.)"
+                        },
+                        {
+                            "text": "\"Ask Ba, I have to study.\"",
+                            "effects": { "lily_connection": -3, "gpa": 3, "ba_connection": -1 },
+                            "internal_monologue": "(From your room, you hear Ba trying to explain fractions. His English stumbles on the word 'denominator.' Lily says 'It's okay, Ba.' You put your headphones on.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day2_slot1",
+            "setting": {
+                "location": "The Car",
+                "description": "7:15 AM. Ba drives you to school. The taxi meter is covered with a cloth.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba's hands are on the wheel at 10 and 2. He was an engineer back home. Now he knows every shortcut in the city." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "How is studying? SAT is coming, yes?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"It's good, Ba. I'm working hard.\"",
+                            "effects": { "ba_connection": 3, "authenticity": -2 },
+                            "internal_monologue": "(Ba nods. He doesn't say 'I'm proud of you.' He doesn't have to. The way he adjusted his mirror to see you better says it.)"
+                        },
+                        {
+                            "text": "\"Ba, do you ever miss being an engineer?\"",
+                            "effects": { "ba_connection": 5, "authenticity": 5 },
+                            "internal_monologue": "(Ba is quiet for a long time. Then: 'I drive taxi so you don't have to.' He pulls up to school. 'Have good day.' His voice cracks on the last word.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day2_slot2",
+            "setting": {
+                "location": "SAT Prep Class",
+                "description": "The whiteboard is covered in strategies. 'Eliminate obviously wrong answers.'",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "The instructor is going through reading comprehension. You've seen this passage three times. Dev is highlighting everything." },
+                { "type": "description", "text": "Your phone buzzes under the desk. It's from Lily: a photo of a drawing she made. It's you, with a graduation cap that's too big." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Smile, text back a heart emoji, then focus on the lesson",
+                            "effects": { "lily_connection": 3, "gpa": 2 },
+                            "internal_monologue": "(You can be both. You can do both. That's what you tell yourself.)"
+                        },
+                        {
+                            "text": "Put the phone away without responding — you'll text later",
+                            "effects": { "lily_connection": -2, "gpa": 4 },
+                            "internal_monologue": "(You forget to text back. You always forget to text back.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day2_slot3",
+            "setting": {
+                "location": "The Dinner Table",
+                "description": "Ma made your favorite. Ba's friends are over. The air smells like ginger and comparison.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Uncle Chen's son got into a summer program at MIT. Auntie Li's daughter scored a 1560. The table is a scoreboard disguised as a dinner party." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Alex is studying very hard. Top of the class. We are very proud." },
+                { "type": "description", "text": "Ma looks at you. There's pride in her eyes. But also: pressure. A prayer. A plea." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Smile and perform. This is for them.",
+                            "effects": { "ma_connection": 3, "prestige": 5, "authenticity": -5 },
+                            "internal_monologue": "(You recite your GPA, your extracurriculars, your plan. You sound like a college brochure. Everyone nods. You hate how good it feels.)"
+                        },
+                        {
+                            "text": "\"I'm doing fine.\" Change the subject to Lily's drawing.",
+                            "effects": { "lily_connection": 3, "authenticity": 5, "ma_connection": -2 },
+                            "internal_monologue": "(Lily lights up when you show the drawing. The adults lose interest. Ma gives you a look that says: 'You could have tried harder for them.' But Lily is beaming.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day3_slot1",
+            "setting": {
+                "location": "The Library",
+                "description": "Before school. The librarian knows your name. She saves you the desk by the window.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Violin case in the corner. You need to practice for the recital, but the AP Chemistry exam is Friday." },
+                { "type": "description", "text": "You play violin for college apps, not love. But sometimes, when no one is listening, you play the piece Ba used to hum. The melody from home." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Chemistry first. The recital can wait.",
+                            "effects": { "gpa": 4, "authenticity": -2 },
+                            "internal_monologue": "(You ace the practice problems. But your fingers itch for the strings.)"
+                        },
+                        {
+                            "text": "Play the violin. Just for ten minutes. Just for yourself.",
+                            "effects": { "authenticity": 5, "gpa": -2, "burnout": -3 },
+                            "internal_monologue": "(The melody fills the empty library. For ten minutes, you're not a student. You're not a son. You're just a person making something beautiful.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day3_slot2",
+            "setting": {
+                "location": "School Cafeteria",
+                "description": "Lunch. The table is split between people eating and people studying.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Dev", "speakerId": "dev", "text": "Dude, my parents want me to go to Johns Hopkins. Pre-med. I want to do computer science." },
+                { "type": "description", "text": "Dev stares at his sandwich. You recognize the weight in his voice. It's the same one you carry." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Do CS. You'd be amazing at it.\"",
+                            "effects": { "dev_connection": 5, "authenticity": 3 },
+                            "internal_monologue": "(Dev looks at you like you just gave him permission. You wonder who will give you the same.)"
+                        },
+                        {
+                            "text": "\"Medicine is safe. Our parents know what they're talking about.\"",
+                            "effects": { "dev_connection": -2, "authenticity": -3, "prestige": 2 },
+                            "internal_monologue": "(You hear your parents' voice coming out of your mouth. Dev hears it too. He nods. But something dims behind his eyes.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day3_slot3",
+            "setting": {
+                "location": "Your Bedroom",
+                "description": "11:30 PM. The house is dark. Light leaks from under your door.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "You hear the front door. Ma is home from her second shift. She moves quietly, trying not to wake anyone." },
+                { "type": "description", "text": "Then: the soft clink of a bowl. She's warming up food for you. You can hear her footsteps approaching your door." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Open the door before she knocks",
+                            "effects": { "ma_connection": 8, "burnout": -3, "gpa": -1 },
+                            "internal_monologue": "(Ma's face. The surprise. Then the warmth. She sits with you while you eat. She doesn't say anything. She doesn't need to. You eat every grain of rice.)"
+                        },
+                        {
+                            "text": "Wait for her to leave the bowl and go to bed",
+                            "effects": { "ma_connection": -5, "gpa": 2 },
+                            "internal_monologue": "(You hear her set the bowl down. A pause. Then her footsteps retreating. The congee is cold by the time you eat it. It doesn't taste like anything.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day4_slot1",
+            "setting": {
+                "location": "The Guidance Counselor's Office",
+                "description": "College application season. The walls are covered with pennants from schools you can't name.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Counselor", "speakerId": "counselor", "text": "Alex, your grades are strong. Your SAT is competitive. What schools are you looking at?" },
+                { "type": "description", "text": "The list Ba typed up is in your pocket. Stanford. MIT. Harvard. The names he looked up when he first arrived in this country." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Read Ba's list. These are the right schools.",
+                            "effects": { "ba_connection": 3, "prestige": 5, "authenticity": -3 },
+                            "internal_monologue": "(The counselor nods approvingly. 'Ambitious.' Ba would be proud of that word. You're not sure you are.)"
+                        },
+                        {
+                            "text": "\"I've been thinking about schools with strong music programs too.\"",
+                            "effects": { "authenticity": 8, "ba_connection": -3, "prestige": -2 },
+                            "internal_monologue": "(The counselor raises an eyebrow. 'That's... different from what I expected.' You think of Ba's list in your pocket. It feels heavier now.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day4_slot2",
+            "setting": {
+                "location": "Dev's House",
+                "description": "After school. His room looks exactly like yours. Same textbooks. Same stress.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "You're both studying. The silence is comfortable. This is what friendship looks like when you're 16 and carrying the weight of two generations." },
+                { "type": "dialogue", "speaker": "Dev", "speakerId": "dev", "text": "Do you ever think about what happens if we don't get in? Like... anywhere good?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"We'll get in. We have to.\"",
+                            "effects": { "dev_connection": -1, "gpa": 3, "burnout": 3 },
+                            "internal_monologue": "(The 'have to' hangs in the air. You both know it's not about wanting.)"
+                        },
+                        {
+                            "text": "\"Sometimes. And honestly? It terrifies me.\"",
+                            "effects": { "dev_connection": 5, "authenticity": 5, "burnout": -2 },
+                            "internal_monologue": "(Dev puts down his textbook. 'Me too,' he says. And for a moment, the weight is halved because it's shared.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day4_slot3",
+            "setting": {
+                "location": "Living Room",
+                "description": "Ba is watching a documentary about engineering marvels. He turns it off when you walk in.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "You are working too hard. Come sit." },
+                { "type": "description", "text": "Ba pats the couch next to him. He turns the TV back on. It's a bridge being built, beam by beam." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Sit with Ba and watch the bridge being built",
+                            "effects": { "ba_connection": 8, "burnout": -5, "gpa": -1 },
+                            "internal_monologue": "(Ba explains how the cables distribute weight. His eyes light up in a way you rarely see. For thirty minutes, he's not a taxi driver. He's Dr. Chen, structural engineer. You wish he could be that person all the time.)"
+                        },
+                        {
+                            "text": "\"Can't, Ba. College apps are due soon.\"",
+                            "effects": { "ba_connection": -3, "gpa": 3 },
+                            "internal_monologue": "(Ba nods. 'Yes. Yes, go study.' He turns back to the bridge. The volume stays low. He's watching alone again.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day5_slot1",
+            "setting": {
+                "location": "School Assembly",
+                "description": "Senior awards ceremony. The auditorium smells like floor wax and ambition.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "They call your name for the Academic Excellence award. The applause is polite. Dev claps loudest." },
+                { "type": "description", "text": "From the stage, you can see the empty seats where parents are supposed to sit. Ma is working. Ba is driving." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Take a photo of the certificate to send to the family group chat",
+                            "effects": { "ma_connection": 3, "ba_connection": 3, "prestige": 3 },
+                            "internal_monologue": "(Ma sends 12 heart emojis. Ba sends a thumbs up. Lily sends 'ok nerd 🤓'. You screenshot all three.)"
+                        },
+                        {
+                            "text": "Put it in your bag. They'll see it when they see it.",
+                            "effects": { "authenticity": 3, "ma_connection": -2 },
+                            "internal_monologue": "(Awards feel different when nobody's watching you receive them.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day5_slot2",
+            "setting": {
+                "location": "Ma's Restaurant",
+                "description": "After school. You almost never come here. Ma's apron is stained. Her hands are red.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma is carrying three plates at once. The owner is yelling something in the kitchen. She doesn't flinch." },
+                { "type": "description", "text": "She sees you and her face transforms. For one second, the exhaustion lifts." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Alex! Why you here? You should be studying! Sit, sit, I bring you something to eat." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Stay. Eat. Watch her work.",
+                            "effects": { "ma_connection": 8, "authenticity": 5, "gpa": -2 },
+                            "internal_monologue": "(You eat the food she brings. It's the best thing on the menu — the dish she only makes for family. Between orders, she sits with you for forty-five seconds at a time. Each time feels like a whole conversation.)"
+                        },
+                        {
+                            "text": "\"I just wanted to say hi. I should get back to studying.\"",
+                            "effects": { "ma_connection": 1, "gpa": 3 },
+                            "internal_monologue": "(Ma's face flickers. 'Okay. You study hard.' She watches you leave through the kitchen window. You don't look back. If you did, you'd stay.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_day5_slot3",
+            "setting": {
+                "location": "Your Bedroom",
+                "description": "The last night before applications go out. Your desk is a battlefield of drafts.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "The personal essay prompt stares back at you: 'Tell us about a challenge you've overcome.'" },
+                { "type": "description", "text": "You think about Ba's engineering degree that means nothing here. Ma's hands cracked from dishwater. Lily's drawing of you in a graduation cap that's too big." },
+                { "type": "description", "text": "'We came here for you.' That sentence. Every choice you've made leads back to it." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Write about your parents' sacrifice. Make them the hero.",
+                            "effects": { "ma_connection": 3, "ba_connection": 3, "prestige": 5, "authenticity": -3 },
+                            "internal_monologue": "(The essay writes itself. Adversity. Resilience. Gratitude. The admissions committee will love it. You wonder if reducing your parents' lives to 650 words is its own kind of betrayal.)"
+                        },
+                        {
+                            "text": "Write about the violin. The melody Ba used to hum. Finding yourself in music.",
+                            "effects": { "authenticity": 8, "prestige": -2, "burnout": -3 },
+                            "internal_monologue": "(The essay is messy and honest and doesn't mention a single SAT score. You're not sure it's what they want to hear. But it's the first time you've written something true.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act1_college_reveal",
+            "setting": {
+                "location": "The Mailbox",
+                "description": "Three months later. The envelope is thick. Thick is good. Thick is good.",
+                "palette": "warmGold"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma, Ba, and Lily are standing behind you. Ma's hands are clasped. Ba is pretending to be calm. Lily is filming on her phone." },
+                { "type": "description", "text": "You open it." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Read the letter aloud",
+                            "effects": { "ma_connection": 5, "ba_connection": 5, "lily_connection": 3, "prestige": 5 },
+                            "internal_monologue": "(The college you got into depends on how you lived. The numbers matter. But so does the essay. So does the person who wrote it.)"
+                        }
+                    ]
+                },
+                { "type": "description", "text": "Ma cries. Ba puts his hand on your shoulder. It's the most he's ever said." },
+                { "type": "description", "text": "Lily posts the video. The caption is just three emojis: 🎓💪❤️" },
+                { "type": "description", "text": "That night, Ma makes your favorite. The whole family sits at the table. All four chairs are full." },
+                { "type": "monologue", "text": "You don't know it yet, but this is the last time all four chairs will be full for a long time." }
+            ]
+        }
+    ]
+}

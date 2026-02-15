@@ -1,37 +1,37 @@
 {
     "characters": [
         {
-            "id": "mom",
-            "name": "Mom",
-            "connection": 75,
-            "role": "Unconditional love, but she gets hurt quietly",
+            "id": "ma",
+            "name": "Ma",
+            "connection": 80,
+            "role": "Works double shifts. Leaves food outside your door. Doesn't complain.",
             "color": "#FF9AA2",
             "emoji": "👩",
             "act": 1
         },
         {
-            "id": "dad",
-            "name": "Dad",
+            "id": "ba",
+            "name": "Ba",
             "connection": 65,
-            "role": "Proud of you at first, then worried, then distant",
+            "role": "Was an engineer back home. Drives a taxi here. Shows love through acts.",
             "color": "#6B93D6",
             "emoji": "👨",
             "act": 1
         },
         {
-            "id": "jordan",
-            "name": "Jordan",
-            "connection": 70,
-            "role": "Your sibling — chose a simpler life, seems happier",
+            "id": "lily",
+            "name": "Lily",
+            "connection": 75,
+            "role": "Your younger sister. Watches everything you do.",
             "color": "#98D8AA",
-            "emoji": "🧑",
+            "emoji": "🧒",
             "act": 1
         },
         {
-            "id": "sam",
-            "name": "Sam",
-            "connection": 80,
-            "role": "Your best friend. For now.",
+            "id": "dev",
+            "name": "Dev",
+            "connection": 85,
+            "role": "Best friend since 3rd grade. Also a child of immigrants.",
             "color": "#FFD93D",
             "emoji": "🧑‍🤝‍🧑",
             "act": 1

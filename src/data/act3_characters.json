@@ -3,23 +3,29 @@
         {
             "id": "derek",
             "name": "Derek",
-            "role": "Your nemesis. Always promoted first. LinkedIn posts with \"Humbled to announce...\"",
-            "portrait": "npc_derek",
-            "connection": 30
+            "connection": 30,
+            "role": "Born into connections you had to build from scratch. Always promoted first.",
+            "color": "#5a6a7a",
+            "emoji": "👔",
+            "act": 3
         },
         {
-            "id": "colleague",
+            "id": "jamie",
             "name": "Jamie",
-            "role": "Work friend who bonds over shared misery in the break room",
-            "portrait": "npc_colleague",
-            "connection": 40
+            "connection": 40,
+            "role": "Work friend. Bonds over shared exhaustion in the break room.",
+            "color": "#7a8a6a",
+            "emoji": "☕",
+            "act": 3
         },
         {
-            "id": "boss",
+            "id": "patricia",
             "name": "Patricia",
-            "role": "Your manager. Sends emails at 11pm \"just thinking out loud\"",
-            "portrait": "npc_boss",
-            "connection": 50
+            "connection": 50,
+            "role": "Your boss. Emails at 11pm 'just thinking out loud.'",
+            "color": "#8a6a7a",
+            "emoji": "📧",
+            "act": 3
         }
     ]
 }

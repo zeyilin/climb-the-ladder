@@ -4,19 +4,20 @@ import UIButton from '../ui/components/UIButton.js';
 import LayoutManager from '../ui/LayoutManager.js';
 
 /**
- * TimeAllocationScene — The Trade-Off Wheel.
- * "Corporate Planner" Style.
- * Header + slots use DOM for crisp text; activity buttons remain Phaser UIButton.
+ * PlanningScene — Refactored from TimeAllocationScene.
+ * Same slot-based UI, but with narrative-flavored activity descriptions.
+ * On finish: launches NarrativeScene for each slot's moment.
  */
-export default class TimeAllocationScene extends BaseScene {
+export default class PlanningScene extends BaseScene {
     constructor() {
-        super({ key: 'TimeAllocationScene' });
+        super({ key: 'PlanningScene' });
     }
 
     init() {
         this.timeManager = this.registry.get('timeManager');
         this.relationshipManager = this.registry.get('relationshipManager');
         this.statManager = this.registry.get('statManager');
+        this.narrativeEngine = this.registry.get('narrativeEngine');
         this.layout = new LayoutManager(this);
     }
 
@@ -33,6 +34,9 @@ export default class TimeAllocationScene extends BaseScene {
         // Overlay
         this.overlay = this.add.rectangle(0, 0, 0, 0, Theme.COLORS.BG_OVERLAY, 0.95).setDepth(0);
 
+        // Background gradient
+        this.bgGraphics = this.add.graphics().setDepth(-1);
+
         // --- DOM Header ---
         const headerHTML = this.buildHeaderHTML();
         this.headerDom = this.add.dom(0, 0).createFromHTML(headerHTML);
@@ -43,7 +47,7 @@ export default class TimeAllocationScene extends BaseScene {
         this.slotsDom = this.add.dom(0, 0).createFromHTML(slotsHTML);
         this.slotsDom.setDepth(1);
 
-        // --- Activity Buttons (Phaser UIButton — unchanged) ---
+        // --- Activity Buttons (Phaser UIButton) ---
         const activities = this.timeManager.activities;
 
         activities.forEach((activity) => {
@@ -67,7 +71,9 @@ export default class TimeAllocationScene extends BaseScene {
         this.registerResizeHandler(this.handleResize);
 
         // --- Launch HUD ---
-        this.scene.launch('HUDScene');
+        if (!this.scene.isActive('HUDScene')) {
+            this.scene.launch('HUDScene');
+        }
         this.scene.bringToTop('HUDScene');
 
         // --- BaseScene auto-cleanup ---
@@ -79,7 +85,7 @@ export default class TimeAllocationScene extends BaseScene {
             <div class="ta-header">
                 <div class="ta-week">${this.timeManager.getWeekDisplay().toUpperCase()}</div>
                 <div class="ta-day">${this.timeManager.getDayDisplay()}</div>
-                <div class="ta-title">ALLOCATE RESOURCES</div>
+                <div class="ta-title">PLAN YOUR DAY</div>
             </div>
         `;
     }
@@ -118,7 +124,6 @@ export default class TimeAllocationScene extends BaseScene {
         const headerY = isMobile ? hudHeight + 30 : hudHeight + 40;
         if (this.headerDom) {
             this.headerDom.setPosition(width / 2, headerY);
-            // Update mobile font sizes via node
             const el = this.headerDom.node;
             el.querySelector('.ta-week').style.fontSize = isMobile ? '16px' : '24px';
             el.querySelector('.ta-day').style.fontSize = isMobile ? '20px' : '32px';
@@ -129,7 +134,6 @@ export default class TimeAllocationScene extends BaseScene {
         const slotsY = headerY + (isMobile ? 70 : 90);
         if (this.slotsDom) {
             this.slotsDom.setPosition(width / 2, slotsY);
-            // Scale slot widths for mobile
             const slotEls = this.slotsDom.node.querySelectorAll('.ta-slot');
             const slotBoxEls = this.slotsDom.node.querySelectorAll('.ta-slot-box');
             const slotW = isMobile ? '100px' : '160px';
@@ -168,8 +172,6 @@ export default class TimeAllocationScene extends BaseScene {
             const textEl = slotEl.querySelector('.ta-slot-text');
             textEl.textContent = activity.label.toUpperCase();
             textEl.classList.add('filled');
-
-            // Dim the label
             slotEl.querySelector('.ta-slot-label').classList.remove('active');
         }
 
@@ -206,7 +208,13 @@ export default class TimeAllocationScene extends BaseScene {
         const warningEl = this.warningDom?.node;
         if (!warningEl) return;
 
-        const hasSocial = this.selectedSlots.some(s => s?.id.startsWith('socialize_') || s?.id === 'text_sam' || s?.id === 'text_family');
+        const hasSocial = this.selectedSlots.some(s =>
+            s?.id.startsWith('socialize_') ||
+            s?.id.startsWith('call_') ||
+            s?.id.startsWith('text_') ||
+            s?.id === 'reconnect'
+        );
+
         if (this.currentSlotIndex > 0 && !hasSocial) {
             const sorted = this.relationshipManager.getSorted();
             const lowest = sorted[sorted.length - 1];
@@ -229,19 +237,16 @@ export default class TimeAllocationScene extends BaseScene {
         const persistence = this.registry.get('persistenceManager');
         if (persistence) persistence.save();
 
-        this.scene.stop('TimeAllocationScene');
-        const act = this.timeManager.currentAct;
-        const getScene = (key) => {
-            this.scene.resume(key);
-            const s = this.scene.get(key);
-            if (s) s.processDayResults?.(this.selectedSlots);
-        };
+        // Store selected activities for NarrativeScene to use
+        this.registry.set('dayActivities', this.selectedSlots.map(s => s.id));
 
-        if (act === 5) getScene('ReckoningScene');
-        else if (act === 4) getScene('CornerOfficeScene');
-        else if (act === 3) getScene('CityScene');
-        else if (act === 2) getScene('CollegeCampusScene');
-        else getScene('HighSchoolScene');
+        this.scene.stop('PlanningScene');
+
+        // Signal the flow controller to process day moments
+        const flowController = this.registry.get('flowController');
+        if (flowController) {
+            flowController();
+        }
     }
 
     showDerekPopup() {
@@ -256,7 +261,7 @@ export default class TimeAllocationScene extends BaseScene {
             ...Theme.STYLES.HEADER_SM, color: Theme.toHex(Theme.COLORS.DANGER)
         }).setOrigin(0.5);
 
-        const msg = this.add.text(0, 0, 'Derek from work just got promoted.\nAre you sure you want to rest?', {
+        const msg = this.add.text(0, 0, 'Derek just got promoted.\nAre you sure you want to rest?', {
             ...Theme.STYLES.BODY_MD, align: 'center'
         }).setOrigin(0.5);
 

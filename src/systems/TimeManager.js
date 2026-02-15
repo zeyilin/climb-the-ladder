@@ -80,52 +80,51 @@ export default class TimeManager {
         // Act-specific activities
         if (this.currentAct === 1) {
             this.activities = [
-                { id: 'study', label: 'Study', icon: '📚', description: 'Hit the books. +GPA, −Fun.' },
-                { id: 'socialize_mom', label: 'Hang with Mom', icon: '🏠', description: 'Family time. Mom appreciates it.' },
-                { id: 'socialize_dad', label: 'Hang with Dad', icon: '🏠', description: 'Dad might actually talk about feelings.' },
-                { id: 'socialize_jordan', label: 'Hang with Jordan', icon: '🎮', description: 'Your sibling. Way more chill than you.' },
-                { id: 'socialize_sam', label: 'Hang with Sam', icon: '🛹', description: 'Your best friend. For now.' },
-                { id: 'extracurricular', label: 'Extracurricular', icon: '🏆', description: 'Debate club, student council... résumé padding.' },
-                { id: 'rest', label: 'Doing Nothing', icon: '😴', description: 'Derek from school just got Student of the Month.' },
+                { id: 'study', label: 'Study', icon: '📚', description: 'SAT prep. The vocab words blur together.' },
+                { id: 'socialize_ma', label: 'Be with Ma', icon: '🍜', description: 'Ma is making congee. She set an extra place.' },
+                { id: 'socialize_ba', label: 'Be with Ba', icon: '🚕', description: 'Ba is in the garage. He never asks you to come. He always hopes.' },
+                { id: 'socialize_lily', label: 'Hang with Lily', icon: '🧒', description: 'Your sister wants to show you something on her phone.' },
+                { id: 'socialize_dev', label: 'Study with Dev', icon: '📖', description: 'Dev\'s already on chapter 12. You\'re on chapter 9.' },
+                { id: 'extracurricular', label: 'Violin Practice', icon: '🎻', description: 'You play for college apps, not love. The notes still come out pretty.' },
+                { id: 'rest', label: 'Doing Nothing', icon: '😴', description: 'Dev just posted his practice SAT score. You shouldn\'t have looked.' },
             ];
         } else if (this.currentAct === 2) {
             this.activities = [
-                { id: 'study', label: 'Study', icon: '📚', description: 'Your professor gives pop quizzes. Survive.' },
-                { id: 'socialize_priya', label: 'Hang with Priya', icon: '☕', description: 'Your college friend. Grinding even harder than you.' },
-                { id: 'socialize_morgan', label: 'Hang with Morgan', icon: '💜', description: 'This one might actually matter.' },
-                { id: 'text_sam', label: 'Text Sam', icon: '📱', description: 'Sam texted 3 days ago. This costs a whole slot.' },
-                { id: 'text_family', label: 'Call Family', icon: '📞', description: 'Mom left a voicemail. It\'s 4 minutes long.' },
-                { id: 'networking', label: 'Networking Event', icon: '🤝', description: 'Free pizza. Performative handshakes. The usual.' },
-                { id: 'internship_prep', label: 'Internship Prep', icon: '💼', description: 'Practice your "Tell me about yourself" until it sounds natural. (It never will.)' },
+                { id: 'study', label: 'Study', icon: '📚', description: 'The library closes at 2am. You know because you\'ve been here at 1:58.' },
+                { id: 'socialize_priya', label: 'Coffee with Priya', icon: '☕', description: 'She\'s grinding even harder than you. You recognize the look in her eyes.' },
+                { id: 'socialize_jordan', label: 'Hang with Jordan', icon: '🎨', description: 'Jordan asks questions that don\'t have right answers. It\'s unsettling.' },
+                { id: 'call_family', label: 'Call Home', icon: '📞', description: 'Ma left a voicemail. It\'s 4 minutes long. Mostly silence.' },
+                { id: 'text_dev', label: 'Text Dev', icon: '📱', description: 'Dev texted 3 days ago. This costs a whole slot.' },
+                { id: 'networking', label: 'Networking Event', icon: '🤝', description: 'Free pizza. Performative handshakes. "What do your parents do?"' },
+                { id: 'internship_prep', label: 'Internship Prep', icon: '💼', description: 'Practice "Tell me about yourself" until it sounds natural. (It never will.)' },
                 { id: 'club', label: 'Club Activity', icon: '🏆', description: 'Your résumé needs another line. Any line.' },
                 { id: 'rest', label: 'Doing Nothing', icon: '😴', description: 'Your roommate is out networking. You can hear them laughing.' },
             ];
         } else if (this.currentAct === 3) {
             this.activities = [
-                { id: 'work', label: 'Work', icon: '💼', description: 'The thing they pay you for. Allegedly builds character.' },
-                { id: 'socialize_colleague', label: 'Coffee with Jamie', icon: '☕', description: 'Broken Keurig philosophy. The only real thing in this office.' },
-                { id: 'call_mom', label: 'Call Mom', icon: '📞', description: 'She called Sunday. And the Sunday before. The streak is at 3.' },
-                { id: 'text_sam', label: 'Text Sam', icon: '📱', description: 'Sam\'s last text: "miss u dude." That was 2 weeks ago.' },
+                { id: 'work', label: 'Work', icon: '💼', description: 'The thing they pay you $150k for. You\'ve been grinding since 12.' },
+                { id: 'socialize_jamie', label: 'Coffee with Jamie', icon: '☕', description: 'Break room philosophy. The only real thing in this office.' },
+                { id: 'call_ma', label: 'Call Ma', icon: '📞', description: '"When are you coming home?" "Soon." You\'ve said soon for 8 months.' },
+                { id: 'text_dev', label: 'Text Dev', icon: '📱', description: 'Dev\'s last text: "miss u dude." That was 2 weeks ago.' },
                 { id: 'attend_event', label: 'Industry Event', icon: '🤝', description: 'Open bar. Business cards. Networking is just friendship with KPIs.' },
                 { id: 'workout', label: 'Hit the Gym', icon: '🏋️', description: 'You have a membership. You\'ve been 3 times. In 6 months.' },
-                { id: 'pivot_career', label: 'Pivot Career', icon: '🔄', description: 'Costs a whole quarter. 40% chance you end up right back here.' },
-                { id: 'rest', label: 'Doing Nothing', icon: '😴', description: 'You ate pad thai at your desk at 10pm. Again.' },
+                { id: 'rest', label: 'Doing Nothing', icon: '😴', description: 'You ate pad thai at your desk at 10pm. DoorDash knows your order.' },
             ];
         } else if (this.currentAct === 4) {
             this.activities = [
                 { id: 'work', label: 'Work', icon: '💼', description: 'Same puzzle. Bigger numbers. The hedonic treadmill spins.' },
                 { id: 'manage_team', label: 'Manage Team', icon: '👥', description: 'Three people depend on you. You barely manage yourself.' },
-                { id: 'attend_gala', label: 'Industry Gala', icon: '🥂', description: 'Champagne, small talk, and people who remember your title but not your name.' },
-                { id: 'call_jordan', label: 'Call Jordan', icon: '📞', description: 'Jordan asked if you\'re coming to Dad\'s birthday. That was 2 months ago.' },
-                { id: 'visit_dad', label: 'Visit Dad', icon: '🏠', description: 'He reorganized the garage again. The third time this year.' },
-                { id: 'therapy', label: 'Therapy', icon: '🛋️', description: 'Your therapist said "that\'s interesting" five times last session. You counted.' },
+                { id: 'attend_gala', label: 'Industry Gala', icon: '🥂', description: 'They remember your title but not your name.' },
+                { id: 'call_lily', label: 'Call Lily', icon: '📞', description: 'Lily\'s getting married. You found out from Instagram.' },
+                { id: 'visit_ba', label: 'Visit Ba', icon: '🏠', description: 'Ba moves slower now. He won\'t say it. You can see it.' },
+                { id: 'therapy', label: 'Therapy', icon: '🛋️', description: 'Your therapist said "that\'s interesting" five times. You counted.' },
                 { id: 'rest', label: 'Doing Nothing', icon: '😴', description: 'You ordered $40 sushi to eat alone in a $3000/month apartment.' },
             ];
         } else if (this.currentAct === 5) {
             this.activities = [
-                { id: 'visit_location', label: 'Visit Old Places', icon: '🚶', description: 'Retrace your steps. Everything\'s smaller than you remember.' },
-                { id: 'reconnect', label: 'Reach Out', icon: '📱', description: 'Send the text. Make the call. Show up to the door.' },
-                { id: 'reflect', label: 'Sit & Reflect', icon: '🪑', description: 'Sometimes you just need to sit.' },
+                { id: 'visit_location', label: 'Visit Old Places', icon: '🚶', description: 'The house is smaller than you remember. Ma has grey hair.' },
+                { id: 'reconnect', label: 'Reach Out', icon: '📱', description: 'Send the text. Make the call. Show up at the door.' },
+                { id: 'reflect', label: 'Sit & Reflect', icon: '🪑', description: 'Ma makes congee. It\'s warm this time.' },
             ];
         }
     }

@@ -30,6 +30,7 @@ export default class NarrativeScene extends BaseScene {
     }
 
     create() {
+        console.log('[NarrativeScene] create()', this.titleCardOnly ? 'titleCard' : `moment: ${this.momentId}`);
         const { width, height } = this.cameras.main;
 
         // --- Atmospheric Gradient Background (Phaser Graphics) ---
@@ -90,10 +91,10 @@ export default class NarrativeScene extends BaseScene {
 
         // Reposition content
         if (this.contentDom) {
-            this.contentDom.setPosition(width / 2, height / 2 + 42);
+            this.contentDom.setPosition(width / 2, height / 2 + 34);
             const el = this.contentDom.node;
-            el.style.width = Math.min(800, width - 40) + 'px';
-            el.style.height = (height - 124) + 'px';
+            el.style.width = Math.min(720, width - 40) + 'px';
+            el.style.height = (height - 108) + 'px';
         }
     }
 
@@ -142,7 +143,7 @@ export default class NarrativeScene extends BaseScene {
         container.className = 'narrative-container';
 
         const { width } = this.cameras.main;
-        container.style.width = Math.min(800, width - 40) + 'px';
+        container.style.width = Math.min(720, width - 40) + 'px';
 
         // Draw background gradient
         this.drawGradient(this.cameras.main.width, this.cameras.main.height);
@@ -346,6 +347,7 @@ export default class NarrativeScene extends BaseScene {
      * Handle a choice selection
      */
     selectChoice(option, entry) {
+        console.log('[NarrativeScene] selectChoice:', option.text);
         // Apply effects
         if (option.effects) {
             for (const [key, value] of Object.entries(option.effects)) {
@@ -459,6 +461,7 @@ export default class NarrativeScene extends BaseScene {
      * End the current moment and return control
      */
     endMoment() {
+        console.log('[NarrativeScene] endMoment()', this.momentId);
         // Auto-save
         const persistence = this.registry.get('persistenceManager');
         if (persistence) persistence.save();
@@ -467,12 +470,15 @@ export default class NarrativeScene extends BaseScene {
         this.time.delayedCall(400, () => {
             const onComplete = this.onComplete;
             const returnScene = this.returnScene;
+            const sceneManager = this.scene.manager;
             this.scene.stop('NarrativeScene');
 
+            // Defer callback to next frame so Phaser fully processes
+            // the scene stop before any new scene start
             if (onComplete) {
-                onComplete();
+                setTimeout(() => onComplete(), 16);
             } else if (returnScene) {
-                this.scene.resume(returnScene);
+                setTimeout(() => sceneManager.resume(returnScene), 16);
             }
         });
     }
@@ -508,7 +514,8 @@ export default class NarrativeScene extends BaseScene {
                 overlay.destroy();
                 titleText.destroy();
                 subtitleText.destroy();
-                if (callback) callback();
+                // Defer to next frame so scene stop/start doesn't conflict
+                if (callback) setTimeout(() => callback(), 16);
             });
         });
     }

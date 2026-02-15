@@ -130,7 +130,7 @@ export default class EndingScene extends BaseScene {
         this.time.delayedCall(11000, () => {
             const trophy = this.add.text(width / 2, height - 50,
                 'You won. 🏆\n(It\'s not a compliment.)', {
-                fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#3a3a5a',
+                fontFamily: '"Inter", sans-serif', fontSize: '12px', color: '#3a3a5a',
                 align: 'center', lineSpacing: 8,
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: trophy, alpha: 0.7, duration: 1000 });
@@ -243,20 +243,20 @@ export default class EndingScene extends BaseScene {
 
             const hoursBlock = this.add.text(width / 2, height - 90,
                 `Hours Worked: ${hoursWorked}\nHours Spent With People Who Love You: ${hoursWithPeople}`, {
-                fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#3a3a4a',
+                fontFamily: '"Inter", sans-serif', fontSize: '11px', color: '#3a3a4a',
                 align: 'center', lineSpacing: 8,
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: hoursBlock, alpha: 0.7, duration: 2000 });
 
             const credits = this.add.text(width / 2, height - 45, 'CLIMB THE LADDER', {
-                fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#2a2a3a',
+                fontFamily: '"Inter", sans-serif', fontSize: '12px', color: '#2a2a3a',
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: credits, alpha: 0.5, delay: 2000, duration: 2000 });
 
             this.time.delayedCall(5000, () => {
                 const restart = this.add.text(width / 2, height - 20,
                     '[ Play Again? ]', {
-                    fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#6c63ff',
+                    fontFamily: '"Inter", sans-serif', fontSize: '11px', color: '#6c63ff',
                 }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
                 restart.on('pointerover', () => restart.setColor('#9a93ff'));

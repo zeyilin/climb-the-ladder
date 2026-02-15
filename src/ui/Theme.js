@@ -29,26 +29,28 @@ const COLORS = {
 };
 
 const FONTS = {
-    HEADER: '"Press Start 2P", monospace', // Blocky, 8-bit header
-    BODY: '"VT323", monospace',            // Terminal-style body
+    DISPLAY: '"Press Start 2P", monospace', // Big titles only
+    HEADER: '"Inter", sans-serif',          // UI labels, buttons, headers
+    BODY: '"VT323", monospace',             // Narrative body text
 };
 
 const STYLES = {
     HEADER_LG: {
-        fontFamily: FONTS.HEADER,
+        fontFamily: FONTS.DISPLAY,
         fontSize: '48px',
         color: '#ffffff',
-        display: 'block' // Helper for CSS if needed, mostly for Phaser config
     },
     HEADER_MD: {
         fontFamily: FONTS.HEADER,
-        fontSize: '24px',
+        fontSize: '22px',
         color: '#ffffff',
+        fontStyle: 'bold',
     },
     HEADER_SM: {
         fontFamily: FONTS.HEADER,
-        fontSize: '12px',
-        color: '#00f3ff', // Default to cyan accent
+        fontSize: '13px',
+        color: '#00f3ff',
+        fontStyle: 'bold',
     },
     BODY_LG: {
         fontFamily: FONTS.BODY,

@@ -23,19 +23,21 @@ export default class HUDScene extends BaseScene {
 
         // --- Date Display (Far Left) ---
         this.weekLabel = this.add.text(0, 0, '', {
-            ...Theme.STYLES.HEADER_SM,
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '20px',
             color: '#8888aa',
         }).setDepth(101);
 
         this.dayDisplay = this.add.text(0, 0, '', {
-            ...Theme.STYLES.BODY_LG,
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '32px',
             color: '#ffffff',
-            shadow: { offsetX: 2, offsetY: 2, color: '#000000', fill: true }
         }).setDepth(101);
 
         // --- Career Progress ---
         this.careerLabel = this.add.text(0, 0, 'CAREER LADDER', {
-            ...Theme.STYLES.HEADER_SM,
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '20px',
             color: Theme.toHex(Theme.COLORS.NEON_CYAN),
         }).setOrigin(0, 0.5).setDepth(101);
 
@@ -50,23 +52,24 @@ export default class HUDScene extends BaseScene {
         this.createStatObjects('burnout', 'BURNOUT', '🔥', Theme.COLORS.DANGER);
 
         // --- Relationship Toggle (Far Right) ---
-        this.btnContainer = this.add.container(0, 42);
+        this.btnContainer = this.add.container(0, 33);
 
         const btnBg = this.add.graphics();
         this.btnBg = btnBg;
         this.drawTabButton(btnBg, Theme.COLORS.MUTED);
 
-        const btnIcon = this.add.text(-80, 0, 'TAB', {
-            ...Theme.STYLES.HEADER_SM,
+        const btnIcon = this.add.text(-55, 0, 'TAB', {
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '18px',
             color: '#ffffff',
             backgroundColor: '#333',
-            padding: { x: 4, y: 4 },
+            padding: { x: 4, y: 2 },
             align: 'center'
         }).setOrigin(0.5);
 
-        const btnText = this.add.text(10, 0, 'CONTACTS', {
-            ...Theme.STYLES.HEADER_SM,
-            fontSize: '12px',
+        const btnText = this.add.text(15, 0, 'CONTACTS', {
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '22px',
             color: '#aaa',
         }).setOrigin(0.5);
 
@@ -137,23 +140,23 @@ export default class HUDScene extends BaseScene {
 
     createStatObjects(key, labelName, icon, color) {
         const iconText = this.add.text(0, 0, icon, {
-            fontSize: '14px',
-        }).setOrigin(0.5);
+            fontSize: '16px',
+        }).setOrigin(0.5).setDepth(101);
 
         const labelText = this.add.text(0, 0, labelName, {
-            ...Theme.STYLES.HEADER_SM,
-            fontSize: '8px',
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '18px',
             color: '#8888aa',
-        }).setOrigin(0, 0.5);
+        }).setOrigin(0.5, 0).setDepth(101);
 
         const valueText = this.add.text(0, 0, '0', {
-            ...Theme.STYLES.BODY_MD,
-            fontSize: '20px',
+            fontFamily: Theme.FONTS.BODY,
+            fontSize: '24px',
             color: '#ffffff',
-        }).setOrigin(1, 0.5);
+        }).setOrigin(0.5, 0).setDepth(101);
 
-        const barBg = this.add.graphics();
-        const barFill = this.add.graphics();
+        const barBg = this.add.graphics().setDepth(101);
+        const barFill = this.add.graphics().setDepth(102);
 
         this.statDisplays[key] = {
             iconText, labelText, valueText, barBg, barFill, color,
@@ -164,7 +167,7 @@ export default class HUDScene extends BaseScene {
         if (!gameSize || gameSize.width <= 0 || gameSize.height <= 0) return;
         const width = gameSize.width;
         const height = gameSize.height;
-        const barHeight = 84;
+        const barHeight = 68;
 
         this.cameras.main.setViewport(0, 0, width, height);
 
@@ -177,15 +180,15 @@ export default class HUDScene extends BaseScene {
         this.border.fillRect(0, barHeight, width, 2);
 
         const isMobile = width < 600;
-        const ex = isMobile ? 10 : 40;
-        this.weekLabel.setPosition(ex, 24);
-        this.dayDisplay.setPosition(ex, 42);
+        const ex = isMobile ? 10 : 20;
+        this.weekLabel.setPosition(ex, 12);
+        this.dayDisplay.setPosition(ex, 28);
 
         if (isMobile) {
-            this.weekLabel.setFontSize('10px');
+            this.weekLabel.setFontSize('16px');
             this.dayDisplay.setFontSize('24px');
         } else {
-            this.weekLabel.setFontSize('12px');
+            this.weekLabel.setFontSize('20px');
             this.dayDisplay.setFontSize('32px');
         }
 
@@ -194,13 +197,14 @@ export default class HUDScene extends BaseScene {
         this.progressFill.setVisible(!isMobile);
         this.border.setVisible(true);
 
-        const careerX = ex + 180;
-        this.careerLabel.setPosition(careerX, 28);
+        const careerX = ex + 140;
+        this.careerLabel.setPosition(careerX, 18);
+        this.careerLabel.setFontSize('20px');
 
         const progBarX = careerX;
-        const progBarY = 44;
-        const progBarW = 200;
-        const progBarH = 12;
+        const progBarY = 34;
+        const progBarW = 160;
+        const progBarH = 8;
 
         this.progBg.clear();
         this.progBg.fillStyle(0x000000, 1);
@@ -214,9 +218,9 @@ export default class HUDScene extends BaseScene {
         this.progBarH = progBarH;
 
         // Tab Button
-        const btnW = isMobile ? 60 : 200;
-        const btnRightMargin = isMobile ? 40 : 130;
-        this.btnContainer.setPosition(width - btnRightMargin, 42);
+        const btnW = isMobile ? 60 : 160;
+        const btnRightMargin = isMobile ? 40 : 100;
+        this.btnContainer.setPosition(width - btnRightMargin, 33);
 
         this.drawTabButton(this.btnBg, Theme.COLORS.MUTED, btnW);
         this.btnContainer.input.hitArea.setTo(-btnW / 2, -18, btnW, 36);
@@ -228,14 +232,14 @@ export default class HUDScene extends BaseScene {
             btnIcon.setPosition(0, 0);
             btnText.setVisible(false);
         } else {
-            btnIcon.setPosition(-80, 0);
+            btnIcon.setPosition(-55, 0);
             btnText.setVisible(true);
-            btnText.setPosition(10, 0);
+            btnText.setPosition(15, 0);
         }
 
-        // Stats
-        const centerStart = isMobile ? (ex + 60) : (progBarX + progBarW + 40);
-        const centerEnd = width - (btnRightMargin + btnW / 2 + (isMobile ? 10 : 40));
+        // Stats — stacked layout: label → value → bar
+        const centerStart = isMobile ? (ex + 60) : (progBarX + progBarW + 30);
+        const centerEnd = width - (btnRightMargin + btnW / 2 + (isMobile ? 10 : 30));
         const availableW = Math.max(0, centerEnd - centerStart);
 
         const count = 4;
@@ -245,40 +249,36 @@ export default class HUDScene extends BaseScene {
         keys.forEach((key, i) => {
             const display = this.statDisplays[key];
             const centerX = centerStart + (slotW * i) + (slotW / 2);
-            const y = 42;
 
-            const maxBarW = isMobile ? 30 : 80;
-            const barW = Math.min(maxBarW, Math.max(10, slotW - (isMobile ? 2 : 20)));
+            const maxBarW = isMobile ? 30 : 60;
+            const barW = Math.min(maxBarW, Math.max(10, slotW - 10));
             const barLeft = centerX - barW / 2;
-            const barY = y + 8;
 
             if (isMobile) {
+                // Mobile: icon + value side by side, bar below
                 display.labelText.setVisible(false);
                 display.iconText.setVisible(true);
-                display.iconText.setPosition(barLeft, y - 10);
-                display.iconText.setOrigin(0, 0.5);
-                display.iconText.setFontSize('12px');
-                display.valueText.setPosition(barLeft + barW, y - 10);
-                display.valueText.setFontSize('12px');
+                display.iconText.setPosition(centerX - 14, 28).setOrigin(0.5).setFontSize('16px');
+                display.valueText.setPosition(centerX + 12, 22).setOrigin(0.5, 0).setFontSize('20px');
             } else {
-                display.labelText.setVisible(true);
+                // Desktop: label centered on top, value below, bar below that
                 display.iconText.setVisible(false);
-                display.labelText.setPosition(barLeft, y - 12);
-                display.labelText.setFontSize('8px');
-                display.valueText.setPosition(barLeft + barW, y - 12);
-                display.valueText.setFontSize('20px');
+                display.labelText.setVisible(true);
+                display.labelText.setPosition(centerX, 10).setOrigin(0.5, 0).setFontSize('18px');
+                display.valueText.setPosition(centerX, 28).setOrigin(0.5, 0).setFontSize('24px');
             }
 
+            const barY = isMobile ? 48 : 54;
             display.barBg.clear();
             display.barBg.fillStyle(0x000000, 1);
-            display.barBg.fillRect(barLeft, barY, barW, 8);
-            display.barBg.lineStyle(2, 0x333333);
-            display.barBg.strokeRect(barLeft, barY, barW, 8);
+            display.barBg.fillRect(barLeft, barY, barW, 6);
+            display.barBg.lineStyle(1, 0x333333);
+            display.barBg.strokeRect(barLeft, barY, barW, 6);
 
             display.barX = barLeft;
             display.barY = barY;
             display.barW = barW;
-            display.barH = 8;
+            display.barH = 6;
         });
 
         this.updateHUD();
@@ -295,7 +295,7 @@ export default class HUDScene extends BaseScene {
             const fillW = this.progBarW * Math.min(1, prog);
             this.progressFill.clear();
             this.progressFill.fillStyle(Theme.COLORS.NEON_CYAN, 1);
-            this.progressFill.fillRect(this.progBarX, this.progBarY, fillW, 12);
+            this.progressFill.fillRect(this.progBarX, this.progBarY, fillW, this.progBarH);
         }
 
         for (const [key, display] of Object.entries(this.statDisplays)) {

@@ -16,7 +16,8 @@
   --danger: #ff2a2a;
   --muted: #555577;
   --white: #ffffff;
-  --font-header: 'Press Start 2P', monospace;
+  --font-display: 'Press Start 2P', monospace;
+  --font-header: 'Inter', sans-serif;
   --font-body: 'VT323', monospace;
 }
 
@@ -58,26 +59,29 @@
 
 /* ===== Typography ===== */
 .text-header-lg {
-  font-family: var(--font-header);
+  font-family: var(--font-display);
   font-size: 32px;
   color: var(--white);
 }
 
 .text-header-md {
   font-family: var(--font-header);
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--white);
 }
 
 .text-header-sm {
   font-family: var(--font-header);
   font-size: 14px;
+  font-weight: 600;
   color: var(--neon-cyan);
 }
 
 .text-header-xs {
   font-family: var(--font-header);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .text-body-lg {
@@ -111,10 +115,11 @@
 /* ===== Section Headers ===== */
 .section-header {
   font-family: var(--font-header);
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--neon-pink);
   margin-bottom: 6px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .section-line {
@@ -146,8 +151,8 @@
 }
 
 .instructions-panel .panel-title {
-  font-family: var(--font-header);
-  font-size: 20px;
+  font-family: var(--font-display);
+  font-size: 18px;
   color: var(--neon-cyan);
   text-align: center;
   margin-bottom: 4px;
@@ -159,7 +164,8 @@
 
 .instructions-panel .close-hint {
   font-family: var(--font-header);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--muted);
   text-align: center;
   margin-top: 16px;
@@ -179,8 +185,8 @@
 }
 
 .resume-panel .resume-name {
-  font-family: var(--font-header);
-  font-size: 28px;
+  font-family: var(--font-display);
+  font-size: 24px;
   color: var(--neon-cyan);
   text-align: center;
   text-transform: uppercase;
@@ -197,7 +203,8 @@
 
 .resume-panel .resume-section-title {
   font-family: var(--font-header);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--neon-yellow);
   margin-top: 16px;
   margin-bottom: 6px;
@@ -222,7 +229,8 @@
 
 .resume-panel .close-btn {
   font-family: var(--font-header);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--white);
   background: #333333;
   border: 2px solid var(--white);
@@ -256,13 +264,15 @@
 
 .rel-panel .rel-header-title {
   font-family: var(--font-header);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--neon-cyan);
 }
 
 .rel-panel .rel-header-badge {
   font-family: var(--font-header);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--danger);
 }
 
@@ -335,7 +345,8 @@
 
 .rel-panel .rel-name {
   font-family: var(--font-header);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--white);
   text-transform: uppercase;
 }
@@ -384,7 +395,8 @@
 
 .rel-panel .ghosting-badge {
   font-family: var(--font-header);
-  font-size: 8px;
+  font-size: 11px;
+  font-weight: 700;
   color: var(--danger);
   background: #220000;
   padding: 2px 6px;
@@ -394,7 +406,8 @@
 
 .rel-panel .rel-close-hint {
   font-family: var(--font-header);
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 600;
   color: #5a5a7a;
   text-align: center;
   padding: 12px;
@@ -419,7 +432,8 @@
 
 .ta-header .ta-week {
   font-family: var(--font-header);
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--neon-cyan);
 }
 
@@ -431,7 +445,8 @@
 
 .ta-header .ta-title {
   font-family: var(--font-header);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--neon-yellow);
   margin-top: 4px;
 }
@@ -453,7 +468,8 @@
 
 .ta-slot-label {
   font-family: var(--font-header);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--muted);
   margin-bottom: 4px;
 }
@@ -492,7 +508,8 @@
 /* ===== Dialogue DOM Elements ===== */
 .dlg-speaker {
   font-family: var(--font-header);
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--neon-cyan);
   text-shadow: 2px 2px 0 #000;
   pointer-events: none;
@@ -531,14 +548,15 @@
 
 .dlg-choice-btn {
   font-family: var(--font-body);
-  font-size: 24px;
+  font-size: 26px;
   color: var(--white);
   background: rgba(0, 0, 0, 0.95);
   border: 2px solid var(--corp-blue);
   border-radius: 8px;
-  padding: 12px 24px;
-  width: 560px;
-  max-width: 90vw;
+  padding: 14px 24px;
+  width: 100%;
+  max-width: 560px;
+  box-sizing: border-box;
   text-align: center;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
@@ -572,7 +590,11 @@
   gap: 16px;
   padding: 20px 30px;
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   scrollbar-width: thin;
   scrollbar-color: var(--muted) var(--bg-dark);
 }
@@ -598,12 +620,12 @@
 }
 
 .narr-location {
-  font-family: var(--font-header);
-  font-size: 12px;
-  color: var(--neon-cyan);
-  letter-spacing: 2px;
+  font-family: var(--font-body);
+  font-size: 28px;
+  color: var(--neon-yellow);
+  letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .narr-setting-desc {
@@ -611,15 +633,15 @@
   font-size: 22px;
   color: #8888aa;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 /* Description / Narration */
 .narr-description {
   font-family: var(--font-body);
-  font-size: 24px;
+  font-size: 26px;
   color: #ccccdd;
-  line-height: 1.5;
+  line-height: 1.4;
   padding: 4px 0;
 }
 
@@ -633,21 +655,22 @@
 .narr-dialogue {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 14px;
   padding: 12px 16px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
   border-left: 3px solid var(--corp-blue);
+  min-width: 0;
 }
 
 .narr-portrait {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 24px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   flex-shrink: 0;
   background: rgba(77, 77, 255, 0.15);
@@ -656,29 +679,32 @@
 
 .narr-dialogue-content {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
 .narr-speaker {
-  font-family: var(--font-header);
-  font-size: 11px;
+  font-family: var(--font-body);
+  font-size: 22px;
   color: var(--neon-cyan);
   letter-spacing: 1px;
 }
 
 .narr-dialogue-text {
   font-family: var(--font-body);
-  font-size: 24px;
+  font-size: 26px;
   color: var(--white);
-  line-height: 1.4;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Internal Monologue */
 .narr-monologue {
   font-family: var(--font-body);
-  font-size: 22px;
+  font-size: 24px;
   color: #a0a0c0;
   font-style: italic;
   text-align: center;
@@ -748,9 +774,9 @@
   }
 
   .dlg-choice-btn {
-    font-size: 20px;
+    font-size: 22px;
     padding: 10px 16px;
-    width: 90%;
+    width: 100%;
   }
 
   .narrative-container {
@@ -758,26 +784,34 @@
     gap: 12px;
   }
 
-  .narr-setting-desc {
-    font-size: 18px;
-  }
-
-  .narr-description {
-    font-size: 20px;
-  }
-
-  .narr-dialogue-text {
-    font-size: 20px;
-  }
-
-  .narr-portrait {
-    width: 44px;
-    height: 44px;
+  .narr-location {
     font-size: 22px;
   }
 
-  .narr-monologue {
+  .narr-setting-desc {
+    font-size: 20px;
+  }
+
+  .narr-description {
+    font-size: 22px;
+  }
+
+  .narr-dialogue-text {
+    font-size: 22px;
+  }
+
+  .narr-speaker {
     font-size: 18px;
+  }
+
+  .narr-portrait {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .narr-monologue {
+    font-size: 20px;
     padding: 12px 16px;
   }
 }

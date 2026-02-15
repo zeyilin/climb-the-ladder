@@ -66,13 +66,13 @@ export default class MirrorMomentScene extends BaseScene {
 
         // Main text — slow reveal
         const mainText = this.add.text(width / 2, height / 2 + 10, moment.text, {
-            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#6a6a6a',
+            fontFamily: '"VT323", monospace', fontSize: '16px', color: '#6a6a6a',
             align: 'center', lineSpacing: 8,
         }).setOrigin(0.5).setAlpha(0);
 
         // Subtext — even slower
         const subText = this.add.text(width / 2, height / 2 + 80, moment.subtext, {
-            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#3a3a3a',
+            fontFamily: '"VT323", monospace', fontSize: '16px', color: '#3a3a3a',
             fontStyle: 'italic',
         }).setOrigin(0.5).setAlpha(0);
 
@@ -105,7 +105,7 @@ export default class MirrorMomentScene extends BaseScene {
             const callback = this.registry.get('mirrorMomentCallback');
             if (callback) {
                 this.registry.set('mirrorMomentCallback', null);
-                callback();
+                setTimeout(() => callback(), 16);
             }
         });
     }

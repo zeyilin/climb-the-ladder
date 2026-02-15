@@ -78,6 +78,7 @@ export default class GameFlowController {
      */
     processNextStep() {
         const step = this.narrativeEngine.getNextStep();
+        console.log('[GFC] processNextStep:', step ? `${step.type} (${step.id || step.title || ''})` : 'null (act complete)');
 
         if (!step) {
             // Act is complete

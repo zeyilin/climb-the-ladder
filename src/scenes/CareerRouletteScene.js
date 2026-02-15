@@ -180,7 +180,7 @@ export default class CareerRouletteScene extends BaseScene {
         // "Congratulations" text
         this.time.delayedCall(2000, () => {
             this.add.text(width / 2, height / 2 + 110, 'Congratulations! The economy has decided for you.', {
-                fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ffd93d',
+                fontFamily: '"Inter", sans-serif', fontSize: '12px', color: '#ffd93d',
             }).setOrigin(0.5);
         });
 
@@ -202,7 +202,7 @@ export default class CareerRouletteScene extends BaseScene {
         // Continue button
         this.time.delayedCall(4000, () => {
             const btn = this.add.text(width / 2, height - 30, '[ Accept Your Fate ]', {
-                fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#6c63ff',
+                fontFamily: '"Inter", sans-serif', fontSize: '12px', color: '#6c63ff',
             }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
             btn.on('pointerover', () => btn.setColor('#9a93ff'));

@@ -148,7 +148,7 @@ export default class ScrapbookScene extends BaseScene {
         this.pageGroup.push(emoji);
 
         const title = this.add.text(width / 2, height / 2 - 75, page.title, {
-            fontFamily: '"Press Start 2P"', fontSize: '8px',
+            fontFamily: '"Inter", sans-serif', fontSize: '12px',
             color: page.present ? '#d4a853' : '#4a3a2a',
         }).setOrigin(0.5);
         this.pageGroup.push(title);
@@ -187,7 +187,7 @@ export default class ScrapbookScene extends BaseScene {
         // Navigation hints
         const nav = this.add.text(width / 2, height - 30,
             this.currentPage < this.pages.length - 1 ? '← →  or tap to flip pages' : '[ Press ENTER or tap to close the book ]', {
-            fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#3a2a1a',
+            fontFamily: '"Inter", sans-serif', fontSize: '11px', color: '#3a2a1a',
         }).setOrigin(0.5);
         this.pageGroup.push(nav);
 

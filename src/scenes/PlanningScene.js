@@ -242,10 +242,10 @@ export default class PlanningScene extends BaseScene {
 
         this.scene.stop('PlanningScene');
 
-        // Signal the flow controller to process day moments
+        // Defer to next frame so Phaser fully processes the scene stop
         const flowController = this.registry.get('flowController');
         if (flowController) {
-            flowController();
+            setTimeout(() => flowController(), 16);
         }
     }
 

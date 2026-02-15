@@ -20,8 +20,8 @@ export default class BootScene extends Phaser.Scene {
         const fill = this.add.rectangle(barX + 2, barY, 0, barH, 0x6c63ff).setOrigin(0, 0.5);
 
         const loadText = this.add.text(width / 2, barY - 30, 'Loading...', {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '10px',
+            fontFamily: '"Inter", sans-serif',
+            fontSize: '12px',
             color: '#8888aa',
         }).setOrigin(0.5);
 

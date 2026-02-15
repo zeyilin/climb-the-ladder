@@ -1,0 +1,562 @@
+{
+    "moments": [
+        {
+            "id": "act2_day1_slot1",
+            "setting": {
+                "location": "Dorm Parking Lot",
+                "description": "Move-in day. August heat. Ba's sedan is packed so tight the rearview mirror is useless.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ba carries the heaviest box without saying a word. It's the one with your books. Ma carries the bedding — the comforter she picked out at three different stores before deciding." },
+                { "type": "description", "text": "Lily trails behind, filming everything on her phone. 'For the family WeChat,' she says. She's trying not to cry." },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "You have enough rice? I packed the rice cooker. And the vitamins. You take the vitamins every day, okay?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Ma, I'll be fine. Help me set up the room?\"",
+                            "effects": { "ma_connection": 5, "ba_connection": 3, "lily_connection": 3 },
+                            "internal_monologue": "(Ma arranges your desk three times. Ba quietly installs a shelf he brought from home. Lily puts her drawing — the one of you in the graduation cap — on your wall with tape. Nobody talks about leaving.)"
+                        },
+                        {
+                            "text": "\"You guys should head out before traffic gets bad.\"",
+                            "effects": { "ma_connection": -5, "ba_connection": -2, "independence": 3 },
+                            "internal_monologue": "(You see it hit Ma's face before she can hide it. Ba picks up his car keys. 'Yes. Traffic.' In the parking lot, Ma hugs you so long that Lily has to pull her away. You watch the sedan until it turns the corner. The room is very quiet.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day1_slot2",
+            "setting": {
+                "location": "Dorm Room",
+                "description": "First night. Your roommate's side is already decorated with concert posters and photos from summer in Europe.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Your side has the rice cooker, a family photo, and Lily's drawing. The contrast is loud." },
+                { "type": "description", "text": "Your phone lights up. Ma has already called twice. A voicemail: 'Alex, just checking you are okay. Did you eat? Call Ma back.'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Call Ma back. Talk until she runs out of worries.",
+                            "effects": { "ma_connection": 5, "independence": -2 },
+                            "internal_monologue": "(Forty-five minutes. She asks about the mattress, the dining hall, whether you locked the door. Ba gets on the phone for thirty seconds: 'Study hard. Eat well.' Click. You fall asleep to the echo of home.)"
+                        },
+                        {
+                            "text": "Text: \"All good Ma. Tired. Talk tomorrow.\"",
+                            "effects": { "ma_connection": -3, "independence": 3 },
+                            "internal_monologue": "(You stare at the ceiling. Your roommate is already asleep. Tomorrow is orientation and you haven't read any of the materials. Ma texts back a single heart emoji. Then another. Then: 'Eat breakfast.' You put the phone face down.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day1_slot3",
+            "setting": {
+                "location": "Orientation Hall",
+                "description": "200 freshmen in matching lanyards. The energy is aggressive friendliness.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Icebreakers. 'Tell us your name, where you're from, and a fun fact.' People say things like 'I sailed across the Atlantic' and 'My fun fact is I've been to 30 countries.'" },
+                { "type": "description", "text": "The girl next to you is already taking notes on the welcome packet. She looks up and catches your eye. Her name tag says PRIYA." },
+                { "type": "dialogue", "speaker": "Priya", "speakerId": "priya", "text": "Pre-med or CS? You have that look." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Laugh. \"Is it that obvious? CS. You?\"",
+                            "effects": { "priya_connection": 5, "authenticity": 2 },
+                            "internal_monologue": "(She says 'Pre-med' like it's a reflex. You recognize it because yours is the same. Two kids of immigrants, finding each other by scent.)"
+                        },
+                        {
+                            "text": "\"Still deciding.\" (You're not. But you're tired of the script.)",
+                            "effects": { "priya_connection": 2, "authenticity": 5, "independence": 2 },
+                            "internal_monologue": "(Priya nods, but you can tell she doesn't believe you. She's already mapped her four-year plan. You recognize the look. It's the same one you see in the mirror.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day1_slot4",
+            "setting": {
+                "location": "Dorm Common Room",
+                "description": "Late night. Someone brought a guitar. People are sharing stories about home.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "A guy in a vintage jacket is talking about how he took a gap year to 'find himself' in Southeast Asia. He spent more on that trip than Ba makes in six months." },
+                { "type": "dialogue", "speaker": "Jordan", "speakerId": "jordan", "text": "I'm Jordan. And honestly? I have no idea what I'm doing here. I'm thinking philosophy. Or maybe film. My parents said 'figure it out.' Must be nice to already know your path, right?" },
+                { "type": "description", "text": "Jordan is looking right at you. The question is genuine. It's also the most foreign thing anyone has said to you today." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Must be nice to have the option to figure it out.\"",
+                            "effects": { "jordan_connection": 3, "authenticity": 5 },
+                            "internal_monologue": "(Jordan blinks. The gap year kid goes quiet. You didn't mean it to come out sharp, but the truth has edges sometimes.)"
+                        },
+                        {
+                            "text": "\"Yeah, CS. I've always known.\" (You haven't.)",
+                            "effects": { "jordan_connection": -1, "authenticity": -3, "prestige": 2 },
+                            "internal_monologue": "(Jordan nods slowly. 'Lucky.' The word sits in your stomach like a stone. You think about Ba's engineering degree gathering dust. Lucky is not the word.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day2_slot1",
+            "setting": {
+                "location": "Lecture Hall",
+                "description": "Intro to Computer Science. 300 seats. The professor moves through slides like they owe him money.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Half the class already knows how to code. They learned at expensive summer camps, from parents in the industry, from tutors that cost more per hour than Ma's shift. You taught yourself from YouTube videos at 2 AM." },
+                { "type": "description", "text": "Priya is three rows ahead, hand already up. She got a 5 on the AP exam. She tells you this without you asking." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Take meticulous notes. You'll catch up through sheer effort.",
+                            "effects": { "gpa": 4, "burnout": 3, "independence": 2 },
+                            "internal_monologue": "(You write down everything, even the things you already know. Somewhere in the back of your mind, Ba's voice: 'They have a head start. You have a longer stride.' You hope he's right.)"
+                        },
+                        {
+                            "text": "Find Priya after class and suggest studying together.",
+                            "effects": { "priya_connection": 5, "gpa": 3 },
+                            "internal_monologue": "(Priya looks at you like you're a puzzle. 'Okay. But I study at the library at 6 AM.' Of course she does. You set an alarm for 5:45.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day2_slot2",
+            "setting": {
+                "location": "Campus Coffee Shop",
+                "description": "Between classes. The latte costs $6. You get the drip coffee for $2.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Jordan slides into the seat across from you. They're reading Camus. Naturally." },
+                { "type": "dialogue", "speaker": "Jordan", "speakerId": "jordan", "text": "So CS, huh? Is that what you want to do, or what you're supposed to do? Genuine question." },
+                { "type": "description", "text": "Nobody has ever asked you this. Not like this — without judgment, with actual curiosity." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Does it matter? It's a good career. My parents didn't come here so I could 'find myself.'\"",
+                            "effects": { "jordan_connection": 3, "authenticity": 3, "prestige": 2 },
+                            "internal_monologue": "(Jordan doesn't flinch. 'That's fair. But you didn't answer my question.' You stare at your $2 coffee. They're right. You didn't.)"
+                        },
+                        {
+                            "text": "\"I used to play violin. Like, really play. But that's not... realistic.\"",
+                            "effects": { "jordan_connection": 8, "authenticity": 5, "prestige": -2 },
+                            "internal_monologue": "(Jordan leans forward. 'Why not?' Two words. And suddenly you're telling them about the library before school, the melody Ba used to hum, how your fingers still reach for strings that aren't there.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day2_slot3",
+            "setting": {
+                "location": "Phone Call Corner",
+                "description": "The stairwell where everyone goes to call home. The acoustics make every conversation sound like a confession.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Day 9 of calling Ma every day. She asks the same questions: Did you eat? Are you sleeping? Are you studying?" },
+                { "type": "dialogue", "speaker": "Ma", "speakerId": "ma", "text": "Lily misses you. She put your photo on her desk. Ba doesn't say, but he watches your school website every day. Checking for... I don't know what. News about you." },
+                { "type": "description", "text": "Your roommate walks by with friends, heading to a party. They wave at you to come." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Tell Ba I'm doing well, Ma. I'll call again tomorrow.\"",
+                            "effects": { "ma_connection": 5, "ba_connection": 3, "independence": -1 },
+                            "internal_monologue": "(You stay in the stairwell for another twenty minutes. Ma tells you about Mrs. Wong's daughter who dropped out. A cautionary tale. A prayer. 'You won't do that,' she says. It's not a question.)"
+                        },
+                        {
+                            "text": "\"Ma, I need to go. I'll call this weekend, okay?\"",
+                            "effects": { "ma_connection": -3, "independence": 5, "authenticity": 2 },
+                            "internal_monologue": "(Every day becomes every other day. Every other day becomes 'this weekend.' 'This weekend' becomes 'Sorry Ma, I was busy.' The guilt compounds like interest.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day2_slot4",
+            "setting": {
+                "location": "Study Lounge",
+                "description": "11 PM. The vending machine hums. Priya is still here. She's always still here.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Priya has color-coded tabs on her organic chemistry textbook. She's cross-referencing with three different study guides. The dark circles under her eyes match yours." },
+                { "type": "dialogue", "speaker": "Priya", "speakerId": "priya", "text": "My parents called. My cousin got into Stanford Med. So now I need to get into Stanford Med. Or better." },
+                { "type": "description", "text": "She laughs. But her hands are shaking." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"We'll get there. We have to.\"",
+                            "effects": { "priya_connection": 3, "gpa": 2, "burnout": 3 },
+                            "internal_monologue": "(You both go back to studying. The silence is solidarity. Or maybe it's just two people drowning at the same speed and calling it swimming.)"
+                        },
+                        {
+                            "text": "\"Priya. When was the last time you ate?\"",
+                            "effects": { "priya_connection": 8, "burnout": -2 },
+                            "internal_monologue": "(She pauses. Thinks. Can't remember. You walk to the vending machine and buy two bags of chips with quarters you were saving for laundry. You eat them together without talking about GPAs. For ten minutes, you're just two people eating bad chips.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day3_slot1",
+            "setting": {
+                "location": "Career Services Networking Event",
+                "description": "Business casual. Free pizza. A room full of people who seem to have been born knowing how to shake hands.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Recruiters from tech companies with logos you recognize. Students with elevator pitches rehearsed so smooth they sound like ads. You're wearing the one blazer Ma bought you from T.J. Maxx." },
+                { "type": "description", "text": "A recruiter extends her hand. 'So, tell me about yourself.' The simplest question. The hardest question." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Deliver the pitch you practiced in the mirror. GPA. Projects. Leadership.",
+                            "effects": { "prestige": 5, "gpa": 2, "authenticity": -3 },
+                            "internal_monologue": "(The recruiter nods, takes your resume. 'Impressive.' You smile. The word feels like a door opening. You don't mention the rice cooker in your dorm room or that you taught yourself to code from free tutorials because camps cost money.)"
+                        },
+                        {
+                            "text": "Be honest. Talk about teaching yourself to code. The hunger behind it.",
+                            "effects": { "prestige": 2, "authenticity": 8, "independence": 3 },
+                            "internal_monologue": "(The recruiter pauses. 'That's... actually refreshing.' She circles something on your resume. You don't know if honesty is a strategy or a liability. But it felt better than performing.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day3_slot2",
+            "setting": {
+                "location": "Dining Hall",
+                "description": "Lunch. The table divides naturally: the grinders, the trust fund kids, and the ones who pretend to be one or the other.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "A classmate, Tyler, is talking about his dad's startup. How he spent the summer as an 'intern' at his father's company. The quotation marks are silent but deafening." },
+                { "type": "dialogue", "speaker": "Tyler", "speakerId": "tyler", "text": "What do your parents do, Alex?" },
+                { "type": "description", "text": "The table goes quiet. Not hostile-quiet. Curious-quiet. The kind that's worse." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"My dad drives a cab. My mom works in a restaurant. They're the hardest workers I know.\"",
+                            "effects": { "authenticity": 8, "prestige": -3, "ba_connection": 3, "ma_connection": 3 },
+                            "internal_monologue": "(Tyler says 'Oh, cool.' The way people say 'cool' when they don't know what else to say. Jordan, across the table, gives you a look that says: 'I see you.' That look is worth more than Tyler's approval.)"
+                        },
+                        {
+                            "text": "\"They're in food service and transportation.\" (Technically true.)",
+                            "effects": { "authenticity": -5, "prestige": 3, "ba_connection": -2 },
+                            "internal_monologue": "(Nobody questions it. The conversation moves on. But the words taste like ash. You turned Ma's cracked hands into 'food service.' You turned Ba's engineering degree — the one that doesn't count here — into 'transportation.' You hate yourself for an hour.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day3_slot3",
+            "setting": {
+                "location": "Dorm Room",
+                "description": "Dev's contact on your phone. Last text: 4 days ago. Before that: a week.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Dev texted a meme. You sent a 'lol.' That was Thursday. Now it's Monday. You used to talk every day. Now the silences are getting louder." },
+                { "type": "description", "text": "You open the chat. Type 'hey how's it going.' Delete it. Type 'miss you bro.' Delete it. Type 'you good?' and stare at it." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Call Dev. Actually call. With your voice.",
+                            "effects": { "dev_connection": 8, "burnout": -3 },
+                            "internal_monologue": "(Dev picks up on the first ring. 'Bro. Finally.' You talk for an hour. He's struggling. He didn't tell anyone. You didn't ask. You both apologize at the same time. It sounds like relief.)"
+                        },
+                        {
+                            "text": "Send 'you good?' and get back to the problem set.",
+                            "effects": { "dev_connection": -3, "gpa": 3 },
+                            "internal_monologue": "(Dev replies: 'yeah all good.' You both know it's a lie. You both let it stand. The distance between you isn't miles anymore — it's the things you don't say.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day3_slot4",
+            "setting": {
+                "location": "Library, 2 AM",
+                "description": "The 24-hour floor. The fluorescents make everyone look haunted. Because they are.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Priya is across the table. She's been here since 4 PM. Her notes are meticulous. Her eyes are red." },
+                { "type": "dialogue", "speaker": "Priya", "speakerId": "priya", "text": "If I get below a 3.9 this semester, I lose the scholarship. If I lose the scholarship, I have to go home. If I go home, I'm the cousin who failed." },
+                { "type": "description", "text": "She says it calmly. Like she's reading a weather forecast for her own destruction." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"Let's take a walk. Right now. Just around the quad.\"",
+                            "effects": { "priya_connection": 8, "burnout": -5, "gpa": -2 },
+                            "internal_monologue": "(The air is cold and the stars are out. Priya talks about wanting to paint. She hasn't told anyone that. You walk until your legs hurt and your heads are clearer. The textbooks will still be there.)"
+                        },
+                        {
+                            "text": "\"Then we keep going. What chapter are you on?\"",
+                            "effects": { "priya_connection": 2, "gpa": 4, "burnout": 5 },
+                            "internal_monologue": "(You study until the sun comes up. When you walk out of the library at 7 AM, the world looks overexposed and unreal. Priya thanks you. You're not sure what she's thanking you for. Companionship? Or co-enabling?)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day4_slot1",
+            "setting": {
+                "location": "Professor's Office Hours",
+                "description": "The door is open. The professor is eating lunch at his desk. His walls are covered in patents.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "You're here to ask about research opportunities. Other students waltz in like they own the place. You've been standing in the hallway for ten minutes, rehearsing what to say." },
+                { "type": "dialogue", "speaker": "Professor", "speakerId": "professor", "text": "Alex, right? Your midterm was strong. What brings you in?" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"I'm interested in your research. I'd like to get involved.\"",
+                            "effects": { "prestige": 5, "gpa": 3, "independence": 3 },
+                            "internal_monologue": "(He leans back. 'I appreciate directness. Send me your transcript.' You nod. Walk out. In the hallway, your hands are shaking. You just did something nobody taught you how to do. Nobody in your family has ever walked into a professor's office and asked for something.)"
+                        },
+                        {
+                            "text": "\"Just had a question about the homework.\" (You chicken out.)",
+                            "effects": { "prestige": -2, "authenticity": -3, "burnout": 2 },
+                            "internal_monologue": "(He answers the homework question in thirty seconds. You leave. In the hallway, you watch another student — Tyler's friend — walk in and casually ask about the exact same research position. He'll get it. He always does.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day4_slot2",
+            "setting": {
+                "location": "Jordan's Dorm Room",
+                "description": "Film posters. Vinyl records. A guitar. Jordan's room looks like a person lives here, not a resume.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Jordan invited you over to watch a documentary about artists who left corporate careers. You suspect this is not an accident." },
+                { "type": "dialogue", "speaker": "Jordan", "speakerId": "jordan", "text": "Can I ask you something? And you don't have to answer. But — have you ever considered that your path isn't your path? That it was assigned to you?" },
+                { "type": "description", "text": "The question lands like a glass breaking in a quiet room." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"My parents gave up everything for this path. Questioning it feels like... betrayal.\"",
+                            "effects": { "jordan_connection": 5, "authenticity": 5, "ba_connection": 2 },
+                            "internal_monologue": "(Jordan is quiet for a long time. 'That's the most honest thing anyone's said to me here.' You didn't mean to be honest. It just came out. The truth is heavy but it floats.)"
+                        },
+                        {
+                            "text": "\"It's my path. I chose it. Not everything has to be some existential crisis.\"",
+                            "effects": { "jordan_connection": -2, "prestige": 3, "authenticity": -5 },
+                            "internal_monologue": "(Jordan holds up their hands. 'Fair enough.' But walking back to your room, the question follows you. It echoes in Ba's voice: 'I drive taxi so you don't have to.' Choice and obligation. You're not sure where one ends and the other begins.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day4_slot3",
+            "setting": {
+                "location": "Phone Screen, 11:47 PM",
+                "description": "Ma's voicemail notification. You have three unheard messages. The most recent is 6 minutes long.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "You haven't called in nine days. Ma's voicemails have gotten longer as your callbacks have gotten shorter." },
+                { "type": "description", "text": "Voicemail 1: 'Alex, call Ma when you have time.' Voicemail 2: 'Alex, Ba wants to know your grade. Call us.' Voicemail 3: Six minutes. Ma talking about the weather, the neighbors, Lily's school play, the price of groceries. Then silence. Then: 'I just want to hear your voice.'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Call her right now. Even though it's almost midnight.",
+                            "effects": { "ma_connection": 8, "lily_connection": 3, "gpa": -1 },
+                            "internal_monologue": "(Ma picks up on the first ring. She wasn't sleeping. She was waiting. 'Alex! Are you okay?' She's not angry. She's never angry. That makes it worse. Lily grabs the phone: 'Alex! I got the lead in the school play!' You talk for an hour. The problem set can wait. Some debts don't show up on a transcript.)"
+                        },
+                        {
+                            "text": "Text: \"Sorry Ma, crazy week. Will call Sunday.\"",
+                            "effects": { "ma_connection": -5, "gpa": 3, "burnout": 2 },
+                            "internal_monologue": "(Sunday comes and goes. You tell yourself you'll call Monday. Monday you have a study group. Tuesday you forget. The voicemails get longer. Your replies get shorter. The distance compounds.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day4_slot4",
+            "setting": {
+                "location": "Dorm Bathroom Mirror",
+                "description": "3 AM. Everyone's asleep. You're brushing your teeth and you catch your own reflection.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "The face in the mirror has dark circles. Your cheeks are thinner. You've been eating dining hall food and skipping meals when the line is too long because the time could be spent studying." },
+                { "type": "description", "text": "Your phone has 47 unread emails. Three club commitments you joined for the resume. A research application due Friday. And somewhere in the noise, a text from Lily: 'are you coming home for thanksgiving?'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Text Lily: \"Wouldn't miss it.\" Start looking at bus tickets.",
+                            "effects": { "lily_connection": 8, "ma_connection": 5, "ba_connection": 5, "gpa": -2 },
+                            "internal_monologue": "(The bus ticket costs $87. That's three weeks of your meal budget. You buy it anyway. Some things can't be optimized.)"
+                        },
+                        {
+                            "text": "Text Lily: \"Maybe. I have a lot of work.\" (You could go. You just don't want to explain the person you're becoming.)",
+                            "effects": { "lily_connection": -5, "ma_connection": -3, "gpa": 3, "independence": 3 },
+                            "internal_monologue": "(Lily doesn't respond for two days. When she does, it's just: 'ok.' Two letters. You've never felt smaller.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day5_slot1",
+            "setting": {
+                "location": "Midterm Week - Library",
+                "description": "The library is a pressure cooker. Every table is full. The anxiety is contagious.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Priya hasn't slept in two days. You know because you haven't either. She's on her fourth coffee. Her hand is trembling as she highlights." },
+                { "type": "description", "text": "Then she stops. Puts down the highlighter. Stares at the page." },
+                { "type": "dialogue", "speaker": "Priya", "speakerId": "priya", "text": "Alex. I can't read this paragraph. I've read it fifteen times and the words won't... they won't stay. What's happening to me?" },
+                { "type": "description", "text": "Her voice cracks on the last word. Priya, who has never cracked. Who grinds harder than anyone you know. Who is the mirror you're afraid to look into." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Close her textbook. \"We're going to the counseling center. Right now.\"",
+                            "effects": { "priya_connection": 10, "burnout": -5, "authenticity": 5, "gpa": -3 },
+                            "internal_monologue": "(Priya resists. 'I can't, I don't have time.' You tell her that she sounds exactly like you. She looks at you. Really looks. 'Okay,' she says. At the counseling center, the wait is 45 minutes. You sit with her for every one of them. The midterm can wait. This can't.)"
+                        },
+                        {
+                            "text": "\"Take a break. Ten minutes. Then we push through. We're so close.\"",
+                            "effects": { "priya_connection": -2, "gpa": 4, "burnout": 5 },
+                            "internal_monologue": "(Priya nods. Wipes her eyes. Picks up the highlighter. You both keep going. You pass the midterm. But weeks later, Priya stops showing up to study sessions. You don't ask why. You're afraid the answer is a mirror.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day5_slot2",
+            "setting": {
+                "location": "Campus Quad",
+                "description": "A rare warm day. Students are on the grass. Someone's playing frisbee. It looks like a brochure.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Jordan finds you on a bench, eating a granola bar that counts as lunch. They sit down without asking." },
+                { "type": "dialogue", "speaker": "Jordan", "speakerId": "jordan", "text": "I switched my major to film. My parents are paying for school, so they weren't thrilled, but they said it's my life. Can I say something that might make you mad?" },
+                { "type": "description", "text": "You nod." },
+                { "type": "dialogue", "speaker": "Jordan", "speakerId": "jordan", "text": "I've been watching you disappear into this machine. You had this... spark, freshman week. This sharpness. Now you look like everyone else on the pre-professional track. All hustle, no pulse. That's not a judgment. It's a worry." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"You don't understand. You've never had to carry this.\"",
+                            "effects": { "jordan_connection": 3, "authenticity": 5, "burnout": -2 },
+                            "internal_monologue": "(Jordan doesn't argue. 'You're right. I don't understand. But I can see it hurting you.' The honesty is disarming. You sit with it. The frisbee sails overhead. For a moment you wish you were the kind of person who played frisbee.)"
+                        },
+                        {
+                            "text": "\"I'm fine. This is what success looks like when you can't afford to fail.\"",
+                            "effects": { "jordan_connection": -3, "prestige": 3, "burnout": 3 },
+                            "internal_monologue": "(Jordan stands up. 'Okay, Alex.' They walk away. The bench feels emptier. You finish the granola bar. It tastes like cardboard. You wonder when you started confusing survival with living.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day5_slot3",
+            "setting": {
+                "location": "Thanksgiving at Home",
+                "description": "The kitchen smells the same. Lily is taller. Ma's hair has new grey. Ba's hands have new calluses.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "Ma made everything. The table is too much food for four people, but that's the point. Abundance is how she says what she can't say in words." },
+                { "type": "dialogue", "speaker": "Lily", "speakerId": "lily", "text": "Alex, you look tired. And skinny. Have you been eating?" },
+                { "type": "description", "text": "Ba is quiet, but he's looking at you. Really looking. He sees the dark circles. The way you check your phone. The way you're here but not entirely here." },
+                { "type": "dialogue", "speaker": "Ba", "speakerId": "ba", "text": "School is going well?" },
+                { "type": "description", "text": "It's not a question about grades. It's a question about you." },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "\"It's hard, Ba. But I'm okay.\" (Let them see a little of the truth.)",
+                            "effects": { "ba_connection": 5, "ma_connection": 5, "authenticity": 5, "burnout": -3 },
+                            "internal_monologue": "(Ba nods slowly. 'Hard is okay. Hard means you are doing something.' Ma puts more food on your plate. Lily leans against your shoulder. For one evening, you are just their son, their brother. The GPA doesn't exist in this kitchen.)"
+                        },
+                        {
+                            "text": "\"3.8 GPA. Got into a research lab. Everything's on track.\"",
+                            "effects": { "prestige": 3, "ma_connection": 2, "authenticity": -5, "ba_connection": -2 },
+                            "internal_monologue": "(Ma beams. Ba nods. Lily rolls her eyes. 'I didn't ask for your resume, I asked if you were okay.' She's fourteen and she sees right through you. You change the subject. The food is incredible but you can't taste it.)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "act2_day5_slot4",
+            "setting": {
+                "location": "Your Old Bedroom",
+                "description": "The night before you go back. Your bed feels smaller. Or maybe you just feel bigger. Or maybe you're just different.",
+                "palette": "collegeBright"
+            },
+            "narrative": [
+                { "type": "description", "text": "The SAT prep books are still on the shelf. Lily's drawing is gone from the wall — she took it back when you left. Your violin case is in the closet. You open it. The strings are dusty." },
+                { "type": "description", "text": "You pluck one string. The note hangs in the dark room. From downstairs, you hear Ma doing dishes. Ba watching the news. The ordinary sounds of the life they built so you could leave it." },
+                { "type": "description", "text": "Your phone buzzes. An email from school: 'Summer internship applications now open. Deadline: December 15.'" },
+                {
+                    "type": "choices",
+                    "options": [
+                        {
+                            "text": "Close the violin case. Open the laptop. Start the application.",
+                            "effects": { "gpa": 3, "prestige": 5, "authenticity": -3, "burnout": 3 },
+                            "internal_monologue": "(You type until 2 AM. The house sleeps around you. In the morning, Ma will drive you to the bus station. She'll pack food for the ride — enough for three people. You'll eat it alone on the bus, and every bite will taste like home getting further away.)"
+                        },
+                        {
+                            "text": "Pick up the violin. Play Ba's melody. Just once.",
+                            "effects": { "authenticity": 8, "ba_connection": 5, "burnout": -5 },
+                            "internal_monologue": "(Your fingers remember. The melody fills your childhood room. From downstairs, the TV goes quiet. Ba is listening. You play it through twice. When you come downstairs, Ba is sitting in the dark. He doesn't say anything. He doesn't need to. His eyes are wet. 'That song,' he says. 'Your grandmother used to sing that.' You didn't know. There's so much you don't know.)"
+                        }
+                    ]
+                },
+                { "type": "monologue", "text": "Tomorrow you go back. Back to the grind, the networking, the performance. But tonight, for a few hours, you are still the kid who ate congee at this table, who played violin in the library, who watched Ba build bridges on TV. That kid is still in there. You're just not sure how much longer you can keep them alive." }
+            ]
+        }
+    ]
+}

@@ -36,26 +36,26 @@ export default class BootScene extends Phaser.Scene {
         });
 
         // Character data
-        this.load.json('characters', '/src/data/characters.json');
-        this.load.json('act2_characters', '/src/data/act2_characters.json');
-        this.load.json('act3_characters', '/src/data/act3_characters.json');
+        this.load.json('characters', 'data/characters.json');
+        this.load.json('act2_characters', 'data/act2_characters.json');
+        this.load.json('act3_characters', 'data/act3_characters.json');
 
         // Palette data
-        this.load.json('palettes', '/src/data/narrative/palettes.json');
+        this.load.json('palettes', 'data/narrative/palettes.json');
 
         // Act manifests
-        this.load.json('act1_manifest', '/src/data/narrative/act1_manifest.json');
-        this.load.json('act2_manifest', '/src/data/narrative/act2_manifest.json');
-        this.load.json('act3_manifest', '/src/data/narrative/act3_manifest.json');
-        this.load.json('act4_manifest', '/src/data/narrative/act4_manifest.json');
-        this.load.json('act5_manifest', '/src/data/narrative/act5_manifest.json');
+        this.load.json('act1_manifest', 'data/narrative/act1_manifest.json');
+        this.load.json('act2_manifest', 'data/narrative/act2_manifest.json');
+        this.load.json('act3_manifest', 'data/narrative/act3_manifest.json');
+        this.load.json('act4_manifest', 'data/narrative/act4_manifest.json');
+        this.load.json('act5_manifest', 'data/narrative/act5_manifest.json');
 
         // Act moments (narrative content)
-        this.load.json('act1_moments', '/src/data/narrative/act1_moments.json');
-        this.load.json('act2_moments', '/src/data/narrative/act2_moments.json');
-        this.load.json('act3_moments', '/src/data/narrative/act3_moments.json');
-        this.load.json('act4_moments', '/src/data/narrative/act4_moments.json');
-        this.load.json('act5_moments', '/src/data/narrative/act5_moments.json');
+        this.load.json('act1_moments', 'data/narrative/act1_moments.json');
+        this.load.json('act2_moments', 'data/narrative/act2_moments.json');
+        this.load.json('act3_moments', 'data/narrative/act3_moments.json');
+        this.load.json('act4_moments', 'data/narrative/act4_moments.json');
+        this.load.json('act5_moments', 'data/narrative/act5_moments.json');
     }
 
     create() {

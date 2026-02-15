@@ -1,0 +1,40 @@
+{
+    "characters": [
+        {
+            "id": "ma",
+            "name": "Ma",
+            "connection": 80,
+            "role": "Works double shifts. Leaves food outside your door. Doesn't complain.",
+            "color": "#FF9AA2",
+            "emoji": "👩",
+            "act": 1
+        },
+        {
+            "id": "ba",
+            "name": "Ba",
+            "connection": 65,
+            "role": "Was an engineer back home. Drives a taxi here. Shows love through acts.",
+            "color": "#6B93D6",
+            "emoji": "👨",
+            "act": 1
+        },
+        {
+            "id": "lily",
+            "name": "Lily",
+            "connection": 75,
+            "role": "Your younger sister. Watches everything you do.",
+            "color": "#98D8AA",
+            "emoji": "🧒",
+            "act": 1
+        },
+        {
+            "id": "dev",
+            "name": "Dev",
+            "connection": 85,
+            "role": "Best friend since 3rd grade. Also a child of immigrants.",
+            "color": "#FFD93D",
+            "emoji": "🧑‍🤝‍🧑",
+            "act": 1
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "characters": [
+        {
+            "id": "derek",
+            "name": "Derek",
+            "connection": 30,
+            "role": "Born into connections you had to build from scratch. Always promoted first.",
+            "color": "#5a6a7a",
+            "emoji": "👔",
+            "act": 3
+        },
+        {
+            "id": "jamie",
+            "name": "Jamie",
+            "connection": 40,
+            "role": "Work friend. Bonds over shared exhaustion in the break room.",
+            "color": "#7a8a6a",
+            "emoji": "☕",
+            "act": 3
+        },
+        {
+            "id": "patricia",
+            "name": "Patricia",
+            "connection": 50,
+            "role": "Your boss. Emails at 11pm 'just thinking out loud.'",
+            "color": "#8a6a7a",
+            "emoji": "📧",
+            "act": 3
+        }
+    ]
+}

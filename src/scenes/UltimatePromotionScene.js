@@ -53,7 +53,7 @@ export default class UltimatePromotionScene extends Phaser.Scene {
         this.tweens.add({ targets: title, alpha: 1, delay: 600, duration: 800 });
 
         const org = this.add.text(width / 2, 155, promo.org, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#8a7a5a',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#8a7a5a',
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: org, alpha: 1, delay: 1000, duration: 600 });
 
@@ -70,17 +70,17 @@ export default class UltimatePromotionScene extends Phaser.Scene {
         const { width, height } = this.cameras.main;
 
         const toast = this.add.text(width / 2, 240, '🥂 A toast is given about your "incredible journey."', {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8a8', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8a8', fontStyle: 'italic',
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: toast, alpha: 1, duration: 800 });
 
         const crowd = this.add.text(width / 2, 270, 'You look at the crowd. You don\'t recognize most of them.', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a6a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a6a',
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: crowd, alpha: 1, delay: 1500, duration: 800 });
 
         const openbar = this.add.text(width / 2, 295, 'One person is definitely just here for the open bar.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#4a4a4a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#4a4a4a', fontStyle: 'italic',
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: openbar, alpha: 1, delay: 3000, duration: 600 });
 
@@ -101,14 +101,14 @@ export default class UltimatePromotionScene extends Phaser.Scene {
             : `${active.length} contacts left who'd answer if you called.`;
 
         const status = this.add.text(width / 2, 340, statusLine, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a6a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a6a',
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: status, alpha: 1, duration: 800 });
 
         const doorDash = this.registry.get('doorDashOrders') || 0;
         if (doorDash > 3) {
             const miguel = this.add.text(width / 2, 365, `Your most frequent contact: Miguel (DoorDash). ${doorDash} orders.`, {
-                fontFamily: 'Inter', fontSize: '9px', color: '#4a4a3a', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '9px', color: '#4a4a3a', fontStyle: 'italic',
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: miguel, alpha: 1, delay: 1000, duration: 600 });
         }
@@ -127,7 +127,7 @@ export default class UltimatePromotionScene extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#6b93d6',
         }).setAlpha(0);
         const jordanMsg = this.add.text(width / 2, height - 132, '"Hey, congrats I think? Mom told me.\nAnyway, are you coming to Dad\'s birthday?\nIt\'s been three years."', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#a8a8c8',
             align: 'left', lineSpacing: 4,
         }).setOrigin(0.5).setAlpha(0);
 

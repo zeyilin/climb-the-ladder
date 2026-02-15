@@ -125,7 +125,7 @@ export default class CityScene extends Phaser.Scene {
         npc.npcName = name;
 
         const label = this.add.text(x, y - 22, name, {
-            fontFamily: 'Inter', fontSize: '9px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '9px', color: '#6a6a8a',
         }).setOrigin(0.5);
 
         // Fade based on relationship
@@ -149,8 +149,9 @@ export default class CityScene extends Phaser.Scene {
         if (data) {
             this.scene.pause();
             this.scene.launch('DialogueScene', {
-                dialogueData: data,
-                parentScene: 'CityScene',
+                dialogueKey: dialogueKey,
+                characterId: id,
+                parentSceneKey: 'CityScene',
             });
         } else {
             // Fallback: quick interaction
@@ -187,7 +188,7 @@ export default class CityScene extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ffd93d',
         }).setDepth(11);
         const lineText = this.add.text(width / 2, height - 70, text, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#c8c8e8',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#c8c8e8',
             wordWrap: { width: 560 },
         }).setOrigin(0.5).setDepth(11);
 
@@ -212,7 +213,7 @@ export default class CityScene extends Phaser.Scene {
         const line = lines[Math.floor(Math.random() * lines.length)];
 
         this.add.text(width / 2, 30, line, {
-            fontFamily: 'Inter', fontSize: '9px', color: '#4a4a6a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '9px', color: '#4a4a6a', fontStyle: 'italic',
         }).setOrigin(0.5).setDepth(5);
     }
 
@@ -334,7 +335,7 @@ export default class CityScene extends Phaser.Scene {
 
         const overlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.9).setDepth(20);
         const text = this.add.text(width / 2, height / 2, msg, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#a8a8c8',
             align: 'center', lineSpacing: 6, wordWrap: { width: 500 },
         }).setOrigin(0.5).setDepth(21);
 

@@ -25,7 +25,7 @@ export default class ScrapbookScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 50, 'Every moment you showed up. Every moment you didn\'t.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a5a3a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a5a3a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Build pages from game history
@@ -144,7 +144,7 @@ export default class ScrapbookScene extends Phaser.Scene {
 
         if (page.present && page.text) {
             const text = this.add.text(width / 2, height / 2 + 10, page.text, {
-                fontFamily: 'Inter', fontSize: '12px', color: '#c8c8a8',
+                fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8a8',
                 align: 'center', lineSpacing: 8, wordWrap: { width: 420 },
             }).setOrigin(0.5);
             this.pageGroup.push(text);
@@ -160,7 +160,7 @@ export default class ScrapbookScene extends Phaser.Scene {
             this.pageGroup.push(x);
 
             const caption = this.add.text(width / 2, height / 2 + 80, page.blankCaption || 'You weren\'t there.', {
-                fontFamily: 'Inter', fontSize: '11px', color: '#6a5a3a', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a5a3a', fontStyle: 'italic',
                 align: 'center', lineSpacing: 6,
             }).setOrigin(0.5);
             this.pageGroup.push(caption);
@@ -169,7 +169,7 @@ export default class ScrapbookScene extends Phaser.Scene {
         // Page indicator
         const pageNum = this.add.text(width / 2, height - 50,
             `${this.currentPage + 1} / ${this.pages.length}`, {
-            fontFamily: 'Inter', fontSize: '10px', color: '#4a3a2a',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#4a3a2a',
         }).setOrigin(0.5);
         this.pageGroup.push(pageNum);
 

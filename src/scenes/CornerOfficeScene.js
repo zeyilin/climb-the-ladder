@@ -97,7 +97,7 @@ export default class CornerOfficeScene extends Phaser.Scene {
     createMentor(x, y) {
         const npc = this.physics.add.sprite(x, y, 'npc_mentor').setImmovable(true);
         this.add.text(x, y - 22, 'The Mentor', {
-            fontFamily: 'Inter', fontSize: '9px', color: '#8a7a5a',
+            fontFamily: '"VT323", monospace', fontSize: '9px', color: '#8a7a5a',
         }).setOrigin(0.5);
 
         this.physics.add.overlap(this.player, npc, () => {
@@ -119,7 +119,7 @@ export default class CornerOfficeScene extends Phaser.Scene {
         } else if (avgConnection < 50) {
             line = '"You know what my biggest regret is? I\'ll tell you after this earnings call. ...I forgot what I was saying."';
         } else {
-            line = '"You\re doing better than I did. I can tell because you still have people who call you by your first name."';
+            line = '"You\'re doing better than I did. I can tell because you still have people who call you by your first name."';
         }
 
         const bg = this.add.rectangle(width / 2, height - 70, 620, 80, 0x0a0804, 0.95)
@@ -128,7 +128,7 @@ export default class CornerOfficeScene extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ffd93d',
         }).setDepth(11);
         const text = this.add.text(width / 2, height - 70, line, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#c8c8a8',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#c8c8a8',
             fontStyle: 'italic', wordWrap: { width: 580 },
         }).setOrigin(0.5).setDepth(11);
 
@@ -170,7 +170,7 @@ export default class CornerOfficeScene extends Phaser.Scene {
         ];
         const line = lines[Math.floor(Math.random() * lines.length)];
         this.add.text(width / 2, 30, line, {
-            fontFamily: 'Inter', fontSize: '9px', color: '#5a4a3a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '9px', color: '#5a4a3a', fontStyle: 'italic',
         }).setOrigin(0.5).setDepth(5);
     }
 

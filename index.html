@@ -9,7 +9,8 @@
     content="A darkly comedic 2D pixel-art life-sim about ambition, prestige, and what truly matters." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Inter:wght@400;600;700&display=swap"
     rel="stylesheet" />
   <style>
     * {
@@ -23,25 +24,30 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
       overflow: hidden;
-      font-family: 'Inter', sans-serif;
+      font-family: 'VT323', monospace;
     }
 
     #game-container {
-      border: 2px solid #1a1a2e;
-      border-radius: 4px;
-      box-shadow: 0 0 40px rgba(100, 80, 200, 0.15);
-      max-width: 100vw;
-      max-height: 100vh;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     canvas {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: contain;
+      display: block;
+      /* CSS constraints removed to allow Phaser Scale.FIT to handle aspect ratio without skewing */
     }
   </style>
+  <link rel="stylesheet" href="/src/ui/styles.css" />
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 
 <body>

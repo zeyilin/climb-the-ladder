@@ -95,7 +95,7 @@ export default class HighSchoolScene extends Phaser.Scene {
 
         // --- INSTRUCTIONS ---
         this.instructionText = this.add.text(width / 2, 20, 'WASD to move • E to interact • TAB for relationships', {
-            fontFamily: 'Inter',
+            fontFamily: '"VT323", monospace',
             fontSize: '10px',
             color: '#4a4a6a',
         }).setOrigin(0.5).setDepth(20);
@@ -106,6 +106,29 @@ export default class HighSchoolScene extends Phaser.Scene {
             delay: 5000,
             duration: 1000,
         });
+
+        // --- Resize Handling ---
+        this.scale.on('resize', this.handleResize, this);
+        this.handleResize({ width: this.scale.width, height: this.scale.height });
+    }
+
+    handleResize(gameSize) {
+        if (!gameSize || gameSize.width <= 0 || gameSize.height <= 0) return;
+        const width = gameSize.width;
+        const height = gameSize.height;
+
+        this.cameras.main.setViewport(0, 0, width, height);
+        this.physics.world.setBounds(0, 0, width, height);
+
+        // Reposition prompt text
+        if (this.promptText) {
+            this.promptText.setPosition(width / 2, height - 40);
+        }
+
+        // Reposition instruction text
+        if (this.instructionText) {
+            this.instructionText.setPosition(width / 2, 20);
+        }
     }
 
     buildMap() {
@@ -302,7 +325,7 @@ export default class HighSchoolScene extends Phaser.Scene {
         const toastBg = this.add.rectangle(width / 2, height - 80, message.length * 10, 40, 0x000000, 0.8)
             .setDepth(100);
         const toastText = this.add.text(width / 2, height - 80, message, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#ffffff'
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#ffffff'
         }).setOrigin(0.5).setDepth(101);
 
         this.tweens.add({
@@ -351,7 +374,7 @@ export default class HighSchoolScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(52);
 
         const bodyText = this.add.text(width / 2, height / 2, text, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#a8a8c8',
             align: 'center', lineSpacing: 4,
         }).setOrigin(0.5).setDepth(52);
 
@@ -375,6 +398,10 @@ export default class HighSchoolScene extends Phaser.Scene {
     }
 
     endDay() {
+        // Persist hours to registry for EndingScene
+        this.registry.set('hoursWorked', this.hoursWorked);
+        this.registry.set('hoursWithPeople', this.hoursWithPeople);
+
         // Apply daily relationship decay
         const events = this.relationshipManager.applyDailyDecay(1);
 

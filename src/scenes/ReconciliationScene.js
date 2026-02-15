@@ -58,7 +58,7 @@ export default class ReconciliationScene extends Phaser.Scene {
                     : encounter.lines.warm;
 
         const introText = this.add.text(width / 2, 195, intro, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8a8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8a8',
             fontStyle: 'italic', wordWrap: { width: 560 }, align: 'center',
             lineSpacing: 6,
         }).setOrigin(0.5);
@@ -153,7 +153,7 @@ export default class ReconciliationScene extends Phaser.Scene {
             const bg = this.add.rectangle(width / 2, y, 560, 50, 0x1a1a1a)
                 .setStrokeStyle(1, 0x2a2a2e).setInteractive({ useHandCursor: true });
             const text = this.add.text(width / 2, y, r.text, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#a8a8a8',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#a8a8a8',
                 wordWrap: { width: 530 },
             }).setOrigin(0.5);
 
@@ -187,7 +187,7 @@ export default class ReconciliationScene extends Phaser.Scene {
         }
 
         this.add.text(width / 2, height - 70, outcome, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#d4a853', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#d4a853', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
 

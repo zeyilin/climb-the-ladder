@@ -1,8 +1,12 @@
 import Phaser from 'phaser';
+import Theme from '../ui/Theme.js';
+import UIButton from '../ui/components/UIButton.js';
+import LayoutManager from '../ui/LayoutManager.js';
 
 /**
  * TimeAllocationScene — The Trade-Off Wheel.
- * Dynamic slots (3 for high school, 4 for college with Night).
+ * "Corporate Planner" Style.
+ * Header + slots use DOM for crisp text; activity buttons remain Phaser UIButton.
  */
 export default class TimeAllocationScene extends Phaser.Scene {
     constructor() {
@@ -13,107 +17,177 @@ export default class TimeAllocationScene extends Phaser.Scene {
         this.timeManager = this.registry.get('timeManager');
         this.relationshipManager = this.registry.get('relationshipManager');
         this.statManager = this.registry.get('statManager');
+        this.layout = new LayoutManager(this);
     }
 
     create() {
-        const { width, height } = this.cameras.main;
         this.selectedSlots = [];
         this.currentSlotIndex = 0;
+        this.uiButtons = [];
 
-        // Dynamic slot count from TimeManager
+        // Dynamic slot count
         const slotNames = this.timeManager.getSlotNames();
         this.totalSlots = slotNames.length;
+        this.slotNames = slotNames;
 
-        // Semi-transparent overlay
-        this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.85).setDepth(0);
+        // Overlay
+        this.overlay = this.add.rectangle(0, 0, 0, 0, Theme.COLORS.BG_OVERLAY, 0.95).setDepth(0);
 
-        // Header
-        this.add.text(width / 2, 40, this.timeManager.getWeekDisplay(), {
-            fontFamily: '"Press Start 2P"', fontSize: '10px', color: '#6c63ff',
-        }).setOrigin(0.5).setDepth(1);
+        // --- DOM Header ---
+        const headerHTML = this.buildHeaderHTML();
+        this.headerDom = this.add.dom(0, 0).createFromHTML(headerHTML);
+        this.headerDom.setDepth(1);
 
-        this.add.text(width / 2, 60, this.timeManager.getDayDisplay(), {
-            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#8a8aaa',
-        }).setOrigin(0.5).setDepth(1);
+        // --- DOM Slots ---
+        const slotsHTML = this.buildSlotsHTML();
+        this.slotsDom = this.add.dom(0, 0).createFromHTML(slotsHTML);
+        this.slotsDom.setDepth(1);
 
-        this.add.text(width / 2, 85, 'PLAN YOUR DAY', {
-            fontFamily: '"Press Start 2P"', fontSize: '12px', color: '#e8e8ff',
-        }).setOrigin(0.5).setDepth(1);
+        // --- Activity Buttons (Phaser UIButton — unchanged) ---
+        const activities = this.timeManager.activities;
 
-        // Slot indicators — dynamic count
-        this.slotLabels = [];
-        this.slotTexts = [];
-        const slotY = 115;
-        const slotSpacing = Math.min(180, (width - 100) / this.totalSlots);
+        activities.forEach((activity) => {
+            const btn = new UIButton(this, 0, 0, 600, 50, {
+                label: activity.label,
+                icon: activity.icon,
+                description: activity.description,
+                onClick: () => this.selectActivity(activity),
+            });
+            btn.setDepth(2);
+            this.uiButtons.push(btn);
+        });
 
-        for (let i = 0; i < this.totalSlots; i++) {
-            const x = width / 2 - (slotSpacing * (this.totalSlots - 1)) / 2 + i * slotSpacing;
+        // --- DOM Warning ---
+        this.warningDom = this.add.dom(0, 0).createFromHTML('<div class="ta-warning"></div>');
+        this.warningDom.setDepth(2);
 
-            const label = this.add.text(x, slotY, slotNames[i], {
-                fontFamily: '"Press Start 2P"', fontSize: '7px',
-                color: i === 0 ? '#ffd93d' : '#4a4a6a',
-            }).setOrigin(0.5).setDepth(1);
-            this.slotLabels.push(label);
+        this.updateWarning();
 
-            const slotText = this.add.text(x, slotY + 20, '???', {
-                fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a',
-            }).setOrigin(0.5).setDepth(1);
-            this.slotTexts.push(slotText);
+        // --- Resize ---
+        this.scale.on('resize', this.handleResize, this);
+        this.events.on('shutdown', () => {
+            this.scale.off('resize', this.handleResize, this);
+        });
+        this.handleResize({ width: this.scale.width, height: this.scale.height });
+
+        // --- Launch HUD ---
+        this.scene.launch('HUDScene');
+        this.scene.bringToTop('HUDScene');
+    }
+
+    buildHeaderHTML() {
+        return `
+            <div class="ta-header">
+                <div class="ta-week">${this.timeManager.getWeekDisplay().toUpperCase()}</div>
+                <div class="ta-day">${this.timeManager.getDayDisplay()}</div>
+                <div class="ta-title">ALLOCATE RESOURCES</div>
+            </div>
+        `;
+    }
+
+    buildSlotsHTML() {
+        const slots = this.slotNames.map((name, i) => {
+            const isActive = i === 0;
+            return `
+                <div class="ta-slot" data-slot="${i}">
+                    <div class="ta-slot-label ${isActive ? 'active' : ''}">${name.toUpperCase()}</div>
+                    <div class="ta-slot-box">
+                        <div class="ta-slot-text">[ EMPTY ]</div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        return `<div class="ta-slots">${slots}</div>`;
+    }
+
+    handleResize(gameSize) {
+        if (!gameSize || gameSize.width <= 0 || gameSize.height <= 0) return;
+
+        const width = gameSize.width;
+        const height = gameSize.height;
+        const isMobile = this.layout.isMobile;
+
+        this.cameras.main.setViewport(0, 0, width, height);
+
+        // Overlay
+        this.overlay.setPosition(width / 2, height / 2);
+        this.overlay.setSize(width, height);
+
+        // Header — shifted down for HUD (84px)
+        const hudHeight = 84;
+        const headerY = isMobile ? hudHeight + 30 : hudHeight + 40;
+        if (this.headerDom) {
+            this.headerDom.setPosition(width / 2, headerY);
+            // Update mobile font sizes via node
+            const el = this.headerDom.node;
+            el.querySelector('.ta-week').style.fontSize = isMobile ? '16px' : '24px';
+            el.querySelector('.ta-day').style.fontSize = isMobile ? '20px' : '32px';
+            el.querySelector('.ta-title').style.fontSize = isMobile ? '10px' : '14px';
         }
 
-        // Activity buttons
-        const activities = this.timeManager.activities;
-        const startY = 165;
-        const btnH = 44;
-        const gap = 4;
-        this.activityButtons = [];
+        // Slots
+        const slotsY = headerY + (isMobile ? 70 : 90);
+        if (this.slotsDom) {
+            this.slotsDom.setPosition(width / 2, slotsY);
+            // Scale slot widths for mobile
+            const slotEls = this.slotsDom.node.querySelectorAll('.ta-slot');
+            const slotBoxEls = this.slotsDom.node.querySelectorAll('.ta-slot-box');
+            const slotW = isMobile ? '100px' : '160px';
+            slotEls.forEach(el => el.style.width = slotW);
+            slotBoxEls.forEach(el => el.style.width = slotW);
+        }
 
-        activities.forEach((activity, i) => {
+        // Activity Buttons
+        const startY = slotsY + (isMobile ? 50 : 70);
+        const btnH = isMobile ? 42 : 50;
+        const gap = isMobile ? 6 : 10;
+        const btnW = Math.min(600, width - (this.layout.padding * 2));
+
+        this.uiButtons.forEach((btn, i) => {
             const y = startY + i * (btnH + gap);
-            const btnBg = this.add.rectangle(width / 2, y, 520, btnH, 0x1a1a2e)
-                .setInteractive({ useHandCursor: true }).setDepth(1);
-
-            const btnLabel = this.add.text(width / 2 - 240, y, `${activity.icon}  ${activity.label}`, {
-                fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#c8c8e8',
-            }).setOrigin(0, 0.5).setDepth(2);
-
-            const btnDesc = this.add.text(width / 2 + 250, y, activity.description, {
-                fontFamily: 'Inter', fontSize: '9px', color: '#5a5a7a', fontStyle: 'italic',
-            }).setOrigin(1, 0.5).setDepth(2);
-
-            btnBg.on('pointerover', () => btnBg.setFillStyle(0x2a2a4e));
-            btnBg.on('pointerout', () => btnBg.setFillStyle(0x1a1a2e));
-            btnBg.on('pointerdown', () => this.selectActivity(activity));
-
-            this.activityButtons.push({ bg: btnBg, label: btnLabel, desc: btnDesc });
+            btn.setPosition(width / 2, y);
+            btn.updateLayout(btnW, btnH);
         });
 
         // Warning
-        this.warningText = this.add.text(width / 2, height - 30, '', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#ff6b6b', fontStyle: 'italic',
-        }).setOrigin(0.5).setDepth(1);
-
-        this.updateWarning();
+        if (this.warningDom) {
+            this.warningDom.setPosition(width / 2, height - 40);
+            this.warningDom.node.style.fontSize = isMobile ? '12px' : '16px';
+            this.warningDom.node.style.maxWidth = (width - 40) + 'px';
+        }
     }
 
     selectActivity(activity) {
         if (this.currentSlotIndex >= this.totalSlots) return;
 
         this.selectedSlots.push(activity);
-        this.slotTexts[this.currentSlotIndex].setText(`${activity.icon} ${activity.label}`);
-        this.slotTexts[this.currentSlotIndex].setColor('#c8c8e8');
-        this.slotLabels[this.currentSlotIndex].setColor('#4a4a6a');
+
+        // Update slot DOM
+        const slotEl = this.slotsDom.node.querySelector(`[data-slot="${this.currentSlotIndex}"]`);
+        if (slotEl) {
+            const textEl = slotEl.querySelector('.ta-slot-text');
+            textEl.textContent = activity.label.toUpperCase();
+            textEl.classList.add('filled');
+
+            // Dim the label
+            slotEl.querySelector('.ta-slot-label').classList.remove('active');
+        }
 
         this.currentSlotIndex++;
 
+        // Highlight next label
         if (this.currentSlotIndex < this.totalSlots) {
-            this.slotLabels[this.currentSlotIndex].setColor('#ffd93d');
+            const nextSlotEl = this.slotsDom.node.querySelector(`[data-slot="${this.currentSlotIndex}"]`);
+            if (nextSlotEl) {
+                nextSlotEl.querySelector('.ta-slot-label').classList.add('active');
+            }
         }
 
         this.updateWarning();
 
         if (this.currentSlotIndex >= this.totalSlots) {
-            // Track consecutive rest days for Derek popup
+            // Derek Logic handling
             const allRest = this.selectedSlots.every(s => s.id === 'rest');
             if (allRest) {
                 const restDays = (this.registry.get('consecutiveRestDays') || 0) + 1;
@@ -130,17 +204,20 @@ export default class TimeAllocationScene extends Phaser.Scene {
     }
 
     updateWarning() {
+        const warningEl = this.warningDom?.node;
+        if (!warningEl) return;
+
         const hasSocial = this.selectedSlots.some(s => s?.id.startsWith('socialize_') || s?.id === 'text_sam' || s?.id === 'text_family');
         if (this.currentSlotIndex > 0 && !hasSocial) {
             const sorted = this.relationshipManager.getSorted();
             const lowest = sorted[sorted.length - 1];
             if (lowest && lowest.connection < 40) {
-                this.warningText.setText(`⚠ ${lowest.name}'s connection is at ${lowest.connection}%. They're starting to notice.`);
+                warningEl.textContent = `⚠ ${lowest.name}'s connection is critical (${lowest.connection}%).`;
             } else {
-                this.warningText.setText('Another day without seeing anyone. They\'ll understand. Probably.');
+                warningEl.textContent = 'Isolation detected. Efficiency +10%. Happiness -20%.';
             }
         } else {
-            this.warningText.setText('');
+            warningEl.textContent = '';
         }
     }
 
@@ -149,65 +226,50 @@ export default class TimeAllocationScene extends Phaser.Scene {
             this.timeManager.setSlotActivity(activity);
         }
 
-        this.scene.stop('TimeAllocationScene');
+        // Auto-Save
+        const persistence = this.registry.get('persistenceManager');
+        if (persistence) persistence.save();
 
-        // Determine which scene to resume based on current act
+        this.scene.stop('TimeAllocationScene');
         const act = this.timeManager.currentAct;
-        if (act === 5) {
-            this.scene.resume('ReckoningScene');
-            const reckoning = this.scene.get('ReckoningScene');
-            if (reckoning) reckoning.processDayResults?.(this.selectedSlots);
-        } else if (act === 4) {
-            this.scene.resume('CornerOfficeScene');
-            const office = this.scene.get('CornerOfficeScene');
-            if (office) office.processDayResults(this.selectedSlots);
-        } else if (act === 3) {
-            this.scene.resume('CityScene');
-            const city = this.scene.get('CityScene');
-            if (city) city.processDayResults(this.selectedSlots);
-        } else if (act === 2) {
-            this.scene.resume('CollegeCampusScene');
-            const campus = this.scene.get('CollegeCampusScene');
-            if (campus) campus.processDayResults(this.selectedSlots);
-        } else {
-            this.scene.resume('HighSchoolScene');
-            const hs = this.scene.get('HighSchoolScene');
-            if (hs) hs.processDayResults(this.selectedSlots);
-        }
+        const getScene = (key) => {
+            this.scene.resume(key);
+            const s = this.scene.get(key);
+            if (s) s.processDayResults?.(this.selectedSlots);
+        };
+
+        if (act === 5) getScene('ReckoningScene');
+        else if (act === 4) getScene('CornerOfficeScene');
+        else if (act === 3) getScene('CityScene');
+        else if (act === 2) getScene('CollegeCampusScene');
+        else getScene('HighSchoolScene');
     }
 
-    /**
-     * "Are you sure? Derek from work just got promoted." (Derek is fictional. The anxiety is real.)
-     */
     showDerekPopup() {
-        const { width, height } = this.cameras.main;
+        const width = this.scale.width;
+        const height = this.scale.height;
 
-        const overlay = this.add.rectangle(width / 2, height / 2, 440, 140, 0x0a0a0f, 0.95)
-            .setStrokeStyle(2, 0xff6b6b).setDepth(100);
+        const container = this.add.container(width / 2, height / 2);
 
-        const msg = this.add.text(width / 2, height / 2 - 25,
-            'Are you sure?\nDerek from work just got promoted.', {
-            fontFamily: '"Press Start 2P"', fontSize: '8px', color: '#ff6b6b',
-            align: 'center', lineSpacing: 10,
-        }).setOrigin(0.5).setDepth(101);
+        const bg = this.add.rectangle(0, 0, 500, 200, 0x000000, 0.95).setStrokeStyle(4, Theme.COLORS.DANGER);
 
-        const subtext = this.add.text(width / 2, height / 2 + 20,
-            '(Derek is fictional. The anxiety is real.)', {
-            fontFamily: 'Inter', fontSize: '9px', color: '#4a4a6a', fontStyle: 'italic',
-        }).setOrigin(0.5).setDepth(101);
+        const title = this.add.text(0, -40, 'WARNING: PEER PRESSURE', {
+            ...Theme.STYLES.HEADER_SM, color: Theme.toHex(Theme.COLORS.DANGER)
+        }).setOrigin(0.5);
 
-        const btn = this.add.text(width / 2, height / 2 + 50,
-            '[ I\'m resting anyway ]', {
-            fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#6c63ff',
-        }).setOrigin(0.5).setDepth(101).setInteractive({ useHandCursor: true });
+        const msg = this.add.text(0, 0, 'Derek from work just got promoted.\nAre you sure you want to rest?', {
+            ...Theme.STYLES.BODY_MD, align: 'center'
+        }).setOrigin(0.5);
 
-        btn.on('pointerover', () => btn.setColor('#9a93ff'));
-        btn.on('pointerout', () => btn.setColor('#6c63ff'));
+        const btn = this.add.text(0, 50, '[ I DON\'T CARE ABOUT DEREK ]', {
+            ...Theme.STYLES.HEADER_SM, color: '#ffffff'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+        container.add([bg, title, msg, btn]);
+        container.setDepth(999);
+
         btn.on('pointerdown', () => {
-            overlay.destroy();
-            msg.destroy();
-            subtext.destroy();
-            btn.destroy();
+            container.destroy();
             this.time.delayedCall(200, () => this.finishAllocation());
         });
     }

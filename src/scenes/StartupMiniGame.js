@@ -31,7 +31,7 @@ export default class StartupMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 42, 'Your app has 12 users. 4 of them are your mom on different devices.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Stats bar
@@ -156,7 +156,7 @@ export default class StartupMiniGame extends Phaser.Scene {
         this.decisionGroup.push(title);
 
         const prompt = this.add.text(width / 2, 140, d.prompt, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8e8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8e8',
             wordWrap: { width: 580 }, align: 'center',
         }).setOrigin(0.5);
         this.decisionGroup.push(prompt);
@@ -166,7 +166,7 @@ export default class StartupMiniGame extends Phaser.Scene {
             const bg = this.add.rectangle(width / 2, y, 560, 55, 0x1a1a2e)
                 .setInteractive({ useHandCursor: true });
             const label = this.add.text(width / 2, y, opt.text, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#a8a8c8',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#a8a8c8',
                 wordWrap: { width: 530 },
             }).setOrigin(0.5);
 
@@ -198,7 +198,7 @@ export default class StartupMiniGame extends Phaser.Scene {
         if (this.morale <= 20) this.moraleText.setColor('#ff3333');
 
         const flavor = this.add.text(width / 2, 430, opt.flavor, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
         this.decisionGroup.push(flavor);
@@ -228,7 +228,7 @@ export default class StartupMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2, `${this.users} users. $${Math.max(0, this.runway).toLocaleString()} remaining. Morale: ${this.morale}%.`, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#a8a8c8',
         }).setOrigin(0.5);
 
         const commentary = survived
@@ -236,7 +236,7 @@ export default class StartupMiniGame extends Phaser.Scene {
             : '"You failed. But you\'ll tell people you were a \'serial entrepreneur.\' It sounds better than \'broke.\'"';
 
         this.add.text(width / 2, height / 2 + 40, commentary, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
 

@@ -29,7 +29,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 42, 'Free pizza. Performative handshakes. Smile.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a',
         }).setOrigin(0.5);
 
         // Timer bar
@@ -99,7 +99,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         this.roundContent.push(npcText);
 
         const question = this.add.text(width / 2, 130, scenario.question, {
-            fontFamily: 'Inter', fontSize: '14px', color: '#aaaacc', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '14px', color: '#aaaacc', fontStyle: 'italic',
         }).setOrigin(0.5);
         this.roundContent.push(question);
 
@@ -132,7 +132,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         this.roundContent.push(authLabel);
 
         const authText = this.add.text(width / 2 - 230, btnY, scenario.authentic.text, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#8a8aaa', wordWrap: { width: 460 },
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#8a8aaa', wordWrap: { width: 460 },
         });
         this.roundContent.push(authText);
 
@@ -151,7 +151,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         this.roundContent.push(perfLabel);
 
         const perfText = this.add.text(width / 2 - 230, btnY + 80, scenario.performative.text, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#8a8aaa', wordWrap: { width: 460 },
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#8a8aaa', wordWrap: { width: 460 },
         });
         this.roundContent.push(perfText);
 
@@ -183,7 +183,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
             ]);
 
         const reactionText = this.add.text(width / 2, 400, reaction, {
-            fontFamily: 'Inter', fontSize: '11px', color: type === 'authentic' ? '#4CAF50' : '#FF6B6B',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: type === 'authentic' ? '#4CAF50' : '#FF6B6B',
             fontStyle: 'italic',
         }).setOrigin(0.5);
         this.roundContent.push(reactionText);
@@ -200,7 +200,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         const { width } = this.cameras.main;
 
         const timeout = this.add.text(width / 2, 400, '(You stood there too long. They walked away.\nThis is somehow worse than either answer.)', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#ffd93d', fontStyle: 'italic', align: 'center',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#ffd93d', fontStyle: 'italic', align: 'center',
         }).setOrigin(0.5);
         this.roundContent.push(timeout);
 
@@ -249,7 +249,7 @@ export default class NetworkingMiniGame extends Phaser.Scene {
         }
 
         this.add.text(width / 2, height / 2 + 40, comment, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.time.delayedCall(2000, () => {

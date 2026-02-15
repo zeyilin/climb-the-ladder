@@ -28,7 +28,7 @@ export default class StudyMiniGame extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(1);
 
         this.add.text(width / 2, 52, 'Match the pairs before time runs out!', {
-            fontFamily: 'Inter',
+            fontFamily: '"VT323", monospace',
             fontSize: '11px',
             color: '#6a6a8a',
             fontStyle: 'italic',
@@ -236,7 +236,7 @@ export default class StudyMiniGame extends Phaser.Scene {
         // Result overlay
         this.add.rectangle(width / 2, height / 2, 400, 200, 0x0a0a0f, 0.95).setDepth(10);
         this.add.text(width / 2, height / 2, resultText, {
-            fontFamily: 'Inter',
+            fontFamily: '"VT323", monospace',
             fontSize: '13px',
             color: resultColor,
             align: 'center',

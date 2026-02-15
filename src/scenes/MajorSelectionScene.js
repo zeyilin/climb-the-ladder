@@ -20,7 +20,7 @@ export default class MajorSelectionScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 65, 'Choose wisely. (It won\'t matter.)', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a',
         }).setOrigin(0.5);
 
         const majors = [
@@ -76,7 +76,7 @@ export default class MajorSelectionScene extends Phaser.Scene {
 
             // Description
             this.add.text(width / 2 - 185, y + 32, major.desc, {
-                fontFamily: 'Inter', fontSize: '10px', color: '#7a7a9a',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#7a7a9a',
                 lineSpacing: 2,
             });
 
@@ -113,7 +113,7 @@ export default class MajorSelectionScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(21);
 
         this.add.text(width / 2, height / 2 + 45, '(Your parents are relieved. For now.)', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a',
         }).setOrigin(0.5).setDepth(21);
 
         this.time.delayedCall(2000, () => {

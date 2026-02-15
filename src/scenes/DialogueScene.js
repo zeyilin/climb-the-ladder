@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
+import Theme from '../ui/Theme.js';
 
 /**
  * DialogueScene — Branching dialogue overlay with internal monologue.
- * Shows character portrait, speaker name, text, choices.
+ * "Corporate Visual Novel" Style.
+ * Speaker name, dialogue text, choices, and monologue use DOM for crisp rendering.
  */
 export default class DialogueScene extends Phaser.Scene {
     constructor() {
@@ -12,6 +14,7 @@ export default class DialogueScene extends Phaser.Scene {
     init(data) {
         this.dialogueKey = data.dialogueKey;
         this.characterId = data.characterId;
+        this.parentSceneKey = data.parentSceneKey || 'HighSchoolScene';
         this.dialogueSystem = this.registry.get('dialogueSystem');
         this.statManager = this.registry.get('statManager');
         this.relationshipManager = this.registry.get('relationshipManager');
@@ -20,67 +23,107 @@ export default class DialogueScene extends Phaser.Scene {
     create() {
         const { width, height } = this.cameras.main;
 
-        // Semi-transparent overlay
-        this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.8).setDepth(0);
+        // Cinematic overlay (Phaser)
+        this.add.rectangle(width / 2, height / 2, width, height, Theme.COLORS.BG_OVERLAY, 0.6).setDepth(0);
 
-        // Dialogue box background
-        const boxH = 220;
-        const boxY = height - boxH / 2 - 20;
-        this.dialogueBox = this.add.rectangle(width / 2, boxY, width - 60, boxH, 0x12121f, 0.95)
-            .setDepth(1);
-        this.add.rectangle(width / 2, boxY, width - 58, boxH - 2, 0x000000, 0)
-            .setStrokeStyle(1, 0x2a2a4e)
-            .setDepth(1);
+        // Dialogue Box Dimensions
+        const boxH = 260;
+        const boxW = 860;
+        const safeW = Math.min(boxW, width - 40);
+        const boxX = width / 2;
+        const boxY = height - 150;
 
-        // Character portrait (colored square with emoji)
+        this.boxY = boxY;
+        this.safeW = safeW;
+        this.boxX = boxX;
+        this.boxH = boxH;
+
+        // Main Box Container (Phaser — for BG and portrait)
+        this.boxContainer = this.add.container(0, 0);
+
+        const boxGfx = this.add.graphics();
+        // Shadow first (behind)
+        boxGfx.fillStyle(0x000000, 0.5);
+        boxGfx.fillRoundedRect(boxX - safeW / 2 + 8, boxY - boxH / 2 + 8, safeW, boxH, 12);
+        // Glassmorphism BG
+        boxGfx.fillStyle(Theme.COLORS.BG_PANEL, 0.95);
+        boxGfx.fillRoundedRect(boxX - safeW / 2, boxY - boxH / 2, safeW, boxH, 12);
+        // Neon Border
+        boxGfx.lineStyle(2, Theme.COLORS.CORP_BLUE, 1);
+        boxGfx.strokeRoundedRect(boxX - safeW / 2, boxY - boxH / 2, safeW, boxH, 12);
+
+        this.boxContainer.add(boxGfx);
+        this.boxContainer.setDepth(1);
+
+        // --- Portrait (Phaser — uses alpha/color effects) ---
         const rel = this.relationshipManager.getRelationship(this.characterId);
         const opacity = this.relationshipManager.getPortraitOpacity(this.characterId);
 
-        const portraitX = 80;
-        const portraitY = boxY - boxH / 2 + 45;
-        this.add.rectangle(portraitX, portraitY, 50, 50, Phaser.Display.Color.HexStringToColor(rel ? '#3a3a5e' : '#2a2a3e').color)
-            .setAlpha(opacity).setDepth(2);
+        const portraitSize = 120;
+        const portraitX = boxX - safeW / 2 + 80;
+        const portraitY = boxY;
 
-        // Character data
+        const pGfx = this.add.graphics();
+        const pColor = Phaser.Display.Color.HexStringToColor(rel ? Theme.toHex(Theme.COLORS.CORP_BLUE) : '#2a2a3e').color;
+
+        pGfx.fillStyle(pColor, opacity);
+        pGfx.fillCircle(portraitX, portraitY, portraitSize / 2);
+        pGfx.lineStyle(2, 0xffffff, 0.3);
+        pGfx.strokeCircle(portraitX, portraitY, portraitSize / 2);
+        pGfx.setDepth(2);
+
+        // Emoji
         const charData = this.cache.json.get('characters');
         const char = charData.characters.find(c => c.id === this.characterId);
         if (char) {
             this.add.text(portraitX, portraitY, char.emoji, {
-                fontSize: '24px',
+                fontSize: '64px',
             }).setOrigin(0.5).setAlpha(opacity).setDepth(3);
         }
 
-        // Speaker name
-        this.speakerText = this.add.text(120, boxY - boxH / 2 + 20, '', {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '10px',
-            color: '#6c63ff',
-        }).setDepth(2);
+        // --- Speaker Label (DOM) ---
+        const nameTagX = portraitX + 80;
+        const nameTagY = boxY - 80;
 
-        // Dialogue text
-        this.dialogueText = this.add.text(120, boxY - boxH / 2 + 45, '', {
-            fontFamily: 'Inter',
-            fontSize: '14px',
-            color: '#d8d8e8',
-            wordWrap: { width: width - 180 },
-            lineSpacing: 4,
-        }).setDepth(2);
+        this.speakerDom = this.add.dom(nameTagX, nameTagY).createFromHTML('<div class="dlg-speaker"></div>');
+        this.speakerDom.setDepth(4);
+        this.speakerDom.setOrigin(0, 0.5);
 
-        // Internal monologue text
-        this.monologueText = this.add.text(width / 2, boxY + boxH / 2 + 20, '', {
-            fontFamily: 'Inter',
-            fontSize: '11px',
-            color: '#6a6a8a',
-            fontStyle: 'italic',
-            align: 'center',
-            wordWrap: { width: width - 100 },
-        }).setOrigin(0.5).setDepth(2);
+        // --- Dialogue Text (DOM) ---
+        const textX = portraitX + 80;
+        const textY = nameTagY + 40;
+        const textW = safeW - 220;
 
-        // Choices container
-        this.choiceTexts = [];
-        this.choiceY = boxY - 10;
+        this.dialogueDom = this.add.dom(textX, textY).createFromHTML(
+            `<div class="dlg-text" style="width: ${textW}px"></div>`
+        );
+        this.dialogueDom.setDepth(4);
+        this.dialogueDom.setOrigin(0, 0);
 
-        // Start dialogue
+        // --- Internal Monologue (DOM) ---
+        this.monologueDom = this.add.dom(width / 2, height / 2 - 100).createFromHTML(
+            `<div class="dlg-monologue" style="width: ${Math.min(600, width - 80)}px"></div>`
+        );
+        this.monologueDom.setDepth(20);
+
+        // --- Next Indicator (Phaser — uses tween bounce) ---
+        this.nextIcon = this.add.text(boxX + safeW / 2 - 40, boxY + boxH / 2 - 30, '▼', {
+            fontSize: '20px', color: Theme.toHex(Theme.COLORS.NEON_PINK)
+        }).setOrigin(0.5).setDepth(2).setAlpha(0);
+
+        this.tweens.add({
+            targets: this.nextIcon,
+            y: '+=5',
+            duration: 600,
+            yoyo: true,
+            repeat: -1,
+        });
+
+        // --- Choices Container (DOM) ---
+        this.choicesDom = this.add.dom(width / 2, height / 2).createFromHTML('<div class="dlg-choices"></div>');
+        this.choicesDom.setDepth(10);
+
+        // Start Logic
         const dialogueData = this.cache.json.get(this.dialogueKey);
         if (dialogueData) {
             this.dialogueSystem.registerTree(this.dialogueKey, dialogueData);
@@ -88,6 +131,86 @@ export default class DialogueScene extends Phaser.Scene {
             this.showNode(firstNode);
         } else {
             this.endDialogue();
+        }
+
+        // Entrance Anim
+        this.boxContainer.setScale(0.95);
+        this.boxContainer.setAlpha(0);
+        this.tweens.add({
+            targets: this.boxContainer,
+            scaleX: 1,
+            scaleY: 1,
+            alpha: 1,
+            duration: 300,
+            ease: 'Power2',
+        });
+
+        // --- Resize Handling ---
+        this.scale.on('resize', this.handleResize, this);
+        this.events.on('shutdown', () => {
+            this.scale.off('resize', this.handleResize, this);
+        });
+    }
+
+    handleResize(gameSize) {
+        if (!gameSize || gameSize.width <= 0 || gameSize.height <= 0) return;
+        const width = gameSize.width;
+        const height = gameSize.height;
+
+        this.cameras.main.setViewport(0, 0, width, height);
+
+        // Recalculate box positions
+        const boxH = 260;
+        const boxW = 860;
+        const safeW = Math.min(boxW, width - 40);
+        const boxX = width / 2;
+        const boxY = height - 150;
+        const portraitX = boxX - safeW / 2 + 80;
+        const nameTagX = portraitX + 80;
+        const nameTagY = boxY - 80;
+        const textX = portraitX + 80;
+        const textY = nameTagY + 40;
+        const textW = safeW - 220;
+
+        // Reposition speaker
+        if (this.speakerDom) {
+            this.speakerDom.setPosition(nameTagX, nameTagY);
+        }
+
+        // Reposition dialogue text
+        if (this.dialogueDom) {
+            this.dialogueDom.setPosition(textX, textY);
+            this.dialogueDom.node.style.width = textW + 'px';
+        }
+
+        // Reposition monologue
+        if (this.monologueDom) {
+            this.monologueDom.setPosition(width / 2, height / 2 - 100);
+            this.monologueDom.node.style.width = Math.min(600, width - 80) + 'px';
+        }
+
+        // Reposition choices
+        if (this.choicesDom) {
+            this.choicesDom.setPosition(width / 2, height / 2);
+        }
+
+        // Reposition next icon
+        if (this.nextIcon) {
+            this.nextIcon.setPosition(boxX + safeW / 2 - 40, boxY + boxH / 2 - 30);
+        }
+
+        // Redraw box graphics (clear and redraw at new positions)
+        if (this.boxContainer && this.boxContainer.list.length > 0) {
+            const boxGfx = this.boxContainer.list[0];
+            if (boxGfx && boxGfx.clear) {
+                boxGfx.clear();
+                boxGfx.fillStyle(0x000000, 0.5);
+                boxGfx.fillRoundedRect(boxX - safeW / 2 + 8, boxY - boxH / 2 + 8, safeW, boxH, 12);
+                boxGfx.fillStyle(Theme.COLORS.BG_PANEL, 0.95);
+                boxGfx.fillRoundedRect(boxX - safeW / 2, boxY - boxH / 2, safeW, boxH, 12);
+                boxGfx.lineStyle(2, Theme.COLORS.CORP_BLUE, 1);
+                boxGfx.strokeRoundedRect(boxX - safeW / 2, boxY - boxH / 2, safeW, boxH, 12);
+            }
         }
     }
 
@@ -97,55 +220,37 @@ export default class DialogueScene extends Phaser.Scene {
             return;
         }
 
-        // Clear previous choices
         this.clearChoices();
-        this.monologueText.setText('');
+        this.nextIcon.setAlpha(0);
 
-        // Set speaker and text
-        this.speakerText.setText(node.speaker || '???');
-        this.dialogueText.setText(node.text || '...');
+        // Update DOM speaker + text
+        this.speakerDom.node.textContent = (node.speaker || '???').toUpperCase();
+        this.dialogueDom.node.textContent = node.text || '...';
 
-        // Show choices
         if (node.choices && node.choices.length > 0) {
             this.showChoices(node.choices);
         } else {
-            // No choices — click to continue/end
-            this.time.delayedCall(300, () => {
-                const continueText = this.add.text(this.cameras.main.width / 2, this.choiceY + 40,
-                    '[ Click to continue ]', {
-                    fontFamily: '"Press Start 2P"',
-                    fontSize: '8px',
-                    color: '#4a4a6a',
-                }).setOrigin(0.5).setDepth(2).setInteractive({ useHandCursor: true });
+            // Click to continue
+            this.nextIcon.setAlpha(1);
 
-                continueText.on('pointerdown', () => {
-                    this.endDialogue();
-                });
-
-                this.choiceTexts.push(continueText);
+            this.input.once('pointerdown', () => {
+                this.endDialogue();
             });
         }
     }
 
     showChoices(choices) {
-        const { width } = this.cameras.main;
-        const startY = this.choiceY;
+        const choicesEl = this.choicesDom.node;
+        choicesEl.innerHTML = '';
 
         choices.forEach((choice, i) => {
-            const y = startY + i * 30;
-
-            const choiceText = this.add.text(140, y, `▸ ${choice.text}`, {
-                fontFamily: 'Inter',
-                fontSize: '12px',
-                color: '#a8a8c8',
-                wordWrap: { width: width - 200 },
-            }).setDepth(2).setInteractive({ useHandCursor: true });
-
-            choiceText.on('pointerover', () => choiceText.setColor('#ffffff'));
-            choiceText.on('pointerout', () => choiceText.setColor('#a8a8c8'));
-            choiceText.on('pointerdown', () => this.selectChoice(i));
-
-            this.choiceTexts.push(choiceText);
+            const btn = document.createElement('div');
+            btn.className = 'dlg-choice-btn';
+            btn.textContent = choice.text;
+            btn.addEventListener('click', () => {
+                this.selectChoice(i);
+            });
+            choicesEl.appendChild(btn);
         });
     }
 
@@ -153,7 +258,7 @@ export default class DialogueScene extends Phaser.Scene {
         const result = this.dialogueSystem.selectChoice(index);
         if (!result) return;
 
-        // Apply stat effects
+        // Apply stats
         for (const [key, value] of Object.entries(result.effects)) {
             if (key.endsWith('_connection')) {
                 const charId = key.replace('_connection', '');
@@ -163,28 +268,23 @@ export default class DialogueScene extends Phaser.Scene {
             }
         }
 
-        // Show internal monologue
         if (result.internalMonologue) {
-            this.monologueText.setText(result.internalMonologue);
-            this.monologueText.setAlpha(0);
-
-            this.tweens.add({
-                targets: this.monologueText,
-                alpha: 1,
-                duration: 500,
-                delay: 200,
-            });
-
-            // Wait for monologue to be read, then advance
-            this.time.delayedCall(2000, () => {
-                if (result.ended) {
-                    this.endDialogue();
-                } else {
-                    this.showNode(result.nextNode);
-                }
-            });
-
             this.clearChoices();
+            const monoEl = this.monologueDom.node;
+            monoEl.textContent = result.internalMonologue;
+            monoEl.classList.add('visible');
+
+            this.time.delayedCall(2500, () => {
+                monoEl.classList.remove('visible');
+
+                this.time.delayedCall(500, () => {
+                    if (result.ended) {
+                        this.endDialogue();
+                    } else {
+                        this.showNode(result.nextNode);
+                    }
+                });
+            });
         } else {
             if (result.ended) {
                 this.endDialogue();
@@ -195,17 +295,14 @@ export default class DialogueScene extends Phaser.Scene {
     }
 
     clearChoices() {
-        for (const ct of this.choiceTexts) {
-            ct.destroy();
+        if (this.choicesDom) {
+            this.choicesDom.node.innerHTML = '';
         }
-        this.choiceTexts = [];
     }
 
     endDialogue() {
         this.dialogueSystem.end();
         this.scene.stop('DialogueScene');
-        this.scene.resume('HighSchoolScene');
-
-        // Parent scene (HighSchoolScene) will handle the queue in its 'resume' event
+        this.scene.resume(this.parentSceneKey);
     }
 }

@@ -77,7 +77,7 @@ export default class EndingScene extends Phaser.Scene {
 
         lines.forEach((line, i) => {
             const t = this.add.text(width / 2, 190 + i * 28, line, {
-                fontFamily: 'Inter', fontSize: '12px',
+                fontFamily: '"VT323", monospace', fontSize: '12px',
                 color: line === '' ? '#000000' : '#c8c8a8',
                 fontStyle: i === lines.length - 1 ? 'italic' : 'normal',
             }).setOrigin(0.5).setAlpha(0);
@@ -87,7 +87,7 @@ export default class EndingScene extends Phaser.Scene {
         this.time.delayedCall(10000, () => {
             const postCredit = this.add.text(width / 2, height - 60,
                 'Alex\'s LinkedIn still says CEO.\nNobody at the table cares.', {
-                fontFamily: 'Inter', fontSize: '10px', color: '#3a3a3a', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#3a3a3a', fontStyle: 'italic',
                 align: 'center', lineSpacing: 6,
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: postCredit, alpha: 0.6, duration: 1500 });
@@ -123,7 +123,7 @@ export default class EndingScene extends Phaser.Scene {
 
         lines.forEach((line, i) => {
             const t = this.add.text(width / 2, 180 + i * 26, line, {
-                fontFamily: 'Inter', fontSize: '12px',
+                fontFamily: '"VT323", monospace', fontSize: '12px',
                 color: line === '' ? '#000000' : '#8a8a8a',
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: t, alpha: 1, delay: 2000 + i * 700, duration: 700 });
@@ -168,7 +168,7 @@ export default class EndingScene extends Phaser.Scene {
 
         lines.forEach((line, i) => {
             const t = this.add.text(width / 2, 180 + i * 26, line, {
-                fontFamily: 'Inter', fontSize: '12px',
+                fontFamily: '"VT323", monospace', fontSize: '12px',
                 color: line === '' ? '#000000' : '#b8a888',
                 fontStyle: i === lines.length - 1 ? 'italic' : 'normal',
             }).setOrigin(0.5).setAlpha(0);
@@ -178,7 +178,7 @@ export default class EndingScene extends Phaser.Scene {
         this.time.delayedCall(12000, () => {
             const postCredit = this.add.text(width / 2, height - 50,
                 'Alex deleted LinkedIn.\n(They reactivated it two weeks later. Baby steps.)', {
-                fontFamily: 'Inter', fontSize: '10px', color: '#5a4a3a', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#5a4a3a', fontStyle: 'italic',
                 align: 'center', lineSpacing: 6,
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: postCredit, alpha: 0.6, duration: 1500 });
@@ -232,7 +232,7 @@ export default class EndingScene extends Phaser.Scene {
 
             const carText = this.add.text(width / 2, height / 2 + 30,
                 'An empty parking lot. The engine is off.\nNo music.', {
-                fontFamily: 'Inter', fontSize: '11px', color: '#2a2a2a',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#2a2a2a',
                 align: 'center', lineSpacing: 6,
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: carText, alpha: 0.4, delay: 3000, duration: 2000 });

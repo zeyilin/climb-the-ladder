@@ -85,7 +85,7 @@ export default class CollegeCampusScene extends Phaser.Scene {
 
         // Instructions
         const inst = this.add.text(width / 2, 20, 'WASD move • E interact • TAB relationships • R résumé', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#4a4a6a',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#4a4a6a',
         }).setOrigin(0.5).setDepth(20);
         this.tweens.add({ targets: inst, alpha: 0, delay: 5000, duration: 1000 });
 
@@ -225,7 +225,7 @@ export default class CollegeCampusScene extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#ffd93d',
         });
         const text = this.add.text(-100, 3, msg.text, {
-            fontFamily: 'Inter', fontSize: '9px', color: '#8888aa',
+            fontFamily: '"VT323", monospace', fontSize: '9px', color: '#8888aa',
         });
 
         notif.add([bg, icon, name, text]);
@@ -363,7 +363,7 @@ export default class CollegeCampusScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(52);
 
         const bodyText = this.add.text(width / 2, height / 2, event.text, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#a8a8c8', align: 'center', lineSpacing: 4,
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#a8a8c8', align: 'center', lineSpacing: 4,
         }).setOrigin(0.5).setDepth(52);
 
         this.time.delayedCall(1500, () => {
@@ -380,7 +380,7 @@ export default class CollegeCampusScene extends Phaser.Scene {
     }
 
     launchDialogue(dialogueKey, characterId) {
-        this.scene.launch('DialogueScene', { dialogueKey, characterId });
+        this.scene.launch('DialogueScene', { dialogueKey, characterId, parentSceneKey: 'CollegeCampusScene' });
         this.scene.pause('CollegeCampusScene');
     }
 

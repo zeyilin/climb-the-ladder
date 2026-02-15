@@ -34,7 +34,7 @@ export default class BankingMiniGame extends Phaser.Scene {
         }).setOrigin(1, 0.5);
 
         this.add.text(width / 2, 45, 'The MD needs this by 6am. Fix the errors.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.scoreText = this.add.text(30, 20, 'Fixed: 0', {
@@ -130,7 +130,7 @@ export default class BankingMiniGame extends Phaser.Scene {
         this.taskGroup.push(label);
 
         this.add.text(width / 2, 125, 'Click the cells with errors:', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#8a8aaa',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#8a8aaa',
         }).setOrigin(0.5);
 
         // Draw spreadsheet cells
@@ -166,7 +166,7 @@ export default class BankingMiniGame extends Phaser.Scene {
 
                         // Show fix text
                         const fixTxt = this.add.text(x, y + cellH / 2 + 12, cell.fix, {
-                            fontFamily: 'Inter', fontSize: '8px', color: '#98d8aa', fontStyle: 'italic',
+                            fontFamily: '"VT323", monospace', fontSize: '8px', color: '#98d8aa', fontStyle: 'italic',
                         }).setOrigin(0.5);
                         this.taskGroup.push(fixTxt);
 
@@ -224,7 +224,7 @@ export default class BankingMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2, `Fixed ${this.score} errors before the MD woke up.`, {
-            fontFamily: 'Inter', fontSize: '13px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#a8a8c8',
         }).setOrigin(0.5);
 
         const commentary = this.score >= 7
@@ -232,7 +232,7 @@ export default class BankingMiniGame extends Phaser.Scene {
             : '"The MD found three errors you missed. He didn\'t say anything. He just sighed. That\'s worse."';
 
         this.add.text(width / 2, height / 2 + 40, commentary, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
 

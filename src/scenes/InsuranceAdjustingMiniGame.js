@@ -28,7 +28,7 @@ export default class InsuranceAdjustingMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 50, 'Fill out the forms. That\'s it. That\'s the job.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#8a8a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#8a8a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.scoreText = this.add.text(30, 75, 'Forms: 0/5', {
@@ -102,7 +102,7 @@ export default class InsuranceAdjustingMiniGame extends Phaser.Scene {
         this.claimGroup.push(claimant);
 
         const desc = this.add.text(width / 2, 210, claim.desc, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#444444',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#444444',
             wordWrap: { width: 520 }, align: 'left', lineSpacing: 4,
         }).setOrigin(0.5);
         this.claimGroup.push(desc);
@@ -134,7 +134,7 @@ export default class InsuranceAdjustingMiniGame extends Phaser.Scene {
                     'The fluorescent light flickers. You don\'t notice anymore.',
                 ];
                 const response = this.add.text(width / 2, 460, responses[this.round], {
-                    fontFamily: 'Inter', fontSize: '10px', color: '#888888', fontStyle: 'italic',
+                    fontFamily: '"VT323", monospace', fontSize: '10px', color: '#888888', fontStyle: 'italic',
                 }).setOrigin(0.5);
                 this.claimGroup.push(response);
 
@@ -157,12 +157,12 @@ export default class InsuranceAdjustingMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2, '5 forms processed.\nYour cubicle smells like microwave popcorn.\nIt\'s not your popcorn.', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a6a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a6a',
             align: 'center', lineSpacing: 6,
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2 + 50, 'The algorithm has spoken.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#aaaaaa', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#aaaaaa', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.time.delayedCall(3000, () => {

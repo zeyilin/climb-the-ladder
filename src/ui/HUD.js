@@ -1,7 +1,9 @@
 import Phaser from 'phaser';
+import Theme from './Theme.js';
 
 /**
- * HUDScene — Persistent overlay showing day, stats, and progress.
+ * HUDScene — Persistent overlay.
+ * "Corporate Cyber-Retro" Style.
  */
 export default class HUDScene extends Phaser.Scene {
     constructor() {
@@ -15,94 +17,346 @@ export default class HUDScene extends Phaser.Scene {
     }
 
     create() {
-        const { width } = this.cameras.main;
+        // --- Background ---
+        this.bg = this.add.graphics();
+        this.border = this.add.graphics();
 
-        // Top bar background
-        this.add.rectangle(width / 2, 0, width, 50, 0x0a0a0f, 0.9).setOrigin(0.5, 0).setDepth(100);
-        this.add.rectangle(width / 2, 50, width, 1, 0x1a1a2e).setDepth(100);
-
-        // Day/Week display
-        this.weekText = this.add.text(15, 8, '', {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '8px',
-            color: '#6c63ff',
+        // --- Date Display (Far Left) ---
+        // "WEEK 1 OF 1"
+        this.weekLabel = this.add.text(0, 0, '', {
+            ...Theme.STYLES.HEADER_SM,
+            color: '#8888aa',
         }).setDepth(101);
 
-        this.dayText = this.add.text(15, 24, '', {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '7px',
-            color: '#5a5a7a',
+        // "Day 1"
+        this.dayDisplay = this.add.text(0, 0, '', {
+            ...Theme.STYLES.BODY_LG,
+            color: '#ffffff',
+            shadow: { offsetX: 2, offsetY: 2, color: '#000000', fill: true }
         }).setDepth(101);
 
-        // Progress bar
-        const progBarX = 15;
-        const progBarY = 40;
-        const progBarW = 100;
-        this.add.rectangle(progBarX + progBarW / 2, progBarY, progBarW, 4, 0x1a1a2e).setDepth(101);
-        this.progressFill = this.add.rectangle(progBarX, progBarY, 0, 4, 0x6c63ff)
-            .setOrigin(0, 0.5).setDepth(101);
+        // --- Career Progress ---
+        // Label
+        this.careerLabel = this.add.text(0, 0, 'CAREER LADDER', {
+            ...Theme.STYLES.HEADER_SM,
+            color: Theme.toHex(Theme.COLORS.NEON_CYAN),
+        }).setOrigin(0, 0.5).setDepth(101);
 
-        // Stat bars
-        const statsX = 180;
+        // Bar Graphics
+        this.progBg = this.add.graphics().setDepth(101);
+        this.progressFill = this.add.graphics().setDepth(102);
+
+        // --- Stat Bars (Center/Right) ---
         this.statDisplays = {};
+        // Create objects once, position later
+        this.createStatObjects('gpa', 'GPA', '📚', Theme.COLORS.NEON_CYAN);
+        this.createStatObjects('network', 'NETWORK', '🤝', Theme.COLORS.NEON_YELLOW);
+        this.createStatObjects('authenticity', 'SELF', '🎭', Theme.COLORS.NEON_GREEN);
+        this.createStatObjects('burnout', 'BURNOUT', '🔥', Theme.COLORS.DANGER);
 
-        this.createStatBar('gpa', '📚', statsX, 10, '#6c63ff');
-        this.createStatBar('network', '🤝', statsX + 130, 10, '#FFD93D');
-        this.createStatBar('authenticity', '🎭', statsX + 260, 10, '#98D8AA');
-        this.createStatBar('burnout', '🔥', statsX + 390, 10, '#FF6B6B');
+        // --- Relationship Toggle (Far Right) ---
+        this.btnContainer = this.add.container(0, 42);
 
-        // Relationship hint
-        this.relHint = this.add.text(width - 15, 35, 'TAB: Relationships', {
-            fontFamily: 'Inter',
-            fontSize: '9px',
-            color: '#3a3a5a',
-        }).setOrigin(1, 0.5).setDepth(101);
+        const btnBg = this.add.graphics();
+        this.btnBg = btnBg; // Ref for hover
+        // Initial draw for hit area
+        this.drawTabButton(btnBg, Theme.COLORS.MUTED);
 
+        const btnIcon = this.add.text(-80, 0, 'TAB', {
+            ...Theme.STYLES.HEADER_SM,
+            color: '#ffffff',
+            backgroundColor: '#333',
+            padding: { x: 4, y: 4 },
+            align: 'center'
+        }).setOrigin(0.5);
+
+        const btnText = this.add.text(10, 0, 'CONTACTS', {
+            ...Theme.STYLES.HEADER_SM,
+            fontSize: '12px',
+            color: '#aaa',
+        }).setOrigin(0.5);
+
+        this.btnContainer.add([btnBg, btnIcon, btnText]);
+        this.btnContainer.setDepth(101);
+
+        // "Juice"
+        this.tweens.add({
+            targets: btnIcon,
+            alpha: 0.7,
+            duration: 800,
+            yoyo: true,
+            repeat: -1
+        });
+
+        // Interaction - Matches new 200px width (-100 to 100)
+        this.btnContainer.setInteractive(new Phaser.Geom.Rectangle(-100, -18, 200, 36), Phaser.Geom.Rectangle.Contains);
+        this.btnContainer.on('pointerdown', () => {
+            if (this.scene.isActive('RelationshipPanelScene')) {
+                this.scene.stop('RelationshipPanelScene');
+            } else {
+                this.scene.launch('RelationshipPanelScene');
+            }
+        });
+
+        this.btnContainer.on('pointerover', () => {
+            document.body.style.cursor = 'pointer';
+            this.drawTabButton(this.btnBg, 0xffffff);
+        });
+
+        this.btnContainer.on('pointerout', () => {
+            document.body.style.cursor = 'default';
+            this.drawTabButton(this.btnBg, Theme.COLORS.MUTED);
+        });
+
+        // --- Listeners ---
+        this.input.keyboard.on('keydown-TAB', () => {
+            if (this.scene.isActive('RelationshipPanelScene')) {
+                this.scene.stop('RelationshipPanelScene');
+            } else {
+                this.scene.launch('RelationshipPanelScene');
+            }
+        });
+
+        this.input.keyboard.on('keydown', (event) => {
+            if (event.key === '?') {
+                if (this.scene.isActive('InstructionsScene')) {
+                    this.scene.stop('InstructionsScene');
+                } else {
+                    this.scene.launch('InstructionsScene');
+                }
+            }
+        });
+
+        // --- Resize ---
+        this.scale.on('resize', this.handleResize, this);
+        this.handleResize({ width: this.scale.width, height: this.scale.height });
+
+        // Initial Update
         this.updateHUD();
     }
 
-    createStatBar(key, icon, x, y, color) {
-        const label = this.add.text(x, y, `${icon}`, {
-            fontSize: '12px',
-        }).setDepth(101);
+    drawTabButton(gfx, color, width = 200) {
+        const halfW = width / 2;
+        gfx.clear();
+        gfx.lineStyle(2, color, 1);
+        gfx.strokeRoundedRect(-halfW, -18, width, 36, 4);
+        gfx.fillStyle(0x000000, 0.5);
+        gfx.fillRoundedRect(-halfW, -18, width, 36, 4);
+    }
 
-        const nameText = this.add.text(x + 18, y, key.toUpperCase(), {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '6px',
-            color: '#5a5a7a',
-        }).setOrigin(0, 0.5).setDepth(101);
+    createStatObjects(key, labelName, icon, color) {
+        // Create Text and Graphics objects, store in statDisplays
 
-        const barW = 60;
-        const barH = 6;
-        const barY = y + 14;
+        // Icon Text (visible mainly on mobile or if we want)
+        const iconText = this.add.text(0, 0, icon, {
+            fontSize: '14px',
+        }).setOrigin(0.5);
 
-        this.add.rectangle(x + 18 + barW / 2, barY, barW, barH, 0x1a1a2e).setDepth(101);
-        const fill = this.add.rectangle(x + 18, barY, 0, barH, Phaser.Display.Color.HexStringToColor(color).color)
-            .setOrigin(0, 0.5).setDepth(101);
+        const labelText = this.add.text(0, 0, labelName, {
+            ...Theme.STYLES.HEADER_SM,
+            fontSize: '8px',
+            color: '#8888aa',
+        }).setOrigin(0, 0.5);
 
-        const valueText = this.add.text(x + 18 + barW + 5, barY, '0', {
-            fontFamily: 'Inter',
-            fontSize: '9px',
-            color: '#6a6a8a',
-        }).setOrigin(0, 0.5).setDepth(101);
+        const valueText = this.add.text(0, 0, '0', {
+            ...Theme.STYLES.BODY_MD,
+            fontSize: '20px',
+            color: '#ffffff',
+        }).setOrigin(1, 0.5);
 
-        this.statDisplays[key] = { fill, valueText, barW };
+        const barBg = this.add.graphics();
+        const barFill = this.add.graphics();
+
+        this.statDisplays[key] = {
+            iconText,
+            labelText,
+            valueText,
+            barBg,
+            barFill,
+            color,
+            // barX, barY, barW, barH will be set in handleResize
+        };
+    }
+
+    handleResize(gameSize) {
+        if (!gameSize || gameSize.width <= 0 || gameSize.height <= 0) return;
+        const width = gameSize.width;
+        const height = gameSize.height;
+        const barHeight = 84;
+
+        this.cameras.main.setViewport(0, 0, width, height);
+
+        // BG
+        this.bg.clear();
+        this.bg.fillStyle(Theme.COLORS.BG_PANEL, 0.95);
+        this.bg.fillRect(0, 0, width, barHeight);
+
+        this.border.clear();
+        this.border.fillStyle(Theme.COLORS.CORP_BLUE, 1);
+        this.border.fillRect(0, barHeight, width, 2);
+
+        // Check for mobile layout
+        const isMobile = width < 600;
+
+        // Date (Left)
+        const ex = isMobile ? 10 : 40;
+        this.weekLabel.setPosition(ex, 24);
+        this.dayDisplay.setPosition(ex, 42);
+
+        if (isMobile) {
+            this.weekLabel.setFontSize('10px');
+            this.dayDisplay.setFontSize('24px');
+        } else {
+            this.weekLabel.setFontSize('12px');
+            this.dayDisplay.setFontSize('32px');
+        }
+
+        // Career (Left)
+        // On mobile, hide completely to save space for stats
+        this.careerLabel.setVisible(!isMobile);
+        this.progBg.setVisible(!isMobile);
+        this.progressFill.setVisible(!isMobile);
+        this.border.setVisible(true);
+
+        const careerX = ex + 180;
+        this.careerLabel.setPosition(careerX, 28);
+
+        // Progress Bar
+        const progBarX = careerX;
+        const progBarY = 44;
+        const progBarW = 200;
+        const progBarH = 12;
+
+        this.progBg.clear();
+        this.progBg.fillStyle(0x000000, 1);
+        this.progBg.fillRect(progBarX, progBarY, progBarW, progBarH);
+        this.progBg.lineStyle(2, 0x333333);
+        this.progBg.strokeRect(progBarX, progBarY, progBarW, progBarH);
+
+        // Store prompt for updateHUD
+        this.progBarX = progBarX;
+        this.progBarY = progBarY;
+        this.progBarW = progBarW;
+        this.progBarH = progBarH;
+
+        // Tab Button (Right)
+        // Mobile: Small, Icon only logic if we had icons, but text is fine if small.
+        const btnW = isMobile ? 60 : 200;
+        const btnRightMargin = isMobile ? 40 : 130;
+        this.btnContainer.setPosition(width - btnRightMargin, 42);
+
+        // Update button visual
+        this.drawTabButton(this.btnBg, Theme.COLORS.MUTED, btnW);
+        this.btnContainer.input.hitArea.setTo(-btnW / 2, -18, btnW, 36);
+
+        // Hide "CONTACTS" text on mobile, verify "TAB" availability? 
+        // The container has children: [bg, btnIcon("TAB"), btnText("CONTACTS")]
+        // btnIcon is at -80, btnText at 10.
+        // We need to re-layout the button internals for mobile.
+        const btnIcon = this.btnContainer.list[1];
+        const btnText = this.btnContainer.list[2];
+
+        if (isMobile) {
+            btnIcon.setPosition(0, 0); // Center "TAB"
+            btnText.setVisible(false);
+        } else {
+            btnIcon.setPosition(-80, 0);
+            btnText.setVisible(true);
+            btnText.setPosition(10, 0);
+        }
+
+        // Stats (Distributed in center space)
+        // On Mobile: Start after Date, End before Button
+        // Date ends around ex + 50 approx.
+        // Button starts around width - btnRightMargin - btnW/2
+
+        const centerStart = isMobile ? (ex + 60) : (progBarX + progBarW + 40);
+        const centerEnd = width - (btnRightMargin + btnW / 2 + (isMobile ? 10 : 40));
+        const availableW = Math.max(0, centerEnd - centerStart);
+
+        const count = 4; // GPA, Network, Self, Burnout
+        const slotW = availableW / count;
+        const keys = ['gpa', 'network', 'authenticity', 'burnout'];
+
+        keys.forEach((key, i) => {
+            const display = this.statDisplays[key];
+            const centerX = centerStart + (slotW * i) + (slotW / 2);
+            const y = 42;
+
+            // Adaptive bar width
+            const maxBarW = isMobile ? 30 : 80;
+            const barW = Math.min(maxBarW, Math.max(10, slotW - (isMobile ? 2 : 20)));
+            const barLeft = centerX - barW / 2;
+            const barY = y + 8;
+
+            // Mobile: Show Icon, Hide Label
+            // Desktop: Show Label, Hide Icon (or Show both? Let's hide icon for clean retro look)
+
+            if (isMobile) {
+                display.labelText.setVisible(false);
+                display.iconText.setVisible(true);
+                display.iconText.setPosition(barLeft, y - 10);
+                display.iconText.setOrigin(0, 0.5);
+                display.iconText.setFontSize('12px');
+
+                // Value
+                display.valueText.setPosition(barLeft + barW, y - 10);
+                display.valueText.setFontSize('12px');
+            } else {
+                display.labelText.setVisible(true);
+                display.iconText.setVisible(false);
+
+                display.labelText.setPosition(barLeft, y - 12);
+                display.labelText.setFontSize('8px');
+
+                display.valueText.setPosition(barLeft + barW, y - 12);
+                display.valueText.setFontSize('20px');
+            }
+
+            display.barBg.clear();
+            display.barBg.fillStyle(0x000000, 1);
+            display.barBg.fillRect(barLeft, barY, barW, 8);
+            display.barBg.lineStyle(2, 0x333333);
+            display.barBg.strokeRect(barLeft, barY, barW, 8);
+
+            display.barX = barLeft;
+            display.barY = barY;
+            display.barW = barW;
+            display.barH = 8;
+        });
+
+        // Trigger redraw of dynamic fills
+        this.updateHUD();
     }
 
     updateHUD() {
+        if (!this.timeManager) return; // Scale event might fire before init?
+
         // Time
-        this.weekText.setText(this.timeManager.getWeekDisplay());
-        this.dayText.setText(this.timeManager.getDayDisplay());
+        this.weekLabel.setText(this.timeManager.getWeekDisplay().toUpperCase());
+        this.dayDisplay.setText(this.timeManager.getDayDisplay());
 
         // Progress
         const prog = this.timeManager.getProgress();
-        this.progressFill.width = 100 * Math.min(1, prog);
+        // Use stored dimensions
+        if (this.progBarW) {
+            const fillW = this.progBarW * Math.min(1, prog);
+            this.progressFill.clear();
+            this.progressFill.fillStyle(Theme.COLORS.NEON_CYAN, 1);
+            this.progressFill.fillRect(this.progBarX, this.progBarY, fillW, 12); // Matches progBarH
+        }
 
         // Stats
         for (const [key, display] of Object.entries(this.statDisplays)) {
             const val = this.statManager.getStat(key);
-            display.fill.width = (val / 100) * display.barW;
             display.valueText.setText(`${val}`);
+
+            if (display.barW) {
+                const fillW = (val / 100) * display.barW;
+                display.barFill.clear();
+                display.barFill.fillStyle(display.color, 1);
+                display.barFill.fillRect(display.barX, display.barY, fillW, display.barH);
+            }
         }
     }
 

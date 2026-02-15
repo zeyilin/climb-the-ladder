@@ -102,7 +102,11 @@ export default class BootScene extends Phaser.Scene {
         this.generateSprite('tile_club', 0x2a1a2a, 32, 32);
         this.generateSprite('tile_lounge', 0x1a2a3a, 32, 32);
 
-        this.scene.start('MenuScene');
+        // Wait for fonts to load before starting
+        document.fonts.ready.then(() => {
+            this.scale.refresh(); // Ensure bounds are correct
+            this.scene.start('MenuScene');
+        });
     }
 
     generateSprite(key, color, w, h) {
@@ -118,5 +122,12 @@ export default class BootScene extends Phaser.Scene {
 
         gfx.generateTexture(key, w, h);
         gfx.destroy();
+
+        // access the texture and set filter to NEAREST to keep it crisp
+        // even though global pixelArt is false
+        const texture = this.textures.get(key);
+        if (texture) {
+            texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        }
     }
 }

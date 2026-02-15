@@ -31,7 +31,7 @@ export default class PromotionScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 55, '(The grind never ends.)', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#4a4a6a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#4a4a6a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Stats
@@ -41,7 +41,7 @@ export default class PromotionScene extends Phaser.Scene {
         ].join('  •  ');
 
         this.add.text(width / 2, 85, statsText, {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a',
         }).setOrigin(0.5);
 
         // Relationship recap — showing the fading portraits
@@ -61,7 +61,7 @@ export default class PromotionScene extends Phaser.Scene {
             const opacity = this.relationshipManager.getPortraitOpacity(rel.id);
 
             this.add.text(x - 55, recapY, rel.name, {
-                fontFamily: 'Inter', fontSize: '10px', color: '#a8a8c8',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#a8a8c8',
             }).setOrigin(0, 0.5).setAlpha(opacity);
 
             this.add.rectangle(x + barW / 2, recapY, barW, 6, 0x1a1a2e);
@@ -69,7 +69,7 @@ export default class PromotionScene extends Phaser.Scene {
             if (fillW > 0) this.add.rectangle(x + fillW / 2, recapY, fillW, 6, fillColor);
 
             this.add.text(x + barW + 10, recapY, `${rel.connection}%`, {
-                fontFamily: 'Inter', fontSize: '9px', color: '#6a6a8a',
+                fontFamily: '"VT323", monospace', fontSize: '9px', color: '#6a6a8a',
             }).setOrigin(0, 0.5);
 
             recapY += 18;
@@ -77,7 +77,7 @@ export default class PromotionScene extends Phaser.Scene {
 
         if (lostCount > 0) {
             this.add.text(width / 2, recapY + 5, `${lostCount} relationship${lostCount > 1 ? 's' : ''} permanently lost.`, {
-                fontFamily: 'Inter', fontSize: '9px', color: '#ff6b6b', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '9px', color: '#ff6b6b', fontStyle: 'italic',
             }).setOrigin(0.5);
         }
 
@@ -114,7 +114,7 @@ export default class PromotionScene extends Phaser.Scene {
         }).setOrigin(0.5).setAlpha(0);
 
         const firmText = this.add.text(width / 2, promoY + 20, promo.firm, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5).setAlpha(0);
 
         // The salary number — big
@@ -152,7 +152,7 @@ export default class PromotionScene extends Phaser.Scene {
 
         let currentLine = 0;
         const textObj = this.add.text(width / 2, y - 40, '', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#8a8aaa',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#8a8aaa',
             align: 'center', lineSpacing: 6,
         }).setOrigin(0.5, 0).setAlpha(0);
 

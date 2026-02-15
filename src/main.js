@@ -36,6 +36,7 @@ import EndingScene from './scenes/EndingScene.js';
 import HUDScene from './ui/HUD.js';
 import RelationshipPanelScene from './ui/RelationshipPanel.js';
 import ResumeViewScene from './ui/ResumeView.js';
+import InstructionsScene from './scenes/InstructionsScene.js';
 // Systems
 import StatManager from './systems/StatManager.js';
 import RelationshipManager from './systems/RelationshipManager.js';
@@ -43,6 +44,7 @@ import TimeManager from './systems/TimeManager.js';
 import DialogueSystem from './systems/DialogueSystem.js';
 import ResumeSystem from './systems/ResumeSystem.js';
 import AudioCues from './systems/AudioCues.js';
+import PersistenceManager from './systems/PersistenceManager.js';
 // Data
 import characterData from './data/characters.json';
 
@@ -55,10 +57,15 @@ import characterData from './data/characters.json';
 const config = {
     type: Phaser.AUTO,
     parent: 'game-container',
-    width: 800,
-    height: 600,
-    backgroundColor: '#0a0a0f',
-    pixelArt: true,
+    width: 1280, // Fixed 4:3 high-res
+    height: 960,
+    resolution: window.devicePixelRatio, // Ensure crisp rendering on high-DPI screens
+    roundPixels: true, // Fixes fuzzy text
+    backgroundColor: '#050508', // Theme.BG_DARK
+    pixelArt: true, // REQUIRED for sharp pixel fonts!
+    dom: {
+        createContainer: true,
+    },
     physics: {
         default: 'arcade',
         arcade: {
@@ -105,37 +112,64 @@ const config = {
         HUDScene,
         RelationshipPanelScene,
         ResumeViewScene,
+        InstructionsScene,
     ],
     scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.NONE, // Manual control to prevent stretching/black screens
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
 };
 
 const game = new Phaser.Game(config);
 
-// Initialize shared systems and store in registry
+// --- System Instantiation & Registry ---
 const statManager = new StatManager();
 const relationshipManager = new RelationshipManager();
 const timeManager = new TimeManager();
 const dialogueSystem = new DialogueSystem();
 const resumeSystem = new ResumeSystem();
 const audioCues = new AudioCues();
+const persistenceManager = new PersistenceManager(game);
 
-// Inject audio cues into systems
+// Wire up audio cues
 statManager.setAudioCues(audioCues);
 relationshipManager.setAudioCues(audioCues);
 
 // Initialize relationships from character data
 relationshipManager.init(characterData.characters);
 
-// Store systems in game registry so all scenes can access them
+// Register in Phaser registry so all scenes can access
 game.registry.set('statManager', statManager);
 game.registry.set('relationshipManager', relationshipManager);
 game.registry.set('timeManager', timeManager);
 game.registry.set('dialogueSystem', dialogueSystem);
 game.registry.set('resumeSystem', resumeSystem);
 game.registry.set('audioCues', audioCues);
-game.registry.set('hoursWorked', 0);
-game.registry.set('hoursWithPeople', 0);
-game.registry.set('consecutiveRestDays', 0);
+game.registry.set('persistenceManager', persistenceManager);
+
+// --- Manual Resize Management ---
+// Wraps resizing logic to ensure canvas buffer matches window size 1:1
+const resizeGame = () => {
+    if (!game || !game.scale) return;
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    // Force the canvas size to match the window
+    game.scale.resize(w, h);
+
+    // Explicitly refresh scale manager
+    game.scale.refresh();
+
+    console.log(`Manual Resize: ${w}x${h}`);
+};
+
+window.addEventListener('resize', resizeGame);
+
+// Initial sizing
+window.addEventListener('load', () => {
+    resizeGame();
+});
+
+// Also trigger once quickly in case load already fired
+setTimeout(resizeGame, 100);

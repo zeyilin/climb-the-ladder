@@ -30,7 +30,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 55, 'Match the insight to the problem. They already know. You\'re $200K validation.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Timer
@@ -120,7 +120,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
 
         // Problem
         const problemText = this.add.text(width / 2, 145, c.problem, {
-            fontFamily: 'Inter', fontSize: '13px', color: '#c8c8e8',
+            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#c8c8e8',
             wordWrap: { width: 600 }, align: 'center',
         }).setOrigin(0.5);
         this.caseGroup.push(problemText);
@@ -140,7 +140,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
             const bg = this.add.rectangle(width / 2, y, 560, 48, 0x1a1a2e)
                 .setInteractive({ useHandCursor: true });
             const label = this.add.text(width / 2, y, displayText, {
-                fontFamily: 'Inter', fontSize: '12px', color: '#a8a8c8',
+                fontFamily: '"VT323", monospace', fontSize: '12px', color: '#a8a8c8',
                 wordWrap: { width: 530 },
             }).setOrigin(0.5);
 
@@ -178,7 +178,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
 
         // Show flavor text
         const flavor = this.add.text(width / 2, 420, opt.flavor, {
-            fontFamily: 'Inter', fontSize: '11px', color: opt.correct ? '#98d8aa' : '#ff6b6b',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: opt.correct ? '#98d8aa' : '#ff6b6b',
             fontStyle: 'italic', wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
         this.caseGroup.push(flavor);
@@ -197,7 +197,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
 
         const { width } = this.cameras.main;
         const timeout = this.add.text(width / 2, 420, 'Time\'s up. The client went with McKinsey.', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#ff6b6b', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#ff6b6b', fontStyle: 'italic',
         }).setOrigin(0.5);
         this.caseGroup.push(timeout);
 
@@ -224,7 +224,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2, `You resolved ${this.score} of ${this.totalRounds} client cases.`, {
-            fontFamily: 'Inter', fontSize: '13px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#a8a8c8',
         }).setOrigin(0.5);
 
         const commentary = this.score >= 3
@@ -232,7 +232,7 @@ export default class ConsultingMiniGame extends Phaser.Scene {
             : '"The client said they\'ll \'take your recommendations into consideration.\' They won\'t."';
 
         this.add.text(width / 2, height / 2 + 40, commentary, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
 

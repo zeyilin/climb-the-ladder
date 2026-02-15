@@ -9,21 +9,21 @@ const ACT_CONFIGS = {
         slotsPerDay: 3,
         slotNames: ['Morning', 'Afternoon', 'Evening'],
         daysPerWeek: 5,
-        totalWeeks: 12,
+        totalWeeks: 1,
     },
     2: {
         name: 'Act II — College',
         slotsPerDay: 4,
         slotNames: ['Morning', 'Afternoon', 'Evening', 'Night'],
         daysPerWeek: 5,
-        totalWeeks: 16,
+        totalWeeks: 1,
     },
     3: {
         name: 'Act III — Early Career',
         slotsPerDay: 4,
         slotNames: ['Morning', 'Afternoon', 'Evening', 'Night'],
         daysPerWeek: 5,
-        totalWeeks: 20,
+        totalWeeks: 1,
         quarterLength: 5,
     },
     4: {
@@ -31,7 +31,7 @@ const ACT_CONFIGS = {
         slotsPerDay: 4,
         slotNames: ['Morning', 'Afternoon', 'Evening', 'Night'],
         daysPerWeek: 5,
-        totalWeeks: 16,
+        totalWeeks: 1,
         quarterLength: 4,
     },
     5: {
@@ -39,7 +39,7 @@ const ACT_CONFIGS = {
         slotsPerDay: 3,
         slotNames: ['Morning', 'Afternoon', 'Evening'],
         daysPerWeek: 5,
-        totalWeeks: 8,
+        totalWeeks: 1,
     },
 };
 

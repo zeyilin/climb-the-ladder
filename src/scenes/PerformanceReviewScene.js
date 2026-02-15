@@ -30,7 +30,7 @@ export default class PerformanceReviewScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 65, 'Your manager has opinions. None of them are new.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Stats summary
@@ -38,7 +38,7 @@ export default class PerformanceReviewScene extends Phaser.Scene {
             `Output: ${stats.gpa}    Network: ${stats.network}    Burnout: ${stats.burnout}`,
         ];
         this.add.text(width / 2, 100, statsLines.join('\n'), {
-            fontFamily: 'Inter', fontSize: '11px', color: '#8a8aaa',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#8a8aaa',
         }).setOrigin(0.5);
 
         // Rating box
@@ -59,19 +59,19 @@ export default class PerformanceReviewScene extends Phaser.Scene {
             ? `Salary adjustment: +$${review.raise.toLocaleString()}`
             : `Salary adjustment: -$${Math.abs(review.raise).toLocaleString()}`;
         this.add.text(width / 2, 182, raiseText, {
-            fontFamily: 'Inter', fontSize: '10px', color: review.raise >= 0 ? '#98d8aa' : '#ff6b6b',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: review.raise >= 0 ? '#98d8aa' : '#ff6b6b',
         }).setOrigin(0.5);
 
         // Manager commentary
         const commentary = this.getManagerCommentary(review.tier, stats);
         this.add.text(width / 2, 240, commentary.manager, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8e8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8e8',
             wordWrap: { width: 550 }, align: 'center', lineSpacing: 4,
         }).setOrigin(0.5);
 
         // Internal monologue
         this.add.text(width / 2, 310, commentary.internal, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center', lineSpacing: 4,
         }).setOrigin(0.5);
 
@@ -91,7 +91,7 @@ export default class PerformanceReviewScene extends Phaser.Scene {
                 : 'Derek got promoted. He thanked "the team" in his post. He\'s never met the team.';
 
             this.add.text(width / 2, 380, `🏆 ${derekLine}`, {
-                fontFamily: 'Inter', fontSize: '10px', color: '#ffd93d',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#ffd93d',
                 fontStyle: 'italic', wordWrap: { width: 550 }, align: 'center',
             }).setOrigin(0.5);
         });

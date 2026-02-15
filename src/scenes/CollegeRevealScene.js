@@ -34,7 +34,7 @@ export default class CollegeRevealScene extends Phaser.Scene {
         ].join('  •  ');
 
         this.add.text(width / 2, 70, statsText, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a',
         }).setOrigin(0.5);
 
         // Relationship recap
@@ -51,7 +51,7 @@ export default class CollegeRevealScene extends Phaser.Scene {
             const x = width / 2 - 80;
 
             this.add.text(x - 50, recapY, rel.name, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#a8a8c8',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#a8a8c8',
             }).setOrigin(0, 0.5).setAlpha(this.relationshipManager.getPortraitOpacity(rel.id));
 
             this.add.rectangle(x + barW / 2, recapY, barW, 8, 0x1a1a2e);
@@ -59,7 +59,7 @@ export default class CollegeRevealScene extends Phaser.Scene {
             this.add.rectangle(x + fillW / 2, recapY, fillW, 8, fillColor);
 
             this.add.text(x + barW + 15, recapY, `${rel.connection}%`, {
-                fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a',
             }).setOrigin(0, 0.5);
 
             recapY += 22;
@@ -134,11 +134,11 @@ export default class CollegeRevealScene extends Phaser.Scene {
         }).setOrigin(0.5).setAlpha(0);
 
         const mottoText = this.add.text(width / 2, y + 10, schoolMotto, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic', align: 'center',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic', align: 'center',
         }).setOrigin(0.5).setAlpha(0);
 
         const commentaryText = this.add.text(width / 2, y + 55, commentary, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#a8a8c8', align: 'center', lineSpacing: 4,
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#a8a8c8', align: 'center', lineSpacing: 4,
         }).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({ targets: nameText, alpha: 1, duration: 600, delay: 300 });

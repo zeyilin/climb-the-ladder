@@ -30,7 +30,7 @@ export default class TeamManagementScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 50, 'You\'re the boss now. Three people depend on your decisions.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.moraleText = this.add.text(30, 80, `Team Morale: ${this.teamMorale}%`, {
@@ -133,13 +133,13 @@ export default class TeamManagementScene extends Phaser.Scene {
         this.situationGroup.push(title);
 
         const context = this.add.text(width / 2, 145, s.context, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8e8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8e8',
             wordWrap: { width: 580 }, align: 'center',
         }).setOrigin(0.5);
         this.situationGroup.push(context);
 
         const employee = this.add.text(width / 2, 175, `Re: ${s.employee}`, {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
         this.situationGroup.push(employee);
 
@@ -148,7 +148,7 @@ export default class TeamManagementScene extends Phaser.Scene {
             const bg = this.add.rectangle(width / 2, y, 560, 55, 0x1a1a2e)
                 .setInteractive({ useHandCursor: true });
             const label = this.add.text(width / 2, y, opt.text, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#a8a8c8',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#a8a8c8',
                 wordWrap: { width: 530 },
             }).setOrigin(0.5);
 
@@ -172,7 +172,7 @@ export default class TeamManagementScene extends Phaser.Scene {
         this.outputText.setText(`Output: ${this.teamOutput}%`);
 
         const flavor = this.add.text(width / 2, 430, opt.flavor, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
         this.situationGroup.push(flavor);
@@ -197,7 +197,7 @@ export default class TeamManagementScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2 + 20, commentary, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
 

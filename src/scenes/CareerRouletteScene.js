@@ -34,14 +34,14 @@ export default class CareerRouletteScene extends Phaser.Scene {
         this.tweens.add({ targets: title, alpha: 1, delay: 400, duration: 600 });
 
         const sub = this.add.text(width / 2, height / 2 + 50, 'You throw your cap in the air.', {
-            fontFamily: 'Inter', fontSize: '13px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#6a6a8a',
         }).setOrigin(0.5).setAlpha(0);
         this.tweens.add({ targets: sub, alpha: 1, delay: 800, duration: 600 });
 
         // Freeze moment text
         this.time.delayedCall(2500, () => {
             const freeze = this.add.text(width / 2, height / 2 + 80, 'The camera freezes.', {
-                fontFamily: 'Inter', fontSize: '12px', color: '#ffd93d', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '12px', color: '#ffd93d', fontStyle: 'italic',
             }).setOrigin(0.5).setAlpha(0);
             this.tweens.add({ targets: freeze, alpha: 1, duration: 400 });
         });
@@ -65,7 +65,7 @@ export default class CareerRouletteScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2 - 100, '"The economy has decided for you."', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Career tracks
@@ -168,7 +168,7 @@ export default class CareerRouletteScene extends Phaser.Scene {
         // Flavor text
         this.time.delayedCall(1000, () => {
             this.add.text(width / 2, height / 2 + 55, career.flavor, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#aaaacc',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#aaaacc',
                 fontStyle: 'italic', align: 'center', lineSpacing: 4,
             }).setOrigin(0.5);
         });
@@ -186,12 +186,12 @@ export default class CareerRouletteScene extends Phaser.Scene {
             const peoplHours = this.registry.get('hoursWithPeople') || 0;
 
             this.add.text(width / 2, height - 80, `Hours worked: ${hours} | Hours with people: ${peoplHours}`, {
-                fontFamily: 'Inter', fontSize: '10px', color: '#4a4a6a',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: '#4a4a6a',
             }).setOrigin(0.5);
 
             const ratio = hours > 0 ? (peoplHours / hours).toFixed(1) : '∞';
             this.add.text(width / 2, height - 60, `Ratio: ${ratio}:1 (people:work)`, {
-                fontFamily: 'Inter', fontSize: '10px', color: peoplHours > hours ? '#4CAF50' : '#FF6B6B',
+                fontFamily: '"VT323", monospace', fontSize: '10px', color: peoplHours > hours ? '#4CAF50' : '#FF6B6B',
             }).setOrigin(0.5);
         });
 

@@ -29,7 +29,7 @@ export default class BigTechMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 42, 'Ship. Iterate. Present at the all-hands. Repeat until IPO.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.scoreText = this.add.text(30, 20, 'Impact: 0', {
@@ -148,7 +148,7 @@ export default class BigTechMiniGame extends Phaser.Scene {
         this.scenarioGroup.push(title);
 
         const context = this.add.text(width / 2, 125, s.context, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8e8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8e8',
             wordWrap: { width: 580 }, align: 'center',
         }).setOrigin(0.5);
         this.scenarioGroup.push(context);
@@ -165,7 +165,7 @@ export default class BigTechMiniGame extends Phaser.Scene {
             const bg = this.add.rectangle(width / 2, y, 560, 55, 0x1a1a2e)
                 .setInteractive({ useHandCursor: true });
             const label = this.add.text(width / 2, y, displayText, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#a8a8c8',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#a8a8c8',
                 wordWrap: { width: 530 },
             }).setOrigin(0.5);
 
@@ -191,7 +191,7 @@ export default class BigTechMiniGame extends Phaser.Scene {
         this.statManager.modifyStat('burnout', opt.effects.burnout);
 
         const flavor = this.add.text(width / 2, 420, opt.flavor, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
         this.scenarioGroup.push(flavor);
@@ -215,7 +215,7 @@ export default class BigTechMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2, `Total impact: ${this.score} (out of a possible 12)`, {
-            fontFamily: 'Inter', fontSize: '13px', color: '#a8a8c8',
+            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#a8a8c8',
         }).setOrigin(0.5);
 
         const commentary = this.score >= 8
@@ -223,7 +223,7 @@ export default class BigTechMiniGame extends Phaser.Scene {
             : '"You shipped a feature that 1 billion people use and will never think about. This is your legacy."';
 
         this.add.text(width / 2, height / 2 + 40, commentary, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic',
             wordWrap: { width: 550 }, align: 'center',
         }).setOrigin(0.5);
 

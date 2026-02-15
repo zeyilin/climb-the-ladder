@@ -50,7 +50,7 @@ export default class EscalatedMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 50, meta.subtitle, {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         // Multiplier callout
@@ -182,7 +182,7 @@ export default class EscalatedMiniGame extends Phaser.Scene {
         this.challengeGroup.push(value);
 
         const q = this.add.text(width / 2, 170, c.q, {
-            fontFamily: 'Inter', fontSize: '13px', color: '#e8e8d8',
+            fontFamily: '"VT323", monospace', fontSize: '13px', color: '#e8e8d8',
             wordWrap: { width: 580 }, align: 'center',
         }).setOrigin(0.5);
         this.challengeGroup.push(q);
@@ -192,7 +192,7 @@ export default class EscalatedMiniGame extends Phaser.Scene {
             const bg = this.add.rectangle(width / 2, y, 560, 45, 0x1a1508)
                 .setStrokeStyle(1, 0x2a2518).setInteractive({ useHandCursor: true });
             const text = this.add.text(width / 2, y, ans, {
-                fontFamily: 'Inter', fontSize: '11px', color: '#a8a898',
+                fontFamily: '"VT323", monospace', fontSize: '11px', color: '#a8a898',
             }).setOrigin(0.5);
 
             bg.on('pointerover', () => bg.setFillStyle(0x2a2518));
@@ -226,11 +226,11 @@ export default class EscalatedMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2 + 10, `Total value: $${this.score.toLocaleString()}`, {
-            fontFamily: 'Inter', fontSize: '12px', color: '#c8c8a8',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#c8c8a8',
         }).setOrigin(0.5);
 
         this.add.text(width / 2, height / 2 + 40, 'The game is the same. The numbers just got bigger.', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a4a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a4a', fontStyle: 'italic',
         }).setOrigin(0.5);
 
         this.time.delayedCall(2500, () => {

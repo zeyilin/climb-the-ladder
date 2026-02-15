@@ -40,10 +40,10 @@ export default class ReckoningScene extends Phaser.Scene {
             fontFamily: '"Press Start 2P"', fontSize: '14px', color: '#d4a853',
         }).setOrigin(0.5).setAlpha(0);
         const subtitle = this.add.text(width / 2, height / 2 + 10, 'No more mini-games. The grind is over.', {
-            fontFamily: 'Inter', fontSize: '12px', color: '#8a7a5a', fontStyle: 'italic',
+            fontFamily: '"VT323", monospace', fontSize: '12px', color: '#8a7a5a', fontStyle: 'italic',
         }).setOrigin(0.5).setAlpha(0);
         const sub2 = this.add.text(width / 2, height / 2 + 35, 'Now comes the harder part.', {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a5a3a',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a5a3a',
         }).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({ targets: title, alpha: 1, duration: 1500, delay: 500 });
@@ -105,7 +105,7 @@ export default class ReckoningScene extends Phaser.Scene {
                 fontFamily: '"Press Start 2P"', fontSize: '7px', color: '#a89060',
             }).setOrigin(0.5);
             this.add.text(loc.x, loc.y + 12, loc.flavor, {
-                fontFamily: 'Inter', fontSize: '9px', color: '#6a5a3a', fontStyle: 'italic',
+                fontFamily: '"VT323", monospace', fontSize: '9px', color: '#6a5a3a', fontStyle: 'italic',
             }).setOrigin(0.5);
 
             const zone = this.add.zone(loc.x, loc.y, 140, 85);
@@ -119,7 +119,7 @@ export default class ReckoningScene extends Phaser.Scene {
 
         // Instruction
         this.add.text(width / 2, height - 25, 'Move with arrows. Press E to visit.', {
-            fontFamily: 'Inter', fontSize: '9px', color: '#4a3a2a',
+            fontFamily: '"VT323", monospace', fontSize: '9px', color: '#4a3a2a',
         }).setOrigin(0.5);
 
         // Track visits

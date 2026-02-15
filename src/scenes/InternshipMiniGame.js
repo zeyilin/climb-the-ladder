@@ -28,7 +28,7 @@ export default class InternshipMiniGame extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(width / 2, 42, 'Sort. Format. Survive. (Sound familiar?)', {
-            fontFamily: 'Inter', fontSize: '10px', color: '#6a6a8a',
+            fontFamily: '"VT323", monospace', fontSize: '10px', color: '#6a6a8a',
         }).setOrigin(0.5);
 
         // Timer
@@ -96,7 +96,7 @@ export default class InternshipMiniGame extends Phaser.Scene {
         this.itemContent.push(titleText);
 
         const detail = this.add.text(width / 2 - 220, height / 2 - 35, item.detail, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#8a8aaa', lineSpacing: 3,
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#8a8aaa', lineSpacing: 3,
         });
         this.itemContent.push(detail);
 
@@ -134,7 +134,7 @@ export default class InternshipMiniGame extends Phaser.Scene {
         const feedback = this.add.text(width / 2, height / 2 + 120, correct
             ? `✓ Correct! ${item.joke}`
             : `✗ Wrong. ${item.joke}`, {
-            fontFamily: 'Inter', fontSize: '10px',
+            fontFamily: '"VT323", monospace', fontSize: '10px',
             color: correct ? '#4CAF50' : '#FF6B6B', fontStyle: 'italic',
         }).setOrigin(0.5);
         this.itemContent.push(feedback);
@@ -191,7 +191,7 @@ export default class InternshipMiniGame extends Phaser.Scene {
         }
 
         this.add.text(width / 2, height / 2 + 50, comment, {
-            fontFamily: 'Inter', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic', align: 'center',
+            fontFamily: '"VT323", monospace', fontSize: '11px', color: '#6a6a8a', fontStyle: 'italic', align: 'center',
         }).setOrigin(0.5);
 
         this.time.delayedCall(1500, () => {

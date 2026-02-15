@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
+import Theme from './Theme.js';
 
 /**
  * RelationshipPanelScene — Fading portraits panel.
- * The core emotional mechanic: portraits grey out as connections decay.
+ * "Corporate CRM" Style — DOM-based for crisp text and scrolling.
  */
 export default class RelationshipPanelScene extends Phaser.Scene {
     constructor() {
@@ -14,130 +15,138 @@ export default class RelationshipPanelScene extends Phaser.Scene {
     }
 
     create() {
-        const { width, height } = this.cameras.main;
+        const { width, height } = this.scale;
 
-        // Background overlay
-        const bg = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.85)
+        // --- Background Overlay (Phaser) ---
+        this.overlay = this.add.rectangle(width / 2, height / 2, width, height, Theme.COLORS.BG_OVERLAY, 0.85)
             .setInteractive()
             .setDepth(200);
 
-        // Panel
-        const panelW = 400;
-        const panelH = 350;
-        this.add.rectangle(width / 2, height / 2, panelW, panelH, 0x12121f)
-            .setDepth(201);
-        this.add.rectangle(width / 2, height / 2, panelW - 2, panelH - 2, 0x000000, 0)
-            .setStrokeStyle(1, 0x2a2a4e)
-            .setDepth(201);
+        // --- Panel dimensions ---
+        this.panelW = Math.min(700, width - 40);
+        this.panelH = Math.min(600, height - 40);
 
-        // Title
-        this.add.text(width / 2, height / 2 - panelH / 2 + 25, '❤️ RELATIONSHIPS', {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '10px',
-            color: '#6c63ff',
-        }).setOrigin(0.5).setDepth(202);
+        // --- DOM Panel ---
+        const html = this.buildHTML();
+        this.domElement = this.add.dom(width / 2, height / 2).createFromHTML(html);
+        this.domElement.setDepth(201);
 
-        this.add.text(width / 2, height / 2 - panelH / 2 + 45, 'They fade when you stop showing up.', {
-            fontFamily: 'Inter',
-            fontSize: '10px',
-            color: '#4a4a6a',
-            fontStyle: 'italic',
-        }).setOrigin(0.5).setDepth(202);
+        const el = this.domElement.node;
+        el.style.width = this.panelW + 'px';
+        el.style.height = this.panelH + 'px';
 
-        // Character data
+        // --- Entrance Animation ---
+        this.domElement.setAlpha(0);
+        this.domElement.setScale(0.95);
+        this.tweens.add({
+            targets: this.domElement,
+            alpha: 1,
+            scaleX: 1,
+            scaleY: 1,
+            duration: 200,
+            ease: 'Back.out',
+        });
+
+        // --- Input ---
+        this.input.keyboard.on('keydown-TAB', () => this.closePanel());
+
+        this.overlay.on('pointerdown', () => this.closePanel());
+
+        // --- Resize ---
+        this.scale.on('resize', this.handleResize, this);
+        this.events.on('shutdown', () => {
+            this.scale.off('resize', this.handleResize, this);
+        });
+    }
+
+    buildHTML() {
         const charData = this.cache.json.get('characters');
         const characters = charData.characters;
         const sorted = this.relationshipManager.getSorted();
 
-        const startY = height / 2 - panelH / 2 + 80;
-        const rowH = 60;
-
-        sorted.forEach((rel, i) => {
-            const y = startY + i * rowH;
-            const x = width / 2 - panelW / 2 + 40;
-            const opacity = this.relationshipManager.getPortraitOpacity(rel.id);
+        const rows = sorted.map((rel) => {
             const char = characters.find(c => c.id === rel.id);
+            const opacity = this.relationshipManager.getPortraitOpacity(rel.id);
+            const fillPct = Math.max(0, Math.min(100, rel.connection));
+            const fillColor = rel.lost ? 'var(--danger)' : (rel.connection > 50 ? 'var(--neon-green)' : 'var(--neon-yellow)');
+            const valueColor = fillColor;
+            const valueText = rel.lost ? 'LOST' : `${Math.round(rel.connection)}%`;
+            const portraitColor = char?.color || '#3a3a5e';
 
-            // Portrait box
-            const portraitSize = 40;
-            const portraitBg = this.add.rectangle(x + portraitSize / 2, y + portraitSize / 2, portraitSize, portraitSize,
-                Phaser.Display.Color.HexStringToColor(char?.color || '#3a3a5e').color)
-                .setAlpha(opacity).setDepth(202);
+            const ghostingHTML = (!rel.reachesOut && !rel.lost)
+                ? '<span class="ghosting-badge">GHOSTING</span>'
+                : '';
 
-            // Emoji
-            if (char) {
-                this.add.text(x + portraitSize / 2, y + portraitSize / 2, char.emoji, {
-                    fontSize: '20px',
-                }).setOrigin(0.5).setAlpha(opacity).setDepth(203);
-            }
+            return `
+                <div class="rel-row" style="opacity: ${opacity}">
+                    <div class="rel-portrait" style="background: ${portraitColor}">
+                        ${char ? char.emoji : '?'}
+                    </div>
+                    <div class="rel-info">
+                        <div class="rel-name">${rel.name}</div>
+                        ${char ? `<div class="rel-role">${char.role}</div>` : ''}
+                    </div>
+                    <div class="rel-bar-wrapper">
+                        <div class="rel-bar-bg">
+                            <div class="rel-bar-fill" style="width: ${fillPct}%; background: ${fillColor}"></div>
+                        </div>
+                        <div class="rel-bar-value" style="color: ${fillColor}">${valueText}</div>
+                    </div>
+                    <div class="rel-status">${ghostingHTML}</div>
+                </div>
+            `;
+        }).join('');
 
-            // Name
-            this.add.text(x + portraitSize + 15, y + 5, rel.name, {
-                fontFamily: '"Press Start 2P"',
-                fontSize: '9px',
-                color: '#c8c8e8',
-            }).setAlpha(opacity).setDepth(202);
+        return `
+            <div class="panel rel-panel">
+                <div class="rel-header">
+                    <span class="rel-header-title">RELATIONSHIP_DATABASE // V.1.0</span>
+                    <span class="rel-header-badge">CONFIDENTIAL</span>
+                </div>
+                <div class="rel-header-line"></div>
+                <div class="rel-hint">"Networking is just using people who are using you."</div>
+                <div class="rel-list">
+                    ${rows}
+                </div>
+                <div class="rel-close-hint">[ PRESS TAB TO CLOSE ]</div>
+            </div>
+        `;
+    }
 
-            // Role text
-            if (char) {
-                this.add.text(x + portraitSize + 15, y + 22, char.role, {
-                    fontFamily: 'Inter',
-                    fontSize: '9px',
-                    color: '#5a5a7a',
-                }).setAlpha(Math.max(0.3, opacity)).setDepth(202);
-            }
+    handleResize(gameSize) {
+        if (!gameSize || gameSize.width <= 0 || gameSize.height <= 0) return;
+        const width = gameSize.width;
+        const height = gameSize.height;
 
-            // Connection bar
-            const barX = x + portraitSize + 15;
-            const barY = y + 38;
-            const barW = 180;
-            const barH = 6;
-            const fillW = (rel.connection / 100) * barW;
+        this.cameras.main.setViewport(0, 0, width, height);
 
-            this.add.rectangle(barX + barW / 2, barY, barW, barH, 0x1a1a2e).setDepth(202);
+        if (this.overlay) {
+            this.overlay.setPosition(width / 2, height / 2);
+            this.overlay.setSize(width, height);
+        }
 
-            const fillColor = rel.connection > 50 ? 0x98D8AA :
-                rel.connection > 25 ? 0xFFD93D : 0xFF6B6B;
-            this.add.rectangle(barX + fillW / 2, barY, fillW, barH, fillColor)
-                .setOrigin(0, 0.5).setAlpha(opacity).setDepth(202);
+        if (this.domElement) {
+            this.panelW = Math.min(700, width - 40);
+            this.panelH = Math.min(600, height - 40);
+            this.domElement.setPosition(width / 2, height / 2);
+            const el = this.domElement.node;
+            el.style.width = this.panelW + 'px';
+            el.style.height = this.panelH + 'px';
+        }
+    }
 
-            // Connection value
-            const connText = rel.lost ? 'LOST' : `${rel.connection}%`;
-            const connColor = rel.lost ? '#FF6B6B' : '#6a6a8a';
-            this.add.text(barX + barW + 10, barY, connText, {
-                fontFamily: 'Inter',
-                fontSize: '10px',
-                color: connColor,
-                fontStyle: rel.lost ? 'italic' : 'normal',
-            }).setOrigin(0, 0.5).setAlpha(opacity).setDepth(202);
-
-            // Status indicator
-            if (!rel.reachesOut && !rel.lost) {
-                this.add.text(barX + barW + 45, barY, '(stopped texting)', {
-                    fontFamily: 'Inter',
-                    fontSize: '8px',
-                    color: '#FF6B6B',
-                    fontStyle: 'italic',
-                }).setOrigin(0, 0.5).setDepth(202);
-            }
-        });
-
-        // Close instruction
-        this.add.text(width / 2, height / 2 + panelH / 2 - 20, 'Press TAB to close', {
-            fontFamily: '"Press Start 2P"',
-            fontSize: '7px',
-            color: '#3a3a5a',
-        }).setOrigin(0.5).setDepth(202);
-
-        // Close on TAB
-        const tabKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TAB);
-        tabKey.on('down', () => {
-            this.scene.stop('RelationshipPanelScene');
-        });
-
-        // Also close on clicking background
-        bg.on('pointerdown', () => {
-            this.scene.stop('RelationshipPanelScene');
+    closePanel() {
+        if (this.closing) return;
+        this.closing = true;
+        this.tweens.add({
+            targets: this.domElement,
+            alpha: 0,
+            scaleX: 0.95,
+            scaleY: 0.95,
+            duration: 150,
+            onComplete: () => {
+                this.scene.stop('RelationshipPanelScene');
+            },
         });
     }
 }

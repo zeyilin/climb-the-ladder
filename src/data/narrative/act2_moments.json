@@ -21,7 +21,7 @@
                         },
                         {
                             "text": "\"You guys should head out before traffic gets bad.\"",
-                            "effects": { "ma_connection": -5, "ba_connection": -2, "independence": 3 },
+                            "effects": { "ma_connection": -5, "ba_connection": -2, "authenticity": 3 },
                             "internal_monologue": "(You see it hit Ma's face before she can hide it. Ba picks up his car keys. 'Yes. Traffic.' In the parking lot, Ma hugs you so long that Lily has to pull her away. You watch the sedan until it turns the corner. The room is very quiet.)"
                         }
                     ]
@@ -43,12 +43,12 @@
                     "options": [
                         {
                             "text": "Call Ma back. Talk until she runs out of worries.",
-                            "effects": { "ma_connection": 5, "independence": -2 },
+                            "effects": { "ma_connection": 5, "authenticity": -2 },
                             "internal_monologue": "(Forty-five minutes. She asks about the mattress, the dining hall, whether you locked the door. Ba gets on the phone for thirty seconds: 'Study hard. Eat well.' Click. You fall asleep to the echo of home.)"
                         },
                         {
                             "text": "Text: \"All good Ma. Tired. Talk tomorrow.\"",
-                            "effects": { "ma_connection": -3, "independence": 3 },
+                            "effects": { "ma_connection": -3, "authenticity": 3 },
                             "internal_monologue": "(You stare at the ceiling. Your roommate is already asleep. Tomorrow is orientation and you haven't read any of the materials. Ma texts back a single heart emoji. Then another. Then: 'Eat breakfast.' You put the phone face down.)"
                         }
                     ]
@@ -76,7 +76,7 @@
                         },
                         {
                             "text": "\"Still deciding.\" (You're not. But you're tired of the script.)",
-                            "effects": { "priya_connection": 2, "authenticity": 5, "independence": 2 },
+                            "effects": { "priya_connection": 2, "authenticity": 5, "authenticity": 2 },
                             "internal_monologue": "(Priya nods, but you can tell she doesn't believe you. She's already mapped her four-year plan. You recognize the look. It's the same one you see in the mirror.)"
                         }
                     ]
@@ -126,7 +126,7 @@
                     "options": [
                         {
                             "text": "Take meticulous notes. You'll catch up through sheer effort.",
-                            "effects": { "gpa": 4, "burnout": 3, "independence": 2 },
+                            "effects": { "gpa": 4, "burnout": 3, "authenticity": 2 },
                             "internal_monologue": "(You write down everything, even the things you already know. Somewhere in the back of your mind, Ba's voice: 'They have a head start. You have a longer stride.' You hope he's right.)"
                         },
                         {
@@ -182,12 +182,12 @@
                     "options": [
                         {
                             "text": "\"Tell Ba I'm doing well, Ma. I'll call again tomorrow.\"",
-                            "effects": { "ma_connection": 5, "ba_connection": 3, "independence": -1 },
+                            "effects": { "ma_connection": 5, "ba_connection": 3, "authenticity": -1 },
                             "internal_monologue": "(You stay in the stairwell for another twenty minutes. Ma tells you about Mrs. Wong's daughter who dropped out. A cautionary tale. A prayer. 'You won't do that,' she says. It's not a question.)"
                         },
                         {
                             "text": "\"Ma, I need to go. I'll call this weekend, okay?\"",
-                            "effects": { "ma_connection": -3, "independence": 5, "authenticity": 2 },
+                            "effects": { "ma_connection": -3, "authenticity": 5, "authenticity": 2 },
                             "internal_monologue": "(Every day becomes every other day. Every other day becomes 'this weekend.' 'This weekend' becomes 'Sorry Ma, I was busy.' The guilt compounds like interest.)"
                         }
                     ]
@@ -242,7 +242,7 @@
                         },
                         {
                             "text": "Be honest. Talk about teaching yourself to code. The hunger behind it.",
-                            "effects": { "prestige": 2, "authenticity": 8, "independence": 3 },
+                            "effects": { "prestige": 2, "authenticity": 8, "authenticity": 3 },
                             "internal_monologue": "(The recruiter pauses. 'That's... actually refreshing.' She circles something on your resume. You don't know if honesty is a strategy or a liability. But it felt better than performing.)"
                         }
                     ]
@@ -347,7 +347,7 @@
                     "options": [
                         {
                             "text": "\"I'm interested in your research. I'd like to get involved.\"",
-                            "effects": { "prestige": 5, "gpa": 3, "independence": 3 },
+                            "effects": { "prestige": 5, "gpa": 3, "authenticity": 3 },
                             "internal_monologue": "(He leans back. 'I appreciate directness. Send me your transcript.' You nod. Walk out. In the hallway, your hands are shaking. You just did something nobody taught you how to do. Nobody in your family has ever walked into a professor's office and asked for something.)"
                         },
                         {
@@ -434,7 +434,7 @@
                         },
                         {
                             "text": "Text Lily: \"Maybe. I have a lot of work.\" (You could go. You just don't want to explain the person you're becoming.)",
-                            "effects": { "lily_connection": -5, "ma_connection": -3, "gpa": 3, "independence": 3 },
+                            "effects": { "lily_connection": -5, "ma_connection": -3, "gpa": 3, "authenticity": 3 },
                             "internal_monologue": "(Lily doesn't respond for two days. When she does, it's just: 'ok.' Two letters. You've never felt smaller.)"
                         }
                     ]

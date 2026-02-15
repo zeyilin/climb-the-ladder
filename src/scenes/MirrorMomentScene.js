@@ -11,6 +11,8 @@ export default class MirrorMomentScene extends BaseScene {
     }
 
     create() {
+        this._closing = false;
+
         const { width, height } = this.cameras.main;
         this.cameras.main.setBackgroundColor('#000000');
         this.cameras.main.fadeIn(1000);

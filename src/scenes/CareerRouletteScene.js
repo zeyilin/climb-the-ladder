@@ -108,16 +108,16 @@ export default class CareerRouletteScene extends BaseScene {
         // Determine result (truly random)
         this.resultIndex = Math.floor(Math.random() * this.careers.length);
 
-        this.spinEvent = this.time.addEvent({
-            delay: this.spinSpeed,
-            repeat: this.totalSpins,
-            callback: () => this.doSpin(),
-        });
+        // Use chained delayed calls so each spin respects updated speed
+        this.scheduleNextSpin();
+    }
+
+    scheduleNextSpin() {
+        this.time.delayedCall(this.spinSpeed, () => this.doSpin());
     }
 
     doSpin() {
         this.currentSpin++;
-        const { width, height } = this.cameras.main;
 
         // Show current career
         const career = this.careers[this.spinIndex % this.careers.length];
@@ -146,6 +146,8 @@ export default class CareerRouletteScene extends BaseScene {
             this.slotText.setColor(result.color);
 
             this.time.delayedCall(600, () => this.showResult(result));
+        } else {
+            this.scheduleNextSpin();
         }
     }
 
@@ -208,13 +210,11 @@ export default class CareerRouletteScene extends BaseScene {
             btn.on('pointerdown', () => {
                 this.cameras.main.fadeOut(1000);
                 this.time.delayedCall(1000, () => {
-                    // End of Act II → Act III via GameFlowController
+                    // End of Act II → continue flow (act_transition handles the rest)
                     this.scene.stop('CareerRouletteScene');
                     const gfc = this.registry.get('gameFlowController');
                     if (gfc) {
-                        const timeManager = this.registry.get('timeManager');
-                        if (timeManager) timeManager.advanceAct();
-                        gfc.startAct(3);
+                        gfc.processNextStep();
                     }
                 });
             });

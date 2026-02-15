@@ -37,6 +37,12 @@ export default class GameFlowController {
 
         this.narrativeEngine.loadAct(actNumber, manifestData, momentsData);
         this.timeManager.currentAct = actNumber;
+        this.timeManager.currentDay = 1;
+        this.timeManager.currentWeek = 1;
+        this.timeManager.currentSlot = 0;
+        this.timeManager.totalDays = 0;
+        this.timeManager.daySlots = [];
+        this.timeManager.isActOver = false;
         this.timeManager.applyActConfig();
 
         // Add act-specific characters
@@ -120,27 +126,16 @@ export default class GameFlowController {
         // Stop all gameplay scenes first
         this.stopGameplayScenes();
 
-        // Use NarrativeScene to display, or create an overlay
-        const activeScene = this.getActiveScene();
-        if (!activeScene) {
-            // Start NarrativeScene in title-card-only mode (no moment rendering)
-            this.game.scene.start('NarrativeScene', {
-                titleCardOnly: true,
-                actNumber: this.timeManager.currentAct,
-            });
+        // Register a callback so NarrativeScene can trigger the title card after create
+        this.registry.set('pendingTitleCard', {
+            title: step.title,
+            subtitle: step.subtitle,
+            callback: () => this.processNextStep(),
+        });
 
-            // Wait for scene to be ready, then show title card
-            this.game.scene.getScene('NarrativeScene').events.once('create', () => {
-                const ns = this.game.scene.getScene('NarrativeScene');
-                NarrativeScene.showTitleCard(ns, step.title, step.subtitle, () => {
-                    this.processNextStep();
-                });
-            });
-            return;
-        }
-
-        NarrativeScene.showTitleCard(activeScene, step.title, step.subtitle, () => {
-            this.processNextStep();
+        this.game.scene.start('NarrativeScene', {
+            titleCardOnly: true,
+            actNumber: this.timeManager.currentAct,
         });
     }
 
@@ -241,7 +236,6 @@ export default class GameFlowController {
             return;
         }
 
-        this.timeManager.advanceAct();
         this.startAct(nextAct);
     }
 
@@ -286,7 +280,6 @@ export default class GameFlowController {
         // (they should end with act_transition)
         const currentAct = this.timeManager.currentAct;
         if (currentAct < 5) {
-            this.timeManager.advanceAct();
             this.startAct(currentAct + 1);
         } else {
             this.showScrapbook();
@@ -311,6 +304,11 @@ export default class GameFlowController {
         if (manifestData && momentsData) {
             this.narrativeEngine.loadAct(act, manifestData, momentsData);
             this.narrativeEngine.restoreProgress(narrativeProgress);
+        }
+
+        // Ensure act-specific characters are available
+        for (let a = 2; a <= act; a++) {
+            this.addActCharacters(a, anyScene);
         }
 
         this.processNextStep();

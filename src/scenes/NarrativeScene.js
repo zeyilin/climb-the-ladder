@@ -41,10 +41,14 @@ export default class NarrativeScene extends BaseScene {
         );
         this.contentDom.setDepth(5);
 
-        // Title card mode — just draw background, no moment rendering
+        // Title card mode — just draw background, then show title card
         if (this.titleCardOnly) {
             this.drawGradient(width, height);
-            // Title card will be shown by GameFlowController via showTitleCard()
+            const pending = this.registry.get('pendingTitleCard');
+            if (pending) {
+                this.registry.set('pendingTitleCard', null);
+                NarrativeScene.showTitleCard(this, pending.title, pending.subtitle, pending.callback);
+            }
         } else {
             // Load moment data
             let moment = this.momentData;
@@ -461,12 +465,14 @@ export default class NarrativeScene extends BaseScene {
 
         this.cameras.main.fadeOut(400);
         this.time.delayedCall(400, () => {
+            const onComplete = this.onComplete;
+            const returnScene = this.returnScene;
             this.scene.stop('NarrativeScene');
 
-            if (this.onComplete) {
-                this.onComplete();
-            } else if (this.returnScene) {
-                this.scene.resume(this.returnScene);
+            if (onComplete) {
+                onComplete();
+            } else if (returnScene) {
+                this.scene.resume(returnScene);
             }
         });
     }

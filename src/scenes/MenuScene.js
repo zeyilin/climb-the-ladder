@@ -270,6 +270,8 @@ export default class MenuScene extends BaseScene {
 
     update(time) {
         const height = this.scale.height;
+        const titleScale = this.scale.width < 600 ? 0.6 : 1.0;
+        const shadowOffset = 4 * titleScale;
 
         this.rungs.forEach(rung => {
             rung.y += 2;
@@ -283,8 +285,8 @@ export default class MenuScene extends BaseScene {
             this.titleShadow1.x = (this.scale.width / 2) + offset;
             this.titleShadow2.x = (this.scale.width / 2) - offset;
         } else {
-            this.titleShadow1.x = this.scale.width / 2 - 4;
-            this.titleShadow2.x = this.scale.width / 2 + 4;
+            this.titleShadow1.x = this.scale.width / 2 - shadowOffset;
+            this.titleShadow2.x = this.scale.width / 2 + shadowOffset;
         }
     }
 

@@ -116,11 +116,11 @@ export default class ScrapbookScene extends BaseScene {
 
         // Add scrapbook moments from gameplay choices
         for (const entry of scrapbook) {
-            if (entry.visited) {
+            if (entry && entry.visited && entry.location) {
                 pages.push({
                     title: entry.location.toUpperCase(),
                     present: true,
-                    text: entry.text,
+                    text: entry.text || '',
                     emoji: '🚶',
                 });
             }
@@ -200,6 +200,8 @@ export default class ScrapbookScene extends BaseScene {
     }
 
     goToEnding() {
+        if (this._ending) return;
+        this._ending = true;
         this.cameras.main.fadeOut(1500);
         this.time.delayedCall(1500, () => {
             this.scene.start('EndingScene');

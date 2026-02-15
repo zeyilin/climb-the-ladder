@@ -70,11 +70,8 @@ export default class PersistenceManager {
             registry.set('consecutiveRestDays', data.consecutiveRestDays || 0);
             if (data.scrapbook) registry.set('scrapbook', data.scrapbook);
 
-            // Restore narrative progress
-            const narrativeEngine = registry.get('narrativeEngine');
-            if (narrativeEngine && data.narrativeProgress) {
-                narrativeEngine.restoreProgress(data.narrativeProgress);
-            }
+            // Narrative progress is restored later by GameFlowController.resumeFromSave()
+            // after the act manifest is loaded (restoreProgress needs a loaded manifest)
 
             console.log('Game loaded.');
             return true;
